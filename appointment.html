@@ -841,17 +841,26 @@
         document.getElementById('preferredDate').setAttribute('min', today);
         document.getElementById('alternateDate').setAttribute('min', today);
 
-        // Time slot selection
+        // Time slot selection (with toggle option)
         const timeSlots = document.querySelectorAll('.time-slot');
         const timeSlotInput = document.getElementById('timeSlot');
 
         timeSlots.forEach(slot => {
             slot.addEventListener('click', function () {
-                timeSlots.forEach(s => s.classList.remove('selected'));
-                this.classList.add('selected');
-                timeSlotInput.value = this.getAttribute('data-time');
+                // If the same slot is clicked again → unselect it
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    timeSlotInput.value = ''; // clear the hidden input
+                } else {
+                    // Otherwise unselect others and select this one
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                    timeSlotInput.value = this.getAttribute('data-time');
+                }
             });
         });
+
+        
 
         // Mobile menu toggle
 
@@ -1024,7 +1033,7 @@
 
 
 
-        document.querySelectorAll(".time-slot").forEach(slot => {
+       /* document.querySelectorAll(".time-slot").forEach(slot => {
             slot.addEventListener("click", function () {
                 // If already selected → unselect
                 if (this.classList.contains("selected")) {
@@ -1035,7 +1044,7 @@
                     this.classList.add("selected");
                 }
             });
-        });
+        });*/
 
         document.getElementById("appointmentForm").addEventListener("submit", function (e) {
             e.preventDefault(); // prevent normal form submission
