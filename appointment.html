@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Shekhar Dental & Orthodontic Center</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta name="description" content="Schedule your dental appointment at Shekhar Dental Clinic. Easy online booking for all dental services including cleaning, whitening, braces, implants, and more.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: top 0.4s ease, background-color 0.4s ease;
+        }
+
+            .header.hide {
+                top: -100px; /* moves header out of view */
+            }
+
+            .header.show {
+                top: 0;
+            }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo i {
+            color: #64b5f6;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .nav-link:hover {
+                background: rgba(255,255,255,0.2);
+                transform: translateY(-2px);
+            }
+
+            .nav-link.active {
+                background: rgba(255,255,255,0.3);
+            }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+            #loader.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+        .loader-gif {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        #loader p {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: black;
+            text-align: center;
+        }
+
+        /* Optional: prevent page scroll while loader is visible */
+        body.loading {
+            overflow: hidden;
+        }
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 2rem;
+        }
+
+        .appointment-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .appointment-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .appointment-header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            }
+
+            .appointment-header h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .appointment-header p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+                position: relative;
+                z-index: 2;
+            }
+
+        .floating-icons {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .appointment-form {
+            padding: 3rem 2rem;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+            .form-group.full-width {
+                grid-column: 1 / -1;
+            }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c5aa0;
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            font-size: 0.95rem;
+            padding: 0.8rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+            .form-input:focus {
+                outline: none;
+                border-color: #667eea;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                transform: translateY(-2px);
+            }
+
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .form-select:focus {
+                outline: none;
+                border-color: #667eea;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .time-slot {
+            padding: 0.8rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            font-size: 0.9rem;
+        }
+
+            .time-slot:hover {
+                border-color: #667eea;
+                background: #f0f4ff;
+            }
+
+            .time-slot.selected {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-color: #667eea;
+            }
+
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            min-height: 100px;
+            resize: vertical;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+            .form-textarea:focus {
+                outline: none;
+                border-color: #667eea;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem auto 0;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+        }
+
+            .submit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(238, 90, 36, 0.6);
+            }
+
+            .submit-btn:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+        .emergency-notice {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+            .emergency-notice h3 {
+                margin-bottom: 0.5rem;
+            }
+
+        .contact-info {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+            .contact-info h3 {
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+
+            .success-message.show {
+                display: block;
+                animation: slideIn 0.5s ease;
+            }
+
+            .success-message h3 {
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.4rem 0;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 2rem; /* make space for fixed header */
+            }
+
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero .subtitle {
+                    font-size: 1.1rem;
+                }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid,
+            .services-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card,
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .hero-flex {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-image img {
+                max-width: 320px;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.6rem;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                width: 85%;
+                max-width: 300px;
+                background: rgba(44, 90, 160, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 12px;
+                text-align: left;
+                padding: 0.8rem 0;
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                overflow: hidden;
+            }
+
+                .nav-menu.show {
+                    display: flex;
+                    animation: slideDown 0.3s ease forwards;
+                }
+
+            .nav-link {
+                display: block;
+                padding: 0.6rem 1rem;
+                color: white;
+                text-decoration: none;
+                font-size: 0.9rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+                .nav-link:last-child {
+                    border-bottom: none;
+                }
+
+            .logo {
+                font-size: 1.4rem; /* optional: smaller logo text */
+            }
+
+            .main-content {
+                padding-top: 90px; /* enough space for fixed header */
+            }
+
+            .appointment-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .appointment-header p {
+                font-size: 0.95rem;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 1rem;
+                padding: 1rem 2rem;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .appointment-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .appointment-container {
+                border-radius: 10px;
+                margin: 1rem 0;
+            }
+
+            .appointment-header {
+                padding: 2rem 1rem;
+            }
+
+            .appointment-form {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+            .input-icon i {
+                position: absolute;
+                top: 50%;
+                right: 1rem;
+                transform: translateY(-50%);
+                color: #667eea;
+            }
+
+        .whatsapp-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+            .whatsapp-note i {
+                color: #25d366;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div style="background: white;
+         color: black;  /* Change text color to black for contrast */
+         padding: 8rem 0 4rem 0;
+         text-align: center;">
+
+            <img src="loading.gif" alt="Loading..." class="loader-gif">
+            <p style="margin-top: 20px; font-size: 1.2rem;">Loading...</p>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Shekhar Dental Clinic Logo" class="logo-img">
+                Shekhar Dental Clinic
+            </a>
+
+            <!-- Menu Toggle Button (visible only on mobile) -->
+            <button class="menu-toggle" onclick="toggleMenu(this)">☰</button>
+
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="team.html" class="nav-link">Our Team</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="container">
+            <div class="appointment-container">
+                <div class="appointment-header" style="background: linear-gradient(135deg, #5ebdfc 0%, #2979ff 100%); color: white; padding: 8rem 0 4rem 0; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-radius: 0  20px;">
+                    <div class="floating-icons">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h1><i class="fas fa-tooth"></i> Book Your Appointment</h1>
+                    <p>Schedule your visit with our expert dental team. We're here to give you the best smile of your life!</p>
+                </div>
+
+                <div class="appointment-form">
+                    <div class="emergency-notice">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Dental Emergency?</h3>
+                        <p>For urgent dental issues, please call us directly at <strong>+91 96672 66301</strong></p>
+                    </div>
+
+                    <form id="appointmentForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
+                                <div class="input-icon">
+                                    <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Enter your full name">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                                <div class="input-icon">
+                                    <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+91 XXXXX XXXXX" pattern="[+]?[0-9\s\-()]{10,15}">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="whatsapp-note">
+                                    <i class="fab fa-whatsapp"></i>
+                                    We'll send confirmation & reminders via WhatsApp
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-icon">
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="age" class="form-label">Age</label>
+                                <div class="input-icon">
+                                    <input type="number" id="age" name="age" class="form-input" placeholder="Age" min="1" max="120">
+                                    <i class="fas fa-birthday-cake"></i>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="service" class="form-label">Select Service / Reason for Visit <span class="required">*</span></label>
+                                <select id="service" name="service" class="form-select" required>
+                                    <option value="">Choose a service...</option>
+                                    <option value="implants">Dental Implants</option>
+                                    <option value="pfm-crown">PFM Crown & Bridges</option>
+                                    <option value="zirconia-cap">Zirconia Cap</option>
+                                    <option value="night-guard">Night Guard</option>
+                                    <option value="composite-filling">Composite Filling</option>
+                                    <option value="root-canal">Root Canal Treatment</option>
+                                    <option value="ultrasonic-scaling">Ultrasonic Scaling</option>
+                                    <option value="wisdom-impaction">Surgical Wisdom Teeth Impaction</option>
+                                    <option value="implant-dentures">Implant-Based Dentures</option>
+                                    <option value="braces">Braces Treatment</option>
+                                    <option value="partial-dentures">Removable Partial Dentures</option>
+                                    <option value="dental-bleach">Dental Bleach (Teeth Whitening)</option>
+                                </select>
+                            </div>
+
+
+
+                            <!-- Preferred Date -->
+                            <div class="form-group">
+                                <label for="preferredDate" class="form-label">Preferred Date <span class="required">*</span></label>
+                                <div class="input-icon">
+                                    <input type="date" id="preferredDate" name="preferredDate" class="form-input" onclick="this.showPicker()" required>
+
+                                </div>
+                            </div>
+
+                            <!-- Alternate Date -->
+                            <div class="form-group">
+                                <label for="alternateDate" class="form-label">Alternate Date (Optional)</label>
+                                <div class="input-icon">
+                                    <input type="date" id="alternateDate" name="alternateDate" class="form-input" onclick="this.showPicker()" required>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group full-width">
+                                <label class="form-label">Preferred Time Slot <span class="required">*</span></label>
+                                <div class="time-slots">
+                                    <div class="time-slot" data-time="morning-early">9:00 - 11:00 AM</div>
+                                    <div class="time-slot" data-time="morning-late">11:00 AM - 1:00 PM</div>
+                                    <div class="time-slot" data-time="afternoon">2:00 - 4:00 PM</div>
+                                    <div class="time-slot" data-time="evening">4:00 - 6:00 PM</div>
+                                    <div class="time-slot" data-time="late-evening">6:00 - 7:00 PM</div>
+                                </div>
+                                <input type="hidden" id="timeSlot" name="timeSlot" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="comments" class="form-label">Additional Comments / Special Requests</label>
+                                <textarea id="comments" name="comments" class="form-textarea" placeholder="Please mention any specific concerns, medical conditions, allergies, or special requests..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-calendar-check"></i>
+                            Book My Appointment
+                        </button>
+
+                        <div class="success-message" id="successMessage">
+                            <h3><i class="fas fa-check-circle"></i> Appointment Request Submitted!</h3>
+                            <p>Thank you for choosing Shekhar Dental Clinic. We'll contact you within 24 hours to confirm your appointment details.</p>
+                            <p>
+                                <strong>What's Next?</strong><br>
+                                • You'll receive a WhatsApp confirmation<br>
+                                • Our team will call to verify details<br>
+                                • We'll send appointment reminders
+                            </p>
+                        </div>
+                    </form>
+
+                    <div class="contact-info">
+                        <h3><i class="fas fa-info-circle"></i> Contact Information</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 96672 66301</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>+91 98702 94558</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@shekhardental.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <span>
+                                    <i class="fas fa-clock"></i>  Mon-Sat: 10:00 AM - 12:00 PM<br>06:00 PM - 10:00 PM<br>
+                                    Sunday: Free Dental check-up
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('preferredDate').setAttribute('min', today);
+        document.getElementById('alternateDate').setAttribute('min', today);
+
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const timeSlotInput = document.getElementById('timeSlot');
+
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function () {
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                timeSlotInput.value = this.getAttribute('data-time');
+            });
+        });
+
+        // Mobile menu toggle
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const service = document.getElementById('service').value;
+            const preferredDate = document.getElementById('preferredDate').value;
+            const alternateDate = document.getElementById('alternateDate').value;
+            const timeSlot = document.getElementById('timeSlot').value;
+            const comments = document.getElementById('comments').value.trim();
+
+            // Basic validation
+            if (!fullName || !phone || !service || !preferredDate || !timeSlot) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Phone number validation
+            const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,15}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+
+            // Format the time slot for display
+            const timeSlotMap = {
+                'morning-early': '9:00 - 11:00 AM',
+                'morning-late': '11:00 AM - 1:00 PM',
+                'afternoon': '2:00 - 4:00 PM',
+                'evening': '4:00 - 6:00 PM',
+                'late-evening': '6:00 - 7:00 PM'
+            };
+
+            // Format the service name for display
+            const serviceMap = {
+                'implants': 'Dental Implants',
+                'pfm-crown': 'PFM Crown & Bridges',
+                'zirconia-cap': 'Zirconia Cap',
+                'night-guard': 'Night Guard',
+                'composite-filling': 'Composite Filling',
+                'root-canal': 'Root Canal Treatment',
+                'ultrasonic-scaling': 'Ultrasonic Scaling',
+                'wisdom-impaction': 'Surgical Wisdom Teeth Impaction',
+                'implant-dentures': 'Implant-Based Dentures',
+                'braces': 'Braces Treatment',
+                'partial-dentures': 'Removable Partial Dentures',
+                'dental-bleach': 'Dental Bleach (Teeth Whitening)'
+            };
+
+
+            // Format date for display
+            const formatDate = (dateString) => {
+                if (!dateString) return 'Not specified';
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-IN', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            };
+
+            // Create WhatsApp message
+            let whatsappMessage = `🦷 *NEW APPOINTMENT REQUEST*\n`;
+            whatsappMessage += `🏥 *Shekhar Dental & Orthodontic Center*\n\n`;
+            whatsappMessage += `👤 *Patient Details:*\n`;
+            whatsappMessage += `• Name: ${fullName}\n`;
+            whatsappMessage += `• Phone: ${phone}\n`;
+            if (email) whatsappMessage += `• Email: ${email}\n`;
+            if (age) whatsappMessage += `• Age: ${age} years\n`;
+            whatsappMessage += `\n🩺 *Service Required:*\n`;
+            whatsappMessage += `• ${serviceMap[service] || service}\n`;
+            whatsappMessage += `\n📅 *Appointment Schedule:*\n`;
+            whatsappMessage += `• Preferred Date: ${formatDate(preferredDate)}\n`;
+            whatsappMessage += `• Time Slot: ${timeSlotMap[timeSlot] || timeSlot}\n`;
+            if (alternateDate) whatsappMessage += `• Alternate Date: ${formatDate(alternateDate)}\n`;
+            if (comments) {
+                whatsappMessage += `\n💬 *Additional Comments:*\n`;
+                whatsappMessage += `${comments}\n`;
+            }
+            whatsappMessage += `\n⏰ *Request Time:* ${new Date().toLocaleString('en-IN')}\n`;
+            whatsappMessage += `\n✅ *Action Required:*\n`;
+            whatsappMessage += `• Confirm appointment availability\n`;
+            whatsappMessage += `• Call patient for confirmation\n`;
+            whatsappMessage += `• Send appointment confirmation\n`;
+            whatsappMessage += `\n🔗 *Reply to confirm or call patient directly*`;
+
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/919667266301?text=${encodedMessage}`;
+
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending to WhatsApp...';
+
+            // Small delay for user experience
+            setTimeout(() => {
+                // Open WhatsApp with the message
+                window.open(whatsappURL, '_blank');
+
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+
+                // Reset form
+                this.reset();
+                timeSlots.forEach(s => s.classList.remove('selected'));
+
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Book My Appointment';
+
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 1500);
+        });
+
+        // Enhanced form validation and user experience
+        const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+
+        inputs.forEach(input => {
+            input.addEventListener('blur', function () {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '#e1e8ed';
+                }
+            });
+
+            input.addEventListener('focus', function () {
+                this.style.borderColor = '#667eea';
+            });
+        });
+
+        // Auto-format phone number
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0 && !value.startsWith('91') && value.length <= 10) {
+                value = '91' + value;
+            }
+
+            if (value.length <= 12) {
+                if (value.length > 2) {
+                    e.target.value = '+' + value.slice(0, 2) + ' ' + value.slice(2, 7) + ' ' + value.slice(7);
+                } else {
+                    e.target.value = '+' + value;
+                }
+            }
+        });
+
+        // Disable past dates for alternate date when preferred date changes
+        document.getElementById('preferredDate').addEventListener('change', function () {
+            const selectedDate = this.value;
+            if (selectedDate) {
+                document.getElementById('alternateDate').setAttribute('min', selectedDate);
+            }
+        });
+
+
+
+
+
+        document.querySelectorAll(".time-slot").forEach(slot => {
+            slot.addEventListener("click", function () {
+                // If already selected → unselect
+                if (this.classList.contains("selected")) {
+                    this.classList.remove("selected");
+                } else {
+                    // Otherwise unselect all others and select this one
+                    document.querySelectorAll(".time-slot").forEach(s => s.classList.remove("selected"));
+                    this.classList.add("selected");
+                }
+            });
+        });
+
+        document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // prevent normal form submission
+
+            // Collect values
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const service = document.getElementById("service").value;
+            const preferredDate = document.getElementById("preferredDate").value;
+            const alternateDate = document.getElementById("alternateDate").value;
+            const notes = document.getElementById("notes").value;
+
+            // Build WhatsApp message
+            let message = `New Appointment Request:%0A`;
+            message += `👤 Name: ${name}%0A`;
+            message += `📞 Phone: ${phone}%0A`;
+            if (email) message += `✉️ Email: ${email}%0A`;
+            message += `🦷 Service: ${service}%0A`;
+            message += `📅 Preferred Date: ${preferredDate}%0A`;
+            if (alternateDate) message += `📅 Alternate Date: ${alternateDate}%0A`;
+            if (notes) message += `📝 Notes: ${notes}%0A`;
+
+            // Clinic WhatsApp number (use international format, without spaces)
+            const clinicNumber = "919667266301"; // +91 9667266301
+
+            // Open WhatsApp with message
+            const whatsappURL = `https://wa.me/${clinicNumber}?text=${message}`;
+            window.open(whatsappURL, "_blank");
+        });
+
+        // Header scroll functionality
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hide');
+                header.classList.remove('show');
+            } else {
+                header.classList.remove('hide');
+                header.classList.add('show');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Close menu on link click (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                const toggleBtn = document.querySelector('.menu-toggle');
+                navMenu.classList.remove('show');
+                toggleBtn.textContent = '☰';
+            });
+        });
+        function toggleMenu(button) {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+            button.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                const toggleBtn = document.querySelector('.menu-toggle');
+                navMenu.classList.remove('show');
+                toggleBtn.textContent = '☰';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }, 300);
+            }
+        });
+
+        // Backup: Hide on window load
+        window.addEventListener('load', function () {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        });
+    </script>
+
+
+</body>
+</html>

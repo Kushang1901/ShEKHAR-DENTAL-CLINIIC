@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Expert Team - Shekhar Dental Clinic | Meet Our Dental Specialists in Delhi</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta name="description" content="Meet our experienced dental team at Shekhar Dental Clinic. Expert dentists specializing in oral surgery, orthodontics, endodontics, and comprehensive dental care in Sagarpur Delhi.">
+    <meta name="keywords" content="dental team sagarpur delhi , oral surgeon, orthodontist, endodontist, dental surgeon, expert dentists, dental specialists sagarpur, delhi">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: top 0.4s ease, background-color 0.4s ease;
+        }
+
+            .header.hide {
+                top: -100px; /* moves header out of view */
+            }
+
+            .header.show {
+                top: 0;
+            }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo i {
+            color: #64b5f6;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .nav-link:hover {
+                background: rgba(255,255,255,0.2);
+                transform: translateY(-2px);
+            }
+
+            .nav-link.active {
+                background: rgba(255,255,255,0.3);
+            }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 0 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .page-header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+            .breadcrumb a {
+                color: rgba(255,255,255,0.8);
+                text-decoration: none;
+            }
+
+                .breadcrumb a:hover {
+                    color: white;
+                }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+            #loader.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+        .loader-gif {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        #loader p {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: black;
+            text-align: center;
+        }
+
+        /* Optional: prevent page scroll while loader is visible */
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Team Overview */
+        .team-overview {
+            padding: 5rem 0 3rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+                color: #2c5aa0;
+                margin-bottom: 1rem;
+                position: relative;
+            }
+
+                .section-header h2::after {
+                    content: '';
+                    width: 80px;
+                    height: 4px;
+                    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    border-radius: 2px;
+                }
+
+            .section-header p {
+                font-size: 1.1rem;
+                color: #666;
+                max-width: 700px;
+                margin: 0 auto;
+                line-height: 1.8;
+            }
+
+        /* Team Stats */
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 2rem 0 5rem 0;
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .team-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+                transition: left 0.5s ease;
+                z-index: 1;
+            }
+
+            .team-card:hover::before {
+                left: 100%;
+            }
+
+            .team-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            }
+
+        .team-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .team-image::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.1);
+            }
+
+            .team-image i {
+                position: relative;
+                z-index: 2;
+                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            }
+
+        /* Different gradients for each team member */
+        .team-card:nth-child(1) .team-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .team-card:nth-child(2) .team-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .team-card:nth-child(3) .team-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .team-card:nth-child(4) .team-image {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .team-card:nth-child(5) .team-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .team-card:nth-child(6) .team-image {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .team-content {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-name {
+            color: #2c5aa0;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-designation {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .team-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .team-specialties {
+            margin-bottom: 2rem;
+        }
+
+        .specialty-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #2c5aa0;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+            .specialty-tag:hover {
+                background: #2c5aa0;
+                color: white;
+            }
+
+        .team-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            padding: 0.6rem;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+            .social-link:hover {
+                background: #2c5aa0;
+                color: white;
+                transform: translateY(-3px);
+            }
+
+        /* Expertise Section */
+        .expertise-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .expertise-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+        .expertise-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .expertise-card h3 {
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .expertise-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+        }
+
+            .cta-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(238, 90, 36, 0.6);
+            }
+
+            .cta-button.secondary {
+                background: transparent;
+                border: 2px solid white;
+                box-shadow: none;
+            }
+
+                .cta-button.secondary:hover {
+                    background: white;
+                    color: #667eea;
+                    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+                }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #64b5f6;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social-link {
+            color: #bdc3c7;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+            .footer-social-link:hover {
+                color: #64b5f6;
+                transform: translateY(-3px);
+            }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll Animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+            .scroll-animate.animated {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (max-width: 992px) {
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.1rem 0; /* smaller header */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 2rem; /* make space for fixed header */
+            }
+
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero .subtitle {
+                    font-size: 1.1rem;
+                }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid,
+            .services-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card,
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .hero-flex {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-image img {
+                max-width: 320px;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.6rem;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                width: 85%;
+                max-width: 300px;
+                background: rgba(44, 90, 160, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 12px;
+                text-align: left;
+                padding: 0.8rem 0;
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                overflow: hidden;
+            }
+
+                .nav-menu.show {
+                    display: flex;
+                    animation: slideDown 0.3s ease forwards;
+                }
+
+            .nav-link {
+                display: block;
+                padding: 0.6rem 1rem;
+                color: white;
+                text-decoration: none;
+                font-size: 0.9rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+                .nav-link:last-child {
+                    border-bottom: none;
+                }
+
+            .logo {
+                font-size: 1.4rem; /* optional: smaller logo text */
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .expertise-card {
+                padding: 2rem 1.5rem;
+            }
+
+                .expertise-card h3 {
+                    font-size: 1.2rem;
+                }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .page-header {
+                padding: 6rem 0 3rem 0;
+            }
+
+                .page-header h1 {
+                    font-size: 2rem;
+                }
+
+            .team-stats,
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-image {
+                height: 250px;
+                font-size: 3rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .expertise-card {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .expertise-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+
+            .expertise-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .expertise-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Loading Animation for Team Cards */
+        .team-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+            .team-card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .team-card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .team-card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .team-card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            .team-card:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .team-card:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Shekhar Dental Clinic Logo" class="logo-img">
+                Shekhar Dental Clinic
+            </a>
+
+            <!-- Menu Toggle Button (visible only on mobile) -->
+            <button class="menu-toggle" onclick="toggleMenu(this)">☰</button>
+
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="team.html" class="nav-link active">Our Team</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(135deg, #5ebdfc 0%, #2979ff 100%); color: white; padding: 8rem 0 4rem 0; text-align: center;">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Meet Our Expert Team</h1>
+                <p>Our highly skilled dental professionals are committed to providing exceptional care with years of experience in specialized fields of dentistry.</p>
+                <div class="breadcrumb">
+                    <a href="index.html" style="color: #fff; text-decoration: none;">Home</a>
+                    <i class="fas fa-chevron-right" style="margin: 0 8px; color: #fff;"></i>
+                    <span>Our Team</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Team Overview -->
+    <section class="team-overview">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Excellence in Dental Care</h2>
+                <p>Our team consists of highly qualified dental specialists with extensive experience in their respective fields. Each member is committed to providing you with the highest quality of dental care using the latest techniques and technologies.</p>
+            </div>
+
+            <div class="team-stats">
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Expert Dentists</div>
+                </div>
+
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Years Combined Experience</div>
+                </div>
+
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Patients Treated</div>
+                </div>
+
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Patient Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-grid">
+                <!-- Dr. Prakash - Owner -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Prakash</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-crown"></i>
+                            Owner
+                        </div>
+                        <p class="team-description">
+                            Leading the clinic with extensive expertise in comprehensive dental care and practice management.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Practice Management</span>
+                            <span class="specialty-tag">General Dentistry</span>
+                            <span class="specialty-tag">Patient Care</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Prakash - Consultant -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Prakash</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-user-tie"></i>
+                            Consultant
+                        </div>
+                        <p class="team-description">
+                            Expert consultant providing specialized guidance and advanced treatment planning for complex cases.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Treatment Planning</span>
+                            <span class="specialty-tag">Case Consultation</span>
+                            <span class="specialty-tag">Advanced Procedures</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Prakash - Dental Surgeon -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-scalpel"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Prakash</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-cut"></i>
+                            Dental Surgeon
+                        </div>
+                        <p class="team-description">
+                            Skilled in surgical procedures with precision and expertise in restorative and cosmetic dentistry.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Dental Surgery</span>
+                            <span class="specialty-tag">Cosmetic Dentistry</span>
+                            <span class="specialty-tag">Restorative Work</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Jitender - Oral Surgeon -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Jitender</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-procedures"></i>
+                            Oral Surgeon
+                        </div>
+                        <p class="team-description">
+                            Specialist in oral and maxillofacial surgery with expertise in complex extractions and implant procedures.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Oral Surgery</span>
+                            <span class="specialty-tag">Dental Implants</span>
+                            <span class="specialty-tag">Wisdom Teeth Removal</span>
+                            <span class="specialty-tag">Maxillofacial Surgery</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Vivek - Orthodontist -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-grip-lines"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Vivek</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-teeth"></i>
+                            Orthodontist
+                        </div>
+                        <p class="team-description">
+                            Specialist in teeth alignment and bite correction with modern orthodontic techniques and clear aligners.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Braces Treatment</span>
+                            <span class="specialty-tag">Clear Aligners</span>
+                            <span class="specialty-tag">Bite Correction</span>
+                            <span class="specialty-tag">Jaw Alignment</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Tushar Kohli - Endodontist -->
+                <div class="team-card scroll-animate">
+                    <div class="team-image">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dr. Tushar Kohli</h3>
+                        <div class="team-designation">
+                            <i class="fas fa-heartbeat"></i>
+                            Endodontist
+                        </div>
+                        <p class="team-description">
+                            Expert in root canal therapy and endodontic treatment, specializing in saving natural teeth through advanced root canal procedures.
+                        </p>
+                        <div class="team-specialties">
+                            <span class="specialty-tag">Root Canal Therapy</span>
+                            <span class="specialty-tag">Endodontic Surgery</span>
+                            <span class="specialty-tag">Pulp Treatment</span>
+                            <span class="specialty-tag">Tooth Preservation</span>
+                        </div>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Our Areas of Expertise</h2>
+                <p>Our comprehensive dental services cover all aspects of oral health care, from preventive treatments to advanced surgical procedures.</p>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>General Dentistry</h3>
+                    <p>Complete oral health care including cleanings, fillings, preventive treatments, and routine dental examinations for all ages.</p>
+                </div>
+
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Oral Surgery</h3>
+                    <p>Advanced surgical procedures including extractions, dental implants, and maxillofacial surgeries performed with precision.</p>
+                </div>
+
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-grip-lines"></i>
+                    </div>
+                    <h3>Orthodontics</h3>
+                    <p>Teeth alignment and bite correction using modern braces, clear aligners, and advanced orthodontic techniques.</p>
+                </div>
+
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Endodontics</h3>
+                    <p>Specialized root canal treatments and endodontic procedures to save and preserve your natural teeth.</p>
+                </div>
+
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Aesthetic dental treatments including veneers, whitening, and smile makeovers for a perfect smile.</p>
+                </div>
+
+                <div class="expertise-card scroll-animate">
+                    <div class="expertise-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Preventive Care</h3>
+                    <p>Comprehensive preventive treatments and education to maintain optimal oral health and prevent dental issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Meet Our Team?</h2>
+                <p>Schedule a consultation with our expert dental professionals today. We're here to provide you with exceptional dental care in a comfortable and welcoming environment.</p>
+                <div class="cta-buttons">
+                    <a href="appointment.html" class="cta-button">
+                        <i class="fas fa-calendar-check"></i>
+                        Book Appointment
+                    </a>
+                    <a href="tel:+919667266301" class="cta-button secondary">
+                        <i class="fas fa-phone"></i>
+                        Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shekhar Dental Clinic</h3>
+                    <p>Your trusted partner for comprehensive dental care in Vadodara. We provide quality dental services with a focus on patient comfort and satisfaction.</p>
+                    <div class="social-links">
+                        <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about_us.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="#">Gallery</a>
+                    <a href="#">Contact Us</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Oral Surgery</a>
+                    <a href="#">Orthodontics</a>
+                    <a href="#">Endodontics</a>
+                    <a href="#">Cosmetic Dentistry</a>
+                    <a href="#">Preventive Care</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar,<br>Sant Mohalla, Sagarpur East, Delhi – 110046</p>
+                    <p><i class="fas fa-phone"></i> +91 96672 66301 , 98702 94558</p>
+                    <p><i class="fas fa-envelope"></i> info@shekhardental.com</p>
+                    <p>
+                        <i class="fas fa-clock"></i>  Mon-Sat: 10:00 AM - 12:00 PM<br>06:00 PM - 10:00 PM<br>
+                        Sunday: Free Dental check-up
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shekhar Dental Clinic. All rights reserved. | Designed with ❤️ for better oral health</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            scrollElements.forEach(el => observer.observe(el));
+        });
+
+        // Mobile Menu Toggle (placeholder for mobile functionality)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href.trim() === "") return; // skip empty #
+
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effect to team cards
+        const teamCards = document.querySelectorAll('.team-card');
+        teamCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + (target >= 1000 ? '+' : target === 99 ? '%' : '');
+            }, 20);
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        animateCounter(stat, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const teamOverview = document.querySelector('.team-overview');
+        if (teamOverview) {
+            statsObserver.observe(teamOverview);
+        }
+
+        // Header scroll functionality
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hide');
+                header.classList.remove('show');
+            } else {
+                header.classList.remove('hide');
+                header.classList.add('show');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const toggleBtn = document.querySelector('.menu-toggle');
+
+            navMenu.classList.toggle('show');
+            toggleBtn.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
+        }
+
+        // Close menu on link click (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                const toggleBtn = document.querySelector('.menu-toggle');
+                navMenu.classList.remove('show');
+                toggleBtn.textContent = '☰';
+            });
+        });
+        function toggleMenu(button) {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+            button.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
+        }
+    </script>
+</body>
+</html>
