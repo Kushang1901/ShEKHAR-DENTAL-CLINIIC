@@ -7,7 +7,9 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <meta name="description" content="Comprehensive dental services at Shekhar Dental Clinic including dental implants, crowns, root canal treatment, braces, and more. Expert care with transparent pricing in Vadodara, Gujarat.">
     <meta name="keywords" content="dental services vadodara, dental implants, root canal treatment, braces, teeth cleaning, dental crowns, wisdom teeth removal, composite filling">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -318,33 +320,30 @@
                 box-shadow: 0 25px 60px rgba(0,0,0,0.15);
             }
 
-        .service-image {
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
+        .service-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
         }
 
-            .service-image::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.1);
-            }
 
-            .service-image i {
-                position: relative;
-                z-index: 2;
-                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-            }
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .service-image i {
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
 
         .service-content {
             padding: 2rem;
@@ -948,8 +947,12 @@
                 <!-- Dental Implants -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-tooth"></i>
+                        <a href="services/dental_implants.png" target="_blank">
+                            <img src="services/dental_implants.png"
+                                 alt="Dental Implants Treatment">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -957,9 +960,11 @@
                             </div>
                             <div class="service-price">₹25,000</div>
                         </div>
+
                         <p class="service-description">
                             Permanent solution for missing teeth with titanium implants that integrate with your jawbone. Restore your smile with natural-looking, durable teeth replacements.
                         </p>
+
                         <div class="service-features">
                             <ul>
                                 <li><i class="fas fa-check"></i> Permanent tooth replacement</li>
@@ -968,18 +973,24 @@
                                 <li><i class="fas fa-check"></i> Long-lasting solution</li>
                             </ul>
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
                 </div>
 
+
                 <!-- PFM Crown & Bridges -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-crown"></i>
+                        <a href="services/pfmcrown&bridges.png" target="_blank">
+                            <img src="services/pfmcrown&bridges.png"
+                                 alt="PFM Crown & Bridges">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -987,19 +998,24 @@
                             </div>
                             <div class="service-price">₹2,500 per cap</div>
                         </div>
+
                         <p class="service-description">
                             Porcelain fused to metal crowns providing strength and aesthetics. Ideal for restoring damaged teeth with durable, natural-looking caps.
+
                         </p>
+
                         <div class="service-features">
                             <ul>
                                 <li><i class="fas fa-check"></i> Porcelain fused to metal</li>
                                 <li><i class="fas fa-check"></i> Strong and durable</li>
                                 <li><i class="fas fa-check"></i> Natural appearance</li>
                                 <li><i class="fas fa-check"></i> Single cap solution</li>
+
                             </ul>
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1008,8 +1024,12 @@
                 <!-- Zirconia Cap -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-gem"></i>
+                        <a href="services/zirconia cap.png" target="_blank">
+                            <img src="services/zirconia cap.png"
+                                 alt="Zirconia Cap">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1017,6 +1037,7 @@
                             </div>
                             <div class="service-price">₹5,000 per cap</div>
                         </div>
+
                         <p class="service-description">
                             Metal-free single crown with superior aesthetics and biocompatibility. Perfect for front teeth restoration with natural translucency.
                         </p>
@@ -1027,9 +1048,11 @@
                                 <li><i class="fas fa-check"></i> Biocompatible material</li>
                                 <li><i class="fas fa-check"></i> Natural translucency</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1038,8 +1061,12 @@
                 <!-- Night Guard -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-shield-alt"></i>
+                        <a href="services/night_guard.png" target="_blank">
+                            <img src="services/night_guard.png"
+                                 alt="night_guard">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1057,9 +1084,11 @@
                                 <li><i class="fas fa-check"></i> Comfortable to wear</li>
                                 <li><i class="fas fa-check"></i> Protects jaw joints</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1068,8 +1097,12 @@
                 <!-- Composite Filling -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-fill"></i>
+                        <a href="services/composite_filling.png" target="_blank">
+                            <img src="services/composite_filling.png"
+                                 alt="PFM Crown & Bridges">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1087,9 +1120,11 @@
                                 <li><i class="fas fa-check"></i> Quick procedure</li>
                                 <li><i class="fas fa-check"></i> Durable and long-lasting</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1098,8 +1133,12 @@
                 <!-- Root Canal Treatment -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-stethoscope"></i>
+                        <a href="services/root_canaltreatment.png" target="_blank">
+                            <img src="services/root_canaltreatment.png"
+                                 alt="root_canaltreatment">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1117,9 +1156,11 @@
                                 <li><i class="fas fa-check"></i> Advanced techniques</li>
                                 <li><i class="fas fa-check"></i> Single-sitting possible</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1128,8 +1169,12 @@
                 <!-- Ultrasonic Scaling -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-sparkles"></i>
+                        <a href="services/ultra_sonic.png" target="_blank">
+                            <img src="services/ultra_sonic.png"
+                                 alt="ultra_sonic">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1147,9 +1192,11 @@
                                 <li><i class="fas fa-check"></i> Removes tartar & plaque</li>
                                 <li><i class="fas fa-check"></i> Improves gum health</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1158,8 +1205,12 @@
                 <!-- Surgical Wisdom Teeth Impaction -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-user-md"></i>
+                        <a href="services/surgical_wisdom.png" target="_blank">
+                            <img src="services/surgical_wisdom.png"
+                                 alt="surgical_wisdom">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1177,9 +1228,11 @@
                                 <li><i class="fas fa-check"></i> Quick recovery time</li>
                                 <li><i class="fas fa-check"></i> Post-surgery care included</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1188,12 +1241,16 @@
                 <!-- Implant-Based Dentures -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-grin"></i>
+                        <a href="services/implant_based.png" target="_blank">
+                            <img src="services/implant_based.png"
+                                 alt="implant_based">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
-                                <h3 class="service-name">Implant-Based Dentures</h3>
+                                <h3 class="service-name">Implant based Dentures</h3>
                             </div>
                             <div class="service-price">₹2,00,000</div>
                         </div>
@@ -1207,9 +1264,11 @@
                                 <li><i class="fas fa-check"></i> Natural chewing function</li>
                                 <li><i class="fas fa-check"></i> Comprehensive treatment plan</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
@@ -1218,8 +1277,12 @@
                 <!-- Braces Treatment -->
                 <div class="service-card scroll-animate">
                     <div class="service-image">
-                        <i class="fas fa-grip-lines"></i>
+                        <a href="services/braces_treatment.png" target="_blank">
+                            <img src="services/braces_treatment.png"
+                                 alt="braces_treatment">
+                        </a>
                     </div>
+
                     <div class="service-content">
                         <div class="service-header">
                             <div>
@@ -1237,75 +1300,91 @@
                                 <li><i class="fas fa-check"></i> Regular monitoring included</li>
                                 <li><i class="fas fa-check"></i> Complete treatment package</li>
                             </ul>
+
                         </div>
+
                         <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
                             Book Appointment
                         </a>
                     </div>
                 </div>
 
-                <!-- Removable Partial Dentures -->
-                <div class="service-card scroll-animate">
-                    <div class="service-image">
-                        <i class="fas fa-teeth"></i>
+
+
+        <!-- Removable Partial Dentures -->
+        <div class="service-card scroll-animate">
+            <div class="service-image">
+                <a href="services/removable_dentures.png" target="_blank">
+                    <img src="services/removable_dentures.png"
+                         alt="removable_dentures">
+                </a>
+            </div>
+
+            <div class="service-content">
+                <div class="service-header">
+                    <div>
+                        <h3 class="service-name">PFM Crown & Bridges</h3>
                     </div>
-                    <div class="service-content">
-                        <div class="service-header">
-                            <div>
-                                <h3 class="service-name">Removable Partial Dentures</h3>
-                            </div>
-                            <div class="service-price">₹15,000</div>
-                        </div>
-                        <p class="service-description">
-                            Effective replacement for one or more missing teeth. Designed to restore function and appearance, while being easy to remove and maintain.
-                        </p>
-                        <div class="service-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Cost-effective option</li>
-                                <li><i class="fas fa-check"></i> Comfortable fit</li>
-                                <li><i class="fas fa-check"></i> Easy to clean & maintain</li>
-                                <li><i class="fas fa-check"></i> Restores chewing & smile</li>
-                            </ul>
-                        </div>
-                        <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
-                            Book Appointment
-                        </a>
-                    </div>
+                    <div class="service-price">₹15,000</div>
+                </div>
+                <p class="service-description">
+                    Effective replacement for one or more missing teeth. Designed to restore function and appearance, while being easy to remove and maintain.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Cost-effective option</li>
+                        <li><i class="fas fa-check"></i> Comfortable fit</li>
+                        <li><i class="fas fa-check"></i> Easy to clean & maintain</li>
+                        <li><i class="fas fa-check"></i> Restores chewing & smile</li>
+                    </ul>
+
                 </div>
 
-                <!-- Dental Bleach (Teeth Whitening) -->
-                <div class="service-card scroll-animate">
-                    <div class="service-image">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <div class="service-content">
-                        <div class="service-header">
-                            <div>
-                                <h3 class="service-name">Dental Bleach (Teeth Whitening)</h3>
-                            </div>
-                            <div class="service-price">₹8,000</div>
-                        </div>
-                        <p class="service-description">
-                            Professional teeth whitening procedure that removes stains and brightens yellow teeth, giving you a whiter, healthier-looking smile.
-                        </p>
-                        <div class="service-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Safe & effective whitening</li>
-                                <li><i class="fas fa-check"></i> Removes stains & discoloration</li>
-                                <li><i class="fas fa-check"></i> Quick visible results</li>
-                                <li><i class="fas fa-check"></i> Boosts confidence</li>
-                            </ul>
-                        </div>
-                        <a href="appointment.html" class="book-btn">
-                            <i class="fas fa-calendar-plus"></i>
-                            Book Appointment
-                        </a>
-                    </div>
-                </div>
+                <a href="appointment.html" class="book-btn">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    Book Appointment
+                </a>
             </div>
         </div>
+
+        <!-- Dental Bleach (Teeth Whitening) -->
+        <div class="service-card scroll-animate">
+            <div class="service-image">
+                <a href="services/dental_bleech.png" target="_blank">
+                    <img src="services/dental_bleech.png"
+                         alt="dental_bleech">
+                </a>
+            </div>
+
+            <div class="service-content">
+                <div class="service-header">
+                    <div>
+                        <h3 class="service-name">Dental Bleach (Teeth Whitening)</h3>
+                    </div>
+                    <div class="service-price">₹8,000</div>
+                </div>
+                <p class="service-description">
+                    Professional teeth whitening procedure that removes stains and brightens yellow teeth, giving you a whiter, healthier-looking smile.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Safe & effective whitening</li>
+                        <li><i class="fas fa-check"></i> Removes stains & discoloration</li>
+                        <li><i class="fas fa-check"></i> Quick visible results</li>
+                        <li><i class="fas fa-check"></i> Boosts confidence</li>
+                    </ul>
+
+                </div>
+
+                <a href="appointment.html" class="book-btn">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    Book Appointment
+                </a>
+            </div>
+        </div>
+        
+
     </section>
 
 
@@ -1318,9 +1397,10 @@
                 <h2>Dental Emergency?</h2>
                 <p>Don't wait in pain! We provide emergency dental care for urgent situations. Call us immediately for same-day appointments.</p>
                 <a href="tel:+919876543210" class="emergency-btn">
-                    <i class="fas fa-phone-alt"></i>
+                    <i class="fa-solid fa-phone-volume"></i>
                     Call Emergency Line
                 </a>
+
             </div>
         </div>
     </section>
@@ -1333,13 +1413,19 @@
                 <p>Choose from our comprehensive range of dental services. Book your consultation today and let our expert team help you achieve the perfect smile you deserve.</p>
                 <div class="cta-buttons">
                     <a href="appointment.html" class="cta-button">
-                        <i class="fas fa-calendar-plus"></i>
+                        <i class="fa fa-address-book"></i>
+
                         Schedule Consultation
                     </a>
-                    <a href="#" class="cta-button secondary">
-                        <i class="fas fa-whatsapp"></i>
+
+                    <a href="https://wa.me/919876543210"
+                       class="cta-button secondary"
+                       target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i>
                         WhatsApp Us
                     </a>
+
+
                 </div>
             </div>
         </div>
@@ -1393,7 +1479,7 @@
             <div class="footer-bottom">
                 <p>
                     &copy; 2025 Shekhar Dental Clinic. All rights reserved. |
-                    Developed by <a href="https://kushang-acharya.onrender.com" target="_blank" style="color: deepskyblue ">Kushang Acharya</a>
+                    Developed by <a href="https://kushangacharya.vercel.app/" target="_blank" style="color: deepskyblue ">Kushang Acharya</a>
                 </p>
             </div>
         </div>
