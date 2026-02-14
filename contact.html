@@ -380,6 +380,12 @@
             color: #bdc3c7;
         }
 
+        .mobile-top,
+        .mobile-close,
+        .close-menu {
+            display: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header {
@@ -437,56 +443,87 @@
             }
 
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 130vh;
+                background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 100%);
+                display: flex;
                 flex-direction: column;
-                position: absolute;
-                top: 100%;
-                right: 20px;
-                width: 85%;
-                max-width: 300px;
-                background: rgba(44, 90, 160, 0.95);
-                backdrop-filter: blur(10px);
-                border-radius: 12px;
-                text-align: left;
-                padding: 0.8rem 0;
-                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-                z-index: 1000;
-                overflow: hidden;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 110px;
+                transition: right 0.4s ease;
+                z-index: 9999;
+                top: -120px;
             }
 
+
+
                 .nav-menu.show {
-                    display: flex;
-                    animation: slideDown 0.3s ease forwards;
+                    right: 0;
+                }
+
+                .nav-menu li {
+                    list-style: none;
+                    margin: 15px 0;
                 }
 
             .nav-link {
-                display: block;
-                padding: 0.6rem 1rem;
-                color: white;
-                text-decoration: none;
-                font-size: 0.9rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 1.5rem;
+                padding: 10px 20px;
+                border-radius: 30px;
             }
 
-                .nav-link:last-child {
-                    border-bottom: none;
+                .nav-link:hover {
+                    background: rgba(255,255,255,0.2);
                 }
 
             .logo {
                 font-size: 1.4rem; /* optional: smaller logo text */
             }
 
-            @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-10px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+            .mobile-top {
+                display: block;
+                text-align: center;
+                margin-bottom: -20px;
             }
+
+            .mobile-logo-img {
+                height: 80px;
+                margin-bottom: -50px;
+            }
+
+            .mobile-top h2 {
+                color: white;
+                font-size: 1.6rem;
+                font-weight: 600;
+                margin-top: 60px;
+            }
+
+            .mobile-close {
+                position: absolute;
+                top: 135px;
+                right: 25px;
+            }
+
+            .close-menu {
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: white;
+                cursor: pointer;
+            }
+
+            .mobile-close {
+                display: block;
+            }
+
+            .close-menu {
+                display: block;
+            }
+
         }
         /* Animations */
         @keyframes fadeInUp {
@@ -532,6 +569,13 @@
 
             <!-- Navigation Menu -->
             <ul class="nav-menu" id="navMenu">
+                <li class="mobile-close">
+                    <button class="close-menu" onclick="closeMenu()">✕</button>
+                </li>
+                <li class="mobile-top">
+                    <img src="logo.png" alt="Logo" class="mobile-logo-img">
+                    <h2>Shekhar Dental Clinic</h2>
+                </li>
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about_us.html" class="nav-link">About Us</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
@@ -700,13 +744,18 @@
             }
         });
 
-        function toggleMenu() {
+        function toggleMenu(button) {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+            button.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
+        } function closeMenu() {
             const navMenu = document.getElementById('navMenu');
             const toggleBtn = document.querySelector('.menu-toggle');
 
-            navMenu.classList.toggle('show');
-            toggleBtn.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
+            navMenu.classList.remove('show');
+            document.body.style.overflow = 'auto';  // Enable scroll again
         }
+
 
         // Close menu on link click (mobile)
         document.querySelectorAll('.nav-link').forEach(link => {
