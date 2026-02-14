@@ -972,7 +972,7 @@
                 </div>
 
                 <div class="stat-card scroll-animate">
-                    <div class="stat-number">15+</div>
+                    <div class="stat-number">10+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
 
@@ -1427,6 +1427,8 @@
                 </a>
             </div>
         </div>
+                </div>
+        </div>
         
 
     </section>
@@ -1569,15 +1571,21 @@
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mouseenter', function () {
                 const icon = this.querySelector('.service-image i');
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
-                icon.style.transition = 'all 0.3s ease';
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'all 0.3s ease';
+                }
             });
 
             card.addEventListener('mouseleave', function () {
                 const icon = this.querySelector('.service-image i');
-                icon.style.transform = 'scale(1) rotate(0deg)';
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
             });
         });
+
+
 
         // Book Appointment Button Click Handler
         /* document.querySelectorAll('.book-btn').forEach(btn => {
@@ -1631,20 +1639,7 @@
             card.style.transition = 'all 0.6s ease';
         });
 
-        function toggleMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const toggleBtn = document.querySelector('.menu-toggle');
-
-            navMenu.classList.toggle('show');
-            toggleBtn.textContent = navMenu.classList.contains('show') ? '✕' : '☰';
-        }
-        function closeMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const toggleBtn = document.querySelector('.menu-toggle');
-
-            navMenu.classList.remove('show');
-            document.body.style.overflow = 'auto';  // Enable scroll again
-        }
+       
 
         // Header scroll functionality
         let lastScrollTop = 0;
@@ -1682,7 +1677,7 @@
             const toggleBtn = document.querySelector('.menu-toggle');
 
             navMenu.classList.remove('show');
-            document.body.style.overflow = 'auto';  // Enable scroll again
+            toggleBtn.textContent = '☰';
         }
 
 

@@ -442,6 +442,21 @@
                 background: rgba(0,0,0,0.2);
             }
 
+        .team-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+
+            .team-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* 🔥 makes image fit properly */
+                display: block;
+            }
+
+
         .team-info {
             padding: 2rem;
         }
@@ -485,59 +500,136 @@
                 transform: translateY(-3px);
             }
 
-        /* Awards Section */
-        .awards-section {
+        /* Google Reviews Section */
+        .reviews-section {
             padding: 5rem 0;
             background: #f8f9fa;
+            overflow: hidden;
         }
 
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .reviews-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reviews-track {
+            display: flex;
             gap: 2rem;
-            margin-top: 3rem;
+            animation: scrollReviews 25s linear infinite;
         }
 
-        .award-card {
+        .review-card {
+            min-width: 350px;
             background: white;
             padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            height:380px;
         }
 
-            .award-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            .review-card p {
+                color: #333;
+                line-height: 1.6;
+                margin: 1rem 0;
             }
 
-        .award-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 50%;
+            .review-card h4 {
+                margin-top: 1rem;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+
+        .stars {
+            color: #f4c150;
+            margin-top: 5px;
+        }
+
+        .comma-icon {
+            width: 40px;
+            opacity: 0.7;
+        }
+
+        .google-logo {
+            width: 35px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Infinite Scroll Animation */
+        @keyframes scrollReviews {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .reviews-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .reviews-wrapper {
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
         }
 
-        .award-card h3 {
-            color: #2c5aa0;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+        .reviews-slider {
+            overflow: hidden;
+            width: 100%;
         }
 
-        .award-year {
-            color: #ff6b6b;
-            font-weight: 600;
-            font-size: 0.9rem;
+        .reviews-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.6s ease;
         }
 
+        .review-card {
+            min-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+            .review-card p {
+                margin: 1rem 0;
+                color: #333;
+            }
+
+            .review-card h4 {
+                margin-top: 1rem;
+                font-weight: 600;
+            }
+
+        .stars {
+            color: #f4c150;
+        }
+
+        .comma-icon {
+            width: 40px;
+            opacity: 0.6;
+        }
+
+        .google-logo {
+            width: 35px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        
+
+       
+
+        
         /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -858,6 +950,35 @@
                 display: block;
             }
 
+            .reviews-section {
+                padding: 3rem 0;
+            }
+
+            .review-card {
+                min-width: 260px;
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+
+                .review-card p {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                }
+
+                .review-card h4 {
+                    font-size: 1rem;
+                }
+
+            .comma-icon {
+                width: 30px;
+            }
+
+            .google-logo {
+                width: 28px;
+                bottom: 15px;
+                right: 15px;
+            }
+
         }
 
         @media (max-width: 480px) {
@@ -886,7 +1007,27 @@
             .story-text p {
                 font-size: 0.95rem;
             }
+            .review-card {
+                min-width: 85%;
+                margin: 0 auto;
+            }
+
+            .reviews-track {
+                gap: 1rem;
+            }
         }
+        @media (max-width: 992px) {
+
+            .review-card {
+                min-width: 300px;
+                padding: 1.8rem;
+            }
+
+            .reviews-track {
+                gap: 1.5rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1041,7 +1182,7 @@
 
                 <div class="team-card scroll-animate">
                     <div class="team-image">
-                        <i class="fas fa-user-md"></i>
+                       <img src="gallery/dr.vivek.jpeg" />
                     </div>
                     <div class="team-info">
                         <h3>Dr. Vivek</h3>
@@ -1072,49 +1213,213 @@
         </div>
     </section>
 
-    <!-- Awards Section -->
-    <section class="awards-section">
+    
+    <!-- Google Reviews Section -->
+    <section class="reviews-section">
         <div class="container">
-            <div class="section-header scroll-animate">
-                <h2>Awards & Recognition</h2>
-                <p>We're proud to be recognized for our commitment to excellence in dental care.</p>
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Trusted by hundreds of happy smiles in and across Delhi</p>
             </div>
+            
+            <div class="reviews-slider">
+                <div class="reviews-track">
 
-            <div class="awards-grid">
-                <div class="award-card scroll-animate">
-                    <div class="award-icon">
-                        <i class="fas fa-trophy"></i>
+                    <!-- Review Card -->
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Shekhar Dental Care offers exceptional treatment backed by Dr. Prakash vast experience and expertise.
+                            His gentle approach and clear explanations make every visit comfortable and stress-free. Highly recommended
+                            for anyone seeking professional and caring dental service..
+                        </p>
+                        <h4>Manikant Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
                     </div>
-                    <h3>Best Dental Clinic</h3>
-                    <div class="award-year">Vadodara - 2024</div>
-                </div>
 
-                <div class="award-card scroll-animate">
-                    <div class="award-icon">
-                        <i class="fas fa-star"></i>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            My teeth was completely not in shape. but now it's all good. It's all because of Dr Prakash,
+                            the owner of Shekhar Dental . I recommend everyone to get their teeth treatment done from here.
+                        </p>
+                        <h4>Madhuri Vishwa</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
                     </div>
-                    <h3>Excellence in Patient Care</h3>
-                    <div class="award-year">Gujarat Dental Association - 2023</div>
-                </div>
 
-                <div class="award-card scroll-animate">
-                    <div class="award-icon">
-                        <i class="fas fa-certificate"></i>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best treatment available on affordable price</p>
+                        <h4>Aashi Khan</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
                     </div>
-                    <h3>Innovation in Dentistry</h3>
-                    <div class="award-year">Indian Dental Council - 2022</div>
-                </div>
 
-                <div class="award-card scroll-animate">
-                    <div class="award-icon">
-                        <i class="fas fa-heart"></i>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Better treatment of all kind of problem's of teeth at here.</p>
+                        <h4>Harshit Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
                     </div>
-                    <h3>Community Service Award</h3>
-                    <div class="award-year">Vadodara Health Council - 2021</div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Dr Prakash is an extremely good diagnostician and clinician. His dedication to his work is commendable.</p>
+                        <h4>Tazein Hussain</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Excellent service and professional doctor.</p>
+                        <h4>Mohd Inshal</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best dentist in sagarpur.</p>
+                        <h4>Shivam Yadav King</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Painless, Invisible, comfortable, Removable, Desired results, No clinic Visits, excellent customer support,
+                            Thank u so much Team 🥰🥰🥰🥰
+                        </p>
+                        <h4>Richa Takkar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>One of the Best orthodontist clinic in west delhi.</p>
+                        <h4>Varsha Fokvat</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best docter best experience smooth procedure very supportive staff</p>
+                        <h4>911 rey mysterio</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <!--duplicancy-->
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            My teeth was completely not in shape. but now it's all good. It's all because of Dr Prakash,
+                            the owner of Shekhar Dental . I recommend everyone to get their teeth treatment done from here.
+                        </p>
+                        <h4>Madhuri Vishwa</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best treatment available on affordable price</p>
+                        <h4>Aashi Khan</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Better treatment of all kind of problem's of teeth at here.</p>
+                        <h4>Harshit Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Dr Prakash is an extremely good diagnostician and clinician. His dedication to his work is commendable.</p>
+                        <h4>Tazein Hussain</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Excellent service and professional doctor.</p>
+                        <h4>Mohd Inshal</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best dentist in sagarpur.</p>
+                        <h4>Shivam Yadav King</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Painless, Invisible, comfortable, Removable, Desired results, No clinic Visits, excellent customer support,
+                            Thank u so much Team 🥰🥰🥰🥰
+                        </p>
+                        <h4>Richa Takkar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>One of the Best orthodontist clinic in west delhi.</p>
+                        <h4>Varsha Fokvat</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best docter best experience smooth procedure very supportive staff</p>
+                        <h4>911 rey mysterio</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
                 </div>
+                
             </div>
         </div>
     </section>
+
 
     <!-- Call to Action Section -->
     <section class="cta-section">
@@ -1271,12 +1576,12 @@
         // Add CSS for pulse animation
         const style = document.createElement('style');
         style.textContent = `
-                            @keyframes pulse {
-                                0% { transform: scale(1); }
-                                50% { transform: scale(1.05); }
-                                100% { transform: scale(1); }
-                            }
-                        `;
+                                @keyframes pulse {
+                                    0% { transform: scale(1); }
+                                    50% { transform: scale(1.05); }
+                                    100% { transform: scale(1); }
+                                }
+                            `;
         document.head.appendChild(style);
 
         function toggleMenu(button) {
@@ -1355,6 +1660,8 @@
                 loader.style.display = 'none';
             }
         });
+
+        
     </script>
 </body>
 </html>

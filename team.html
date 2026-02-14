@@ -362,6 +362,21 @@
                 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
             }
 
+        .team-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+
+            .team-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* 🔥 makes image fit properly */
+                display: block;
+            }
+
+
         /* Different gradients for each team member */
         .team-card:nth-child(1) .team-image {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1110,9 +1125,7 @@
 
                 <!-- Dr. Vivek - Orthodontist -->
                 <div class="team-card scroll-animate">
-                    <div class="team-image">
-                        <i class="fas fa-grip-lines"></i>
-                    </div>
+                    <div class="team-image"> <img src="gallery/dr.vivek.jpeg" /> </div>
                     <div class="team-content">
                         <h3 class="team-name">Dr. Vivek</h3>
                         <div class="team-designation">

@@ -474,13 +474,14 @@
             cursor: pointer;
         }
 
-            .service-card:nth-child(even) {
-                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            }
+        .services-grid a:nth-child(even) .service-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
 
-            .service-card:nth-child(3n) {
-                background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            }
+        .services-grid a:nth-child(3n) .service-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
 
             .service-card:hover {
                 transform: translateY(-5px) scale(1.03);
@@ -525,6 +526,10 @@
         .stat-label {
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+        .services-grid a {
+            text-decoration: none;
+            color: inherit;
         }
 
         /* Call to Action Section */
@@ -803,12 +808,12 @@
             }
 
             .mobile-close {
-                display: block;
-            }
+    display: block;
+}
 
-            .close-menu {
-                display: block;
-            }
+.close-menu {
+    display: block;
+}
 
         }
 
@@ -1001,42 +1006,49 @@
                 </div>
 
                 <div class="services-grid">
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-tooth"></i>
-                        <h3>Preventive Care</h3>
-                        <p>Regular cleanings, exams, and fluoride treatments</p>
-                    </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-tooth"></i>
+                            <h3>Preventive Care</h3>
+                            <p>Regular cleanings, exams, and fluoride treatments</p>
+                        </div>
+                    </a>
 
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-smile"></i>
-                        <h3>Cosmetic Dentistry</h3>
-                        <p>Whitening, veneers, and smile makeovers</p>
-                    </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-smile"></i>
+                            <h3>Cosmetic Dentistry</h3>
+                            <p>Whitening, veneers, and smile makeovers</p>
+                        </div></a>
 
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-cog"></i>
-                        <h3>Dental Implants</h3>
-                        <p>Permanent tooth replacement solutions</p>
-                    </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-cog"></i>
+                            <h3>Dental Implants</h3>
+                            <p>Permanent tooth replacement solutions</p>
+                        </div></a>
 
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-grip-lines"></i>
-                        <h3>Orthodontics</h3>
-                        <p>Braces and clear aligners for straight teeth</p>
-                    </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-grip-lines"></i>
+                            <h3>Orthodontics</h3>
+                            <p>Braces and clear aligners for straight teeth</p>
+                        </div></a>
 
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-medkit"></i>
-                        <h3>Root Canal Therapy</h3>
-                        <p>Pain-free treatment to save damaged teeth</p>
-                    </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-medkit"></i>
+                            <h3>Root Canal Therapy</h3>
+                            <p>Pain-free treatment to save damaged teeth</p>
+                        </div></a>
 
-                    <div class="service-card scroll-animate">
-                        <i class="fas fa-baby"></i>
-                        <h3>Pediatric Dentistry</h3>
-                        <p>Specialized care for children and teens</p>
-                    </div>
-                </div>
+                    <a href="services.html">
+                        <div class="service-card scroll-animate">
+                            <i class="fas fa-baby"></i>
+                            <h3>Pediatric Dentistry</h3>
+                            <p>Specialized care for children and teens</p>
+                        </div></a>
+</div>
             </div>
         </section>
 
@@ -1045,17 +1057,17 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item scroll-animate">
-                        <div class="stat-number" data-count="5000">0</div>
+                        <div class="stat-number" data-count="5000"></div>
                         <div class="stat-label">Happy Patients</div>
                     </div>
 
                     <div class="stat-item scroll-animate">
-                        <div class="stat-number" data-count="09">0</div>
+                        <div class="stat-number" data-count="10"></div>
                         <div class="stat-label">Years Experience</div>
                     </div>
 
                     <div class="stat-item scroll-animate">
-                        <div class="stat-number" data-count="12">0</div>
+                        <div class="stat-number" data-count="12"></div>
                         <div class="stat-label">Services Offered</div>
                     </div>
 

@@ -332,6 +332,135 @@
             color: rgba(255,255,255,0.9);
             font-size: 0.9rem;
         }
+        /* Google Reviews Section */
+        .reviews-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .reviews-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 2rem;
+            animation: scrollReviews 25s linear infinite;
+        }
+
+        .review-card {
+            min-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            height: 380px;
+        }
+
+            .review-card p {
+                color: #333;
+                line-height: 1.6;
+                margin: 1rem 0;
+            }
+
+            .review-card h4 {
+                margin-top: 1rem;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+
+        .stars {
+            color: #f4c150;
+            margin-top: 5px;
+        }
+
+        .comma-icon {
+            width: 40px;
+            opacity: 0.7;
+        }
+
+        .google-logo {
+            width: 35px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Infinite Scroll Animation */
+        @keyframes scrollReviews {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .reviews-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .reviews-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .reviews-slider {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.6s ease;
+        }
+
+        .review-card {
+            min-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+            .review-card p {
+                margin: 1rem 0;
+                color: #333;
+            }
+
+            .review-card h4 {
+                margin-top: 1rem;
+                font-weight: 600;
+            }
+
+        .stars {
+            color: #f4c150;
+        }
+
+        .comma-icon {
+            width: 40px;
+            opacity: 0.6;
+        }
+
+        .google-logo {
+            width: 35px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+ 
+
+
 
         /* Lightbox Modal */
         .lightbox {
@@ -798,7 +927,210 @@
             </div>
         </div>
     </section>
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Trusted by hundreds of happy smiles in and across Delhi</p>
+            </div>
 
+            <div class="reviews-slider">
+                <div class="reviews-track">
+
+                    <!-- Review Card -->
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Shekhar Dental Care offers exceptional treatment backed by Dr. Prakash vast experience and expertise.
+                            His gentle approach and clear explanations make every visit comfortable and stress-free. Highly recommended
+                            for anyone seeking professional and caring dental service..
+                        </p>
+                        <h4>Manikant Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            My teeth was completely not in shape. but now it's all good. It's all because of Dr Prakash,
+                            the owner of Shekhar Dental . I recommend everyone to get their teeth treatment done from here.
+                        </p>
+                        <h4>Madhuri Vishwa</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best treatment available on affordable price</p>
+                        <h4>Aashi Khan</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Better treatment of all kind of problem's of teeth at here.</p>
+                        <h4>Harshit Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Dr Prakash is an extremely good diagnostician and clinician. His dedication to his work is commendable.</p>
+                        <h4>Tazein Hussain</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Excellent service and professional doctor.</p>
+                        <h4>Mohd Inshal</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best dentist in sagarpur.</p>
+                        <h4>Shivam Yadav King</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Painless, Invisible, comfortable, Removable, Desired results, No clinic Visits, excellent customer support,
+                            Thank u so much Team 🥰🥰🥰🥰
+                        </p>
+                        <h4>Richa Takkar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>One of the Best orthodontist clinic in west delhi.</p>
+                        <h4>Varsha Fokvat</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best docter best experience smooth procedure very supportive staff</p>
+                        <h4>911 rey mysterio</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <!--duplicancy-->
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            My teeth was completely not in shape. but now it's all good. It's all because of Dr Prakash,
+                            the owner of Shekhar Dental . I recommend everyone to get their teeth treatment done from here.
+                        </p>
+                        <h4>Madhuri Vishwa</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best treatment available on affordable price</p>
+                        <h4>Aashi Khan</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Better treatment of all kind of problem's of teeth at here.</p>
+                        <h4>Harshit Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Dr Prakash is an extremely good diagnostician and clinician. His dedication to his work is commendable.</p>
+                        <h4>Tazein Hussain</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Excellent service and professional doctor.</p>
+                        <h4>Mohd Inshal</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best dentist in sagarpur.</p>
+                        <h4>Shivam Yadav King</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>
+                            Painless, Invisible, comfortable, Removable, Desired results, No clinic Visits, excellent customer support,
+                            Thank u so much Team 🥰🥰🥰🥰
+                        </p>
+                        <h4>Richa Takkar</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>One of the Best orthodontist clinic in west delhi.</p>
+                        <h4>Varsha Fokvat</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Best docter best experience smooth procedure very supportive staff</p>
+                        <h4>911 rey mysterio</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+                    <div class="review-card">
+                        <img src="gallery/comma.svg" class="comma-icon" alt="">
+                        <p>Experienced doctor</p>
+                        <h4>Megha Arora</h4>
+                        <div class="stars">★★★★★</div>
+                        <img src="gallery/google.svg" class="google-logo" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
