@@ -40,23 +40,45 @@ export default function Navbar() {
         className="topbar"
         style={{
           background: '#1e3c72',
-          padding: '0.4rem 0',
-          fontSize: '0.8rem',
-          color: 'rgba(255,255,255,0.88)',
+          padding: '0.6rem 0',
+          fontSize: '0.84rem',
+          lineHeight: 1.5,
+          color: 'rgba(255, 255, 255, 0.92)',
+          boxSizing: 'border-box',
         }}
       >
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Clock size={13} color="#93c5fd" style={{ flexShrink: 0 }} />
-            <span>Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup</span>
+        <div
+          className="container"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '1rem',
+            flexWrap: 'nowrap',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+            <Clock size={14} color="#93c5fd" style={{ flexShrink: 0 }} />
+            <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup
+            </span>
           </div>
           <a
             href={`tel:${clinicInfo.phoneNumbers[0].clean}`}
             className="topbar-phone"
-            style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#93c5fd', fontWeight: 700, textDecoration: 'none' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              color: '#93c5fd',
+              fontWeight: 700,
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}
           >
-            <Phone size={12} />
-            {clinicInfo.phoneNumbers[0].label}
+            <Phone size={13} />
+            <span>{clinicInfo.phoneNumbers[0].label}</span>
           </a>
         </div>
       </div>
@@ -327,15 +349,7 @@ export default function Navbar() {
         @media (max-width: 920px) {
           :global(.desktop-nav)     { display: none !important; }
           :global(.mobile-menu-btn) { display: flex !important; }
-          :global(.topbar-phone)    { display: none !important; }
-          :global(.topbar) {
-            font-size: 0.72rem !important;
-            padding: 0.35rem 0 !important;
-            text-align: center !important;
-          }
-          :global(.topbar .container) {
-            justify-content: center !important;
-          }
+          :global(.topbar)          { display: none !important; }
         }
       `}</style>
     </>
