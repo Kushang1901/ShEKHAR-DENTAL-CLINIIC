@@ -35,95 +35,63 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Top info bar ── */}
-      <div
-        className="topbar"
-        style={{
-          background: '#1e3c72',
-          padding: '0.6rem 0',
-          fontSize: '0.84rem',
-          lineHeight: 1.5,
-          color: 'rgba(255, 255, 255, 0.92)',
-          boxSizing: 'border-box',
-        }}
-      >
-        <div
-          className="container"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-            flexWrap: 'nowrap',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+      {/* ── Top info bar (desktop only via CSS class) ── */}
+      <div className="navbar-topbar" style={{
+        background: '#1e3c72',
+        color: 'rgba(255,255,255,0.92)',
+        fontSize: '0.84rem',
+        lineHeight: '1.5',
+      }}>
+        <div className="container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.5rem 1.5rem',
+          gap: '1rem',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={14} color="#93c5fd" style={{ flexShrink: 0 }} />
-            <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup
-            </span>
+            <span>Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup</span>
           </div>
           <a
             href={`tel:${clinicInfo.phoneNumbers[0].clean}`}
-            className="topbar-phone"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              color: '#93c5fd',
-              fontWeight: 700,
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#93c5fd', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
             <Phone size={13} />
-            <span>{clinicInfo.phoneNumbers[0].label}</span>
+            {clinicInfo.phoneNumbers[0].label}
           </a>
         </div>
       </div>
 
-      {/* ── Main Header ── */}
-      <header
-        style={{
-          position: 'sticky',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          background: '#ffffff',
-          borderBottom: isScrolled ? '1px solid #e2e8f0' : '1px solid #f1f5f9',
-          boxShadow: isScrolled ? '0 2px 20px rgba(30,60,114,0.10)' : 'none',
-          transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
-          padding: '0.85rem 0',
-        }}
-      >
-        <div
-          className="container"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}
-        >
-          {/* Logo */}
-          <Link
-            href="/"
-            onClick={close}
-            style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}
-          >
+      {/* ── Main Header (sticky) ── */}
+      <header style={{
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        background: '#ffffff',
+        borderBottom: isScrolled ? '1px solid #e2e8f0' : '1px solid #f1f5f9',
+        boxShadow: isScrolled ? '0 2px 20px rgba(30,60,114,0.10)' : 'none',
+        transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+      }}>
+        <div className="container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.75rem 1.5rem',
+          gap: '1rem',
+        }}>
+          {/* Brand Logo */}
+          <Link href="/" onClick={close} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.png"
-              alt="Shekhar Dental Logo"
-              style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
-            />
+            <img src="/logo.png" alt="Shekhar Dental Logo" style={{ height: '42px', width: 'auto', objectFit: 'contain' }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/navbar.png"
-              alt="Shekhar Dental & Orthodontic Center"
-              style={{ height: '34px', width: 'auto', objectFit: 'contain', maxWidth: '240px' }}
-            />
+            <img src="/navbar.png" alt="Shekhar Dental & Orthodontic Center" style={{ height: '32px', width: 'auto', objectFit: 'contain', maxWidth: '220px' }} />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+          {/* Desktop Nav */}
+          <nav className="navbar-desktop-nav" style={{ alignItems: 'center', gap: '0.25rem' }}>
             <ul style={{ display: 'flex', listStyle: 'none', margin: 0, padding: 0, gap: '0.1rem' }}>
               {navLinks.map((link) => {
                 const active = pathname === link.href;
@@ -133,7 +101,7 @@ export default function Navbar() {
                       href={link.href}
                       style={{
                         display: 'block',
-                        padding: '0.48rem 0.9rem',
+                        padding: '0.45rem 0.9rem',
                         borderRadius: '7px',
                         fontSize: '0.92rem',
                         fontWeight: active ? 700 : 500,
@@ -143,20 +111,6 @@ export default function Navbar() {
                         borderBottom: active ? '2px solid #2c5aa0' : '2px solid transparent',
                         transition: 'all 0.18s ease',
                       }}
-                      onMouseEnter={e => {
-                        if (!active) {
-                          const el = e.currentTarget as HTMLAnchorElement;
-                          el.style.color = '#1e3c72';
-                          el.style.background = '#f8fafc';
-                        }
-                      }}
-                      onMouseLeave={e => {
-                        if (!active) {
-                          const el = e.currentTarget as HTMLAnchorElement;
-                          el.style.color = '#475569';
-                          el.style.background = 'transparent';
-                        }
-                      }}
                     >
                       {link.name}
                     </Link>
@@ -165,7 +119,7 @@ export default function Navbar() {
               })}
             </ul>
 
-            <div style={{ width: '1px', height: '22px', background: '#e2e8f0', margin: '0 0.5rem' }} />
+            <div style={{ width: '1px', height: '22px', background: '#e2e8f0', margin: '0 0.5rem', flexShrink: 0 }} />
 
             <Link
               href="/appointment"
@@ -173,7 +127,7 @@ export default function Navbar() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '7px',
-                padding: '0.55rem 1.3rem',
+                padding: '0.52rem 1.2rem',
                 background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
                 color: '#ffffff',
                 fontWeight: 700,
@@ -181,18 +135,8 @@ export default function Navbar() {
                 borderRadius: '50px',
                 textDecoration: 'none',
                 boxShadow: '0 4px 14px rgba(30,60,114,0.25)',
-                transition: 'all 0.22s ease',
                 whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.transform = 'translateY(-2px)';
-                el.style.boxShadow = '0 8px 22px rgba(30,60,114,0.38)';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.transform = 'translateY(0)';
-                el.style.boxShadow = '0 4px 14px rgba(30,60,114,0.25)';
+                transition: 'all 0.22s ease',
               }}
             >
               <Calendar size={14} />
@@ -200,14 +144,13 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Hamburger */}
+          {/* Hamburger — visible on mobile via CSS */}
           <button
             onClick={() => setMobileOpen(o => !o)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
-            className="mobile-menu-btn"
+            className="navbar-mobile-btn"
             style={{
-              display: 'none',
               alignItems: 'center',
               justifyContent: 'center',
               width: '42px',
@@ -233,12 +176,12 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 999,
+          zIndex: 1100,
           background: '#ffffff',
           display: 'flex',
           flexDirection: 'column',
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
+          transition: 'transform 0.32s cubic-bezier(0.4,0,0.2,1)',
           pointerEvents: mobileOpen ? 'auto' : 'none',
           overflowY: 'auto',
         }}
@@ -246,7 +189,7 @@ export default function Navbar() {
         {/* Drawer header */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '1.2rem 1.4rem',
+          padding: '1rem 1.25rem',
           borderBottom: '1px solid #e2e8f0',
           background: '#f8fafc',
         }}>
@@ -254,44 +197,48 @@ export default function Navbar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt="Shekhar Dental Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/navbar.png" alt="Shekhar Dental & Orthodontic Center" style={{ height: '28px', width: 'auto', objectFit: 'contain', maxWidth: '200px' }} />
+            <img src="/navbar.png" alt="Shekhar Dental & Orthodontic Center" style={{ height: '26px', width: 'auto', objectFit: 'contain', maxWidth: '180px' }} />
           </Link>
           <button onClick={close} aria-label="Close menu" style={{
             background: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569',
             borderRadius: '8px', width: '38px', height: '38px',
             cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
           }}>
             <X size={19} />
           </button>
         </div>
 
-        {/* Timing info banner in mobile drawer */}
+        {/* Timing banner inside drawer */}
         <div style={{
-          margin: '1rem 1.2rem 0.2rem',
+          margin: '1rem 1.1rem 0.4rem',
           background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
           color: '#ffffff',
-          padding: '0.75rem 1rem',
+          padding: '0.8rem 1rem',
           borderRadius: '12px',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           gap: '10px',
-          fontSize: '0.8rem',
+          fontSize: '0.82rem',
           fontWeight: 500,
-          boxShadow: '0 2px 8px rgba(30,60,114,0.12)',
+          boxShadow: '0 3px 12px rgba(30,60,114,0.18)',
         }}>
-          <Clock size={16} color="#93c5fd" style={{ flexShrink: 0 }} />
+          <Clock size={16} color="#93c5fd" style={{ flexShrink: 0, marginTop: '2px' }} />
           <div>
-            <div>Mon–Sat: 10AM–12PM &amp; 6PM–10PM</div>
-            <div style={{ color: '#86efac', fontWeight: 600, fontSize: '0.76rem', marginTop: '1px' }}>
-              ✦ Sunday: Free Dental Checkup
+            <div style={{ fontWeight: 600 }}>Mon–Sat: 10AM–12PM &amp; 6PM–10PM</div>
+            <div style={{ color: '#86efac', fontSize: '0.78rem', marginTop: '3px', fontWeight: 600 }}>
+              ✦ Sunday: Free Dental Check-up (By Appointment)
             </div>
           </div>
         </div>
 
         {/* Nav links */}
         <ul style={{
-          listStyle: 'none', padding: '1rem 1.2rem', margin: 0,
-          display: 'flex', flexDirection: 'column', gap: '0.4rem', flex: 1,
+          listStyle: 'none',
+          padding: '0.6rem 1.1rem',
+          margin: 0,
+          display: 'flex', flexDirection: 'column', gap: '0.35rem',
+          flex: 1,
         }}>
           {navLinks.map((link) => {
             const active = pathname === link.href;
@@ -302,18 +249,19 @@ export default function Navbar() {
                   onClick={close}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    padding: '0.85rem 1.2rem',
+                    padding: '0.85rem 1.1rem',
                     borderRadius: '10px',
                     fontSize: '1.02rem',
                     fontWeight: active ? 700 : 500,
                     color: active ? '#1e3c72' : '#334155',
                     textDecoration: 'none',
                     background: active ? '#eff6ff' : '#f8fafc',
-                    border: active ? '1px solid #bfdbfe' : '1px solid transparent',
+                    border: active ? '1.5px solid #bfdbfe' : '1.5px solid transparent',
+                    transition: 'all 0.15s ease',
                   }}
                 >
                   <span>{link.name}</span>
-                  {active && <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2c5aa0' }} />}
+                  {active && <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2c5aa0', flexShrink: 0 }} />}
                 </Link>
               </li>
             );
@@ -322,15 +270,16 @@ export default function Navbar() {
 
         {/* Drawer CTAs */}
         <div style={{
-          padding: '1.2rem', borderTop: '1px solid #e2e8f0',
-          display: 'flex', flexDirection: 'column', gap: '0.75rem',
+          padding: '1rem 1.1rem 1.4rem',
+          borderTop: '1px solid #e2e8f0',
+          display: 'flex', flexDirection: 'column', gap: '0.7rem',
         }}>
           <Link href="/appointment" onClick={close} style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px',
             padding: '0.95rem', borderRadius: '50px', textDecoration: 'none',
             background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
             color: '#fff', fontWeight: 700, fontSize: '1rem',
-            boxShadow: '0 4px 16px rgba(30,60,114,0.28)',
+            boxShadow: '0 4px 18px rgba(30,60,114,0.28)',
           }}>
             <Calendar size={18} /> Book Appointment
           </Link>
@@ -338,20 +287,12 @@ export default function Navbar() {
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px',
             padding: '0.85rem', borderRadius: '50px', textDecoration: 'none',
             background: '#f1f5f9', color: '#1e3c72', fontWeight: 600, fontSize: '0.98rem',
-            border: '1.5px solid #e2e8f0',
+            border: '1.5px solid #dbe4ee',
           }}>
             <Phone size={17} /> {clinicInfo.phoneNumbers[0].label}
           </a>
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 920px) {
-          :global(.desktop-nav)     { display: none !important; }
-          :global(.mobile-menu-btn) { display: flex !important; }
-          :global(.topbar)          { display: none !important; }
-        }
-      `}</style>
     </>
   );
 }
