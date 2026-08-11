@@ -173,6 +173,7 @@ export default function Navbar() {
       <div
         role="dialog"
         aria-modal="true"
+        aria-hidden={!mobileOpen}
         style={{
           position: 'fixed',
           inset: 0,
@@ -181,8 +182,9 @@ export default function Navbar() {
           display: 'flex',
           flexDirection: 'column',
           transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.32s cubic-bezier(0.4,0,0.2,1)',
+          transition: 'transform 0.32s cubic-bezier(0.4,0,0.2,1), visibility 0.32s',
           pointerEvents: mobileOpen ? 'auto' : 'none',
+          visibility: mobileOpen ? 'visible' : 'hidden',
           overflowY: 'auto',
         }}
       >
