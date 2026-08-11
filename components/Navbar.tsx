@@ -42,18 +42,17 @@ export default function Navbar() {
           background: '#1e3c72',
           padding: '0.4rem 0',
           fontSize: '0.8rem',
-          color: 'rgba(255,255,255,0.85)',
+          color: 'rgba(255,255,255,0.88)',
         }}
       >
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.4rem', flexWrap: 'wrap' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <Clock size={12} color="#93c5fd" />
-              <span>Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup</span>
-            </span>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Clock size={13} color="#93c5fd" style={{ flexShrink: 0 }} />
+            <span>Mon–Sat: 10AM–12PM &amp; 6PM–10PM &nbsp;|&nbsp; Sun: Free Checkup</span>
           </div>
           <a
             href={`tel:${clinicInfo.phoneNumbers[0].clean}`}
+            className="topbar-phone"
             style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#93c5fd', fontWeight: 700, textDecoration: 'none' }}
           >
             <Phone size={12} />
@@ -244,9 +243,32 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* Timing info banner in mobile drawer */}
+        <div style={{
+          margin: '1rem 1.2rem 0.2rem',
+          background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
+          color: '#ffffff',
+          padding: '0.75rem 1rem',
+          borderRadius: '12px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          fontSize: '0.8rem',
+          fontWeight: 500,
+          boxShadow: '0 2px 8px rgba(30,60,114,0.12)',
+        }}>
+          <Clock size={16} color="#93c5fd" style={{ flexShrink: 0 }} />
+          <div>
+            <div>Mon–Sat: 10AM–12PM &amp; 6PM–10PM</div>
+            <div style={{ color: '#86efac', fontWeight: 600, fontSize: '0.76rem', marginTop: '1px' }}>
+              ✦ Sunday: Free Dental Checkup
+            </div>
+          </div>
+        </div>
+
         {/* Nav links */}
         <ul style={{
-          listStyle: 'none', padding: '1.2rem', margin: 0,
+          listStyle: 'none', padding: '1rem 1.2rem', margin: 0,
           display: 'flex', flexDirection: 'column', gap: '0.4rem', flex: 1,
         }}>
           {navLinks.map((link) => {
@@ -258,9 +280,9 @@ export default function Navbar() {
                   onClick={close}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    padding: '0.9rem 1.2rem',
+                    padding: '0.85rem 1.2rem',
                     borderRadius: '10px',
-                    fontSize: '1.05rem',
+                    fontSize: '1.02rem',
                     fontWeight: active ? 700 : 500,
                     color: active ? '#1e3c72' : '#334155',
                     textDecoration: 'none',
@@ -283,7 +305,7 @@ export default function Navbar() {
         }}>
           <Link href="/appointment" onClick={close} style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px',
-            padding: '1rem', borderRadius: '50px', textDecoration: 'none',
+            padding: '0.95rem', borderRadius: '50px', textDecoration: 'none',
             background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
             color: '#fff', fontWeight: 700, fontSize: '1rem',
             boxShadow: '0 4px 16px rgba(30,60,114,0.28)',
@@ -292,7 +314,7 @@ export default function Navbar() {
           </Link>
           <a href={`tel:${clinicInfo.phoneNumbers[0].clean}`} style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px',
-            padding: '0.9rem', borderRadius: '50px', textDecoration: 'none',
+            padding: '0.85rem', borderRadius: '50px', textDecoration: 'none',
             background: '#f1f5f9', color: '#1e3c72', fontWeight: 600, fontSize: '0.98rem',
             border: '1.5px solid #e2e8f0',
           }}>
@@ -305,7 +327,15 @@ export default function Navbar() {
         @media (max-width: 920px) {
           :global(.desktop-nav)     { display: none !important; }
           :global(.mobile-menu-btn) { display: flex !important; }
-          :global(.topbar)          { display: none !important; }
+          :global(.topbar-phone)    { display: none !important; }
+          :global(.topbar) {
+            font-size: 0.72rem !important;
+            padding: 0.35rem 0 !important;
+            text-align: center !important;
+          }
+          :global(.topbar .container) {
+            justify-content: center !important;
+          }
         }
       `}</style>
     </>
