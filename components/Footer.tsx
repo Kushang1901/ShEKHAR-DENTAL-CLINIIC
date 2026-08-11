@@ -145,21 +145,22 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div
           style={{
-            padding: '1.8rem 0',
+            padding: '2rem 1rem 3.5rem',
             textAlign: 'center',
-            color: '#64748b',
-            fontSize: '0.9rem',
+            color: '#94a3b8',
+            fontSize: '0.88rem',
             display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
+            flexDirection: 'column',
+            justifyContent: 'center',
             alignItems: 'center',
-            gap: '1rem',
+            gap: '0.5rem',
+            lineHeight: 1.6,
           }}
         >
-          <p style={{ margin: 0 }}>
+          <p style={{ margin: 0, textAlign: 'center' }}>
             &copy; {new Date().getFullYear()} {clinicInfo.name}. All rights reserved.
           </p>
-          <p style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
             <span>Crafted with</span>
             <Heart size={14} color="#ef4444" fill="#ef4444" />
             <span>by</span>
@@ -167,7 +168,7 @@ export default function Footer() {
               href={clinicInfo.developer.url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#38bdf8', fontWeight: 600 }}
+              style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'none' }}
             >
               {clinicInfo.developer.name}
             </a>
