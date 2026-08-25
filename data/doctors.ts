@@ -17,6 +17,7 @@ export const doctorsData: DoctorMember[] = [
     experience: "15+ Years",
     specialties: ["Practice Management", "General Dentistry", "Complex Rehabilitations", "Patient Care"],
     description: "Leading Shekhar Dental Clinic with over 15 years of clinical expertise, dedicated to bringing painless and world-class dental treatments to patients.",
+    image: "/images/mama.jpg",
     icon: "crown"
   },
   {

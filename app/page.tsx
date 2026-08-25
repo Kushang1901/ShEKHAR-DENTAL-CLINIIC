@@ -2,16 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { 
-  Calendar, 
-  Phone, 
-  Award, 
-  ShieldCheck, 
-  Clock, 
-  Sparkles, 
-  Users, 
-  CheckCircle2, 
-  Star, 
+import {
+  Calendar,
+  Phone,
+  Award,
+  ShieldCheck,
+  Clock,
+  Sparkles,
+  Users,
+  CheckCircle2,
+  Star,
   ArrowRight,
   Stethoscope,
   HeartHandshake
@@ -19,10 +19,44 @@ import {
 import { clinicInfo } from '@/data/clinicInfo';
 import { servicesData } from '@/data/services';
 import { doctorsData } from '@/data/doctors';
-import { testimonialsData } from '@/data/testimonials';
+import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
+
+const heroPhrases = [
+  'Starts Here',
+  'Starts Today',
+  'Starts With A Great Day',
+  'Starts With Expert Care',
+];
 
 export default function HomePage() {
   const featuredServices = servicesData.slice(0, 6);
+
+  const [phraseIndex, setPhraseIndex] = React.useState(0);
+  const [currentText, setCurrentText] = React.useState(heroPhrases[0]);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    const currentPhrase = heroPhrases[phraseIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && currentText === currentPhrase) {
+      timeout = setTimeout(() => setIsDeleting(true), 2200);
+    } else if (isDeleting && currentText === '') {
+      setIsDeleting(false);
+      setPhraseIndex((prev) => (prev + 1) % heroPhrases.length);
+    } else {
+      const speed = isDeleting ? 40 : 85;
+      timeout = setTimeout(() => {
+        setCurrentText(
+          isDeleting
+            ? currentPhrase.slice(0, currentText.length - 1)
+            : currentPhrase.slice(0, currentText.length + 1)
+        );
+      }, speed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, phraseIndex]);
 
   return (
     <>
@@ -114,7 +148,15 @@ export default function HomePage() {
           {/* Decorative ring — top center */}
           <svg
             viewBox="0 0 200 200"
-            style={{ position: 'absolute', top: '-6%', left: '35%', width: 'clamp(140px, 18vw, 260px)', opacity: 0.06 }}
+            style={{
+              position: 'absolute',
+              top: '-6%',
+              left: '35%',
+              width: 'clamp(140px, 18vw, 260px)',
+              opacity: 0.08,
+              animation: 'spinContinuous 32s linear infinite',
+              transformOrigin: 'center',
+            }}
             fill="none" stroke="#2c5aa0" strokeWidth="8"
           >
             <circle cx="100" cy="100" r="90" />
@@ -124,7 +166,15 @@ export default function HomePage() {
           {/* Decorative ring — bottom right */}
           <svg
             viewBox="0 0 200 200"
-            style={{ position: 'absolute', bottom: '-12%', right: '20%', width: 'clamp(120px, 15vw, 220px)', opacity: 0.055 }}
+            style={{
+              position: 'absolute',
+              bottom: '-12%',
+              right: '20%',
+              width: 'clamp(120px, 15vw, 220px)',
+              opacity: 0.08,
+              animation: 'spinContinuousReverse 26s linear infinite',
+              transformOrigin: 'center',
+            }}
             fill="none" stroke="#1e3c72" strokeWidth="8"
           >
             <circle cx="100" cy="100" r="90" />
@@ -193,17 +243,35 @@ export default function HomePage() {
                 <span style={{ color: '#16a34a', fontSize: '0.78rem' }}>Open Now</span>
               </div>
 
-              {/* Headline */}
+              {/* Headline with Typewriter Animation */}
               <h1 style={{
                 fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
                 fontWeight: 900,
                 color: '#0f172a',
-                lineHeight: 1.12,
+                lineHeight: 1.15,
                 marginBottom: '1.3rem',
                 letterSpacing: '-0.025em',
+                minHeight: '2.4em',
               }}>
                 Your Perfect Smile<br />
-                <span style={{ color: '#1e3c72' }}>Starts Here</span>
+                <span style={{
+                  color: '#1e3c72',
+                  display: 'inline-block',
+                }}>
+                  {currentText}
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      width: '3px',
+                      height: '0.85em',
+                      backgroundColor: '#2563eb',
+                      marginLeft: '5px',
+                      verticalAlign: 'baseline',
+                      animation: 'typeCursorBlink 0.9s infinite',
+                    }}
+                    aria-hidden="true"
+                  />
+                </span>
               </h1>
 
               {/* Sub-text */}
@@ -317,7 +385,7 @@ export default function HomePage() {
 
                 {/* Star rating row */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '1.2rem' }}>
-                  {[1,2,3,4,5].map(s => <Star key={s} size={16} color="#fbbf24" fill="#fbbf24" />)}
+                  {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} color="#fbbf24" fill="#fbbf24" />)}
                   <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', marginLeft: '6px' }}>4.9 / 5 Rating</span>
                 </div>
               </div>
@@ -648,11 +716,50 @@ export default function HomePage() {
                     padding: '1.8rem',
                     borderRadius: '16px',
                     flex: '1 1 200px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <h3 style={{ color: '#ffffff', fontSize: '1.25rem', marginBottom: '0.3rem' }}>{doc.name}</h3>
-                  <p style={{ color: '#67e8f9', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.8rem' }}>{doc.role}</p>
-                  <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.8rem' }}>
+                    {doc.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={doc.image}
+                        alt={doc.name}
+                        style={{
+                          width: '52px',
+                          height: '52px',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          objectPosition: 'center 20%',
+                          border: '2px solid rgba(255, 255, 255, 0.5)',
+                          flexShrink: 0,
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: '52px',
+                          height: '52px',
+                          borderRadius: '50%',
+                          background: 'rgba(255, 255, 255, 0.2)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#ffffff',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Stethoscope size={24} color="#ffffff" />
+                      </div>
+                    )}
+                    <div>
+                      <h3 style={{ color: '#ffffff', fontSize: '1.18rem', margin: 0 }}>{doc.name}</h3>
+                      <p style={{ color: '#67e8f9', fontSize: '0.85rem', fontWeight: 600, margin: '2px 0 0 0' }}>{doc.role}</p>
+                    </div>
+                  </div>
+                  <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>
                     {doc.specialties.slice(0, 2).join(' • ')}
                   </p>
                 </div>
@@ -662,61 +769,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Patient Reviews / Testimonials */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
-        <div className="container">
-          <div className="section-header">
-            <span className="section-badge">Patient Love</span>
-            <h2>Trusted by Delhi Patients</h2>
-            <p>Real experiences from patients who regained their confident, pain-free smiles at Shekhar Dental.</p>
-          </div>
+      {/* Google Reviews Carousel */}
+      <GoogleReviewsCarousel />
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {testimonialsData.slice(0, 3).map((testi) => (
-              <div
-                key={testi.id}
-                style={{
-                  background: '#ffffff',
-                  padding: '2.2rem',
-                  borderRadius: '20px',
-                  boxShadow: 'var(--shadow-md)',
-                  border: '1px solid #e2e8f0',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', gap: '4px', marginBottom: '1rem' }}>
-                    {[...Array(testi.rating)].map((_, i) => (
-                      <Star key={i} size={18} color="#f59e0b" fill="#f59e0b" />
-                    ))}
-                  </div>
-                  <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.7', fontStyle: 'italic', marginBottom: '1.5rem' }}>
-                    &ldquo;{testi.comment}&rdquo;
-                  </p>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '1rem' }}>
-                  <div>
-                    <h4 style={{ color: '#1e293b', fontSize: '1.05rem', margin: 0 }}>{testi.name}</h4>
-                    <span style={{ color: '#2563eb', fontSize: '0.85rem' }}>{testi.treatment}</span>
-                  </div>
-                  <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#15803d', padding: '4px 10px', borderRadius: '12px', fontWeight: 600 }}>
-                    Verified Patient
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Emergency Callout Banner */}
       <section style={{ padding: '4rem 0', background: 'linear-gradient(135deg, #ef4444 0%, #ee5a24 100%)', color: '#ffffff' }}>
