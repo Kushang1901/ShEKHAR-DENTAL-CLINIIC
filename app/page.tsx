@@ -72,11 +72,27 @@ export default function HomePage() {
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          background: 'linear-gradient(160deg, #f0f7ff 0%, #e8f4fd 40%, #ffffff 100%)',
+          backgroundColor: '#f8fafc',
+          backgroundImage: 'linear-gradient(160deg, rgba(240, 247, 255, 0.88) 0%, rgba(232, 244, 253, 0.80) 40%, rgba(255, 255, 255, 0.92) 100%), url(/hero-bg.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         {/* ── Professional background decorations ── */}
         <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+          {/* Background image overlay layer */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'url(/hero-bg.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              opacity: 0.15,
+            }}
+          />
 
           {/* Soft ambient gradient blobs */}
           <div style={{
