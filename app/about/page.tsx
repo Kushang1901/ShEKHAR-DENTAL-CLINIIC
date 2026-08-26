@@ -12,6 +12,7 @@ import {
   Stethoscope
 } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
+import CertificatesShowcase from '@/components/CertificatesShowcase';
 
 export const metadata: Metadata = {
   title: 'About Us | Shekhar Dental & Orthodontic Center',
@@ -246,6 +247,17 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Official Certifications & Accreditations Section */}
+      <section style={{ padding: '5.5rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <CertificatesShowcase 
+            badge="Verified Accreditations"
+            title="Official Certifications & Clinical Distinctions"
+            subtitle="Explore our government state council licenses, implantology credentials, clear aligner awards, and healthcare leadership achievements."
+          />
         </div>
       </section>
 

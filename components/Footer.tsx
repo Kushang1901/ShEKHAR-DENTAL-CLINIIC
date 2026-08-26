@@ -153,10 +153,19 @@ export default function Footer() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '0.5rem',
+            gap: '0.75rem',
             lineHeight: 1.6,
           }}
         >
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', fontSize: '0.9rem' }}>
+            <Link href="/privacy-policy" className="footer-nav-link" style={{ color: '#cbd5e1', textDecoration: 'none' }}>
+              Privacy Policy
+            </Link>
+            <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
+            <Link href="/terms" className="footer-nav-link" style={{ color: '#cbd5e1', textDecoration: 'none' }}>
+              Terms &amp; Conditions
+            </Link>
+          </div>
           <p style={{ margin: 0, textAlign: 'center' }}>
             &copy; {new Date().getFullYear()} {clinicInfo.name}. All rights reserved.
           </p>

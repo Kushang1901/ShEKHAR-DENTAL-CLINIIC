@@ -21,15 +21,6 @@ export const doctorsData: DoctorMember[] = [
     icon: "crown"
   },
   {
-    id: "dr-jitender",
-    name: "Dr. Jitender",
-    role: "Oral & Maxillofacial Surgeon",
-    experience: "12+ Years",
-    specialties: ["Oral Surgery", "Dental Implants", "Wisdom Teeth Impaction", "Maxillofacial Surgery"],
-    description: "Specialist in advanced surgical procedures, complicated wisdom tooth extractions, and precision dental implant placements.",
-    icon: "scalpel"
-  },
-  {
     id: "dr-vivek",
     name: "Dr. Vivek Shekhar",
     role: "Specialist Orthodontist",

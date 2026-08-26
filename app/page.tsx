@@ -20,6 +20,8 @@ import { clinicInfo } from '@/data/clinicInfo';
 import { servicesData } from '@/data/services';
 import { doctorsData } from '@/data/doctors';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
+import ServicesCarousel from '@/components/ServicesCarousel';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const heroPhrases = [
   'Starts Here',
@@ -380,7 +382,9 @@ export default function HomePage() {
                 <div style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: '0.6rem' }}>
                   Trusted by Delhi Families
                 </div>
-                <div style={{ fontSize: '3.2rem', fontWeight: 900, lineHeight: 1, marginBottom: '0.3rem' }}>5,000+</div>
+                <div style={{ fontSize: '3.2rem', fontWeight: 900, lineHeight: 1, marginBottom: '0.3rem' }}>
+                  <AnimatedCounter target={5000} suffix="+" duration={2200} />
+                </div>
                 <div style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.80)' }}>Happy Patients &amp; Counting</div>
 
                 {/* Star rating row */}
@@ -477,7 +481,11 @@ export default function HomePage() {
                     marginBottom: '0.3rem',
                   }}
                 >
-                  {stat.value}
+                  <AnimatedCounter
+                    target={parseInt(stat.value.replace(/[^0-9]/g, '')) || 5000}
+                    suffix={stat.value.includes('%') ? '%' : '+'}
+                    duration={2000}
+                  />
                 </div>
                 <div style={{ color: '#64748b', fontSize: '1.05rem', fontWeight: 600 }}>{stat.label}</div>
               </div>
@@ -567,8 +575,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Services Section */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
+      {/* Featured Services Section with Arrows & Auto-Slide */}
+      <section style={{ padding: '5.5rem 0', background: '#f8fafc', overflow: 'hidden' }}>
         <div className="container">
           <div className="section-header">
             <span className="section-badge">Our Treatments</span>
@@ -576,79 +584,10 @@ export default function HomePage() {
             <p>From routine cleanings to complete full-mouth implant restorations, explore our patient-approved treatments.</p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {featuredServices.map((service) => (
-              <div
-                key={service.id}
-                className="hover-lift"
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  boxShadow: 'var(--shadow-md)',
-                  border: '1px solid #e2e8f0',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                {/* Image */}
-                <div style={{ height: '220px', overflow: 'hidden', background: '#e2e8f0', position: 'relative' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={service.image}
-                    alt={service.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '14px',
-                      right: '14px',
-                      background: 'linear-gradient(135deg, #ee5a24, #ff6b6b)',
-                      color: '#ffffff',
-                      padding: '6px 14px',
-                      borderRadius: '20px',
-                      fontWeight: 700,
-                      fontSize: '0.9rem',
-                      boxShadow: '0 4px 12px rgba(238, 90, 36, 0.4)',
-                    }}
-                  >
-                    {service.price}
-                  </div>
-                </div>
+          {/* Interactive Services Carousel with Left/Right Arrows */}
+          <ServicesCarousel />
 
-                {/* Content */}
-                <div style={{ padding: '1.8rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <h3 style={{ fontSize: '1.35rem', marginBottom: '0.7rem', color: '#1e3c72' }}>{service.name}</h3>
-                  <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.2rem', flex: 1 }}>
-                    {service.shortDescription}
-                  </p>
-
-                  <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    {service.features.slice(0, 3).map((feat, i) => (
-                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: '#475569' }}>
-                        <CheckCircle2 size={16} color="#10b981" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link href="/appointment" className="btn btn-primary" style={{ width: '100%' }}>
-                    <Calendar size={16} />
-                    <span>Book For This Service</span>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
             <Link href="/services" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
               <span>View All 12+ Dental Treatments</span>
               <ArrowRight size={18} />
@@ -691,7 +630,7 @@ export default function HomePage() {
               </span>
               <h2 style={{ fontSize: '2.5rem', color: '#ffffff', marginBottom: '1rem' }}>Meet Our Senior Dentists</h2>
               <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '2rem' }}>
-                Led by Dr. Prakash Thakur & Dr. Vivek Shekhar, our clinical panel brings over 50 years of combined experience across implantology, orthodontic bite correction, and endodontics.
+                Led by Founder &amp; Lead Dental Surgeon Dr. Prakash Thakur, our clinical panel brings over 50 years of combined experience across implantology, orthodontic bite correction, and endodontics.
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <Link href="/team" className="btn btn-white">
@@ -705,17 +644,18 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div style={{ flex: '1 1 350px', display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-              {doctorsData.slice(0, 2).map((doc) => (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {doctorsData.slice(0, 1).map((doc) => (
                 <div
                   key={doc.id}
                   style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.12)',
                     backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    padding: '1.8rem',
-                    borderRadius: '16px',
-                    flex: '1 1 200px',
+                    border: '1px solid rgba(255, 255, 255, 0.25)',
+                    padding: '2rem',
+                    borderRadius: '20px',
+                    width: '100%',
+                    maxWidth: '360px',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',

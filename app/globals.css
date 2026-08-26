@@ -377,14 +377,30 @@ img {
 }
 
 /* ── Navbar responsive ── */
-.navbar-desktop-nav  { display: flex; }
-.navbar-mobile-btn   { display: none; }
-.navbar-topbar       { display: block; }
+.navbar-desktop-nav  { 
+  display: flex !important; 
+  align-items: center !important; 
+  flex-wrap: nowrap !important; 
+}
+.navbar-mobile-btn   { 
+  display: none !important; 
+}
+.navbar-topbar       { 
+  display: block !important; 
+}
 
-@media (max-width: 920px) {
-  .navbar-desktop-nav { display: none !important; }
-  .navbar-mobile-btn  { display: flex !important; }
-  .navbar-topbar      { display: none !important; }
+@media (max-width: 1060px) {
+  .navbar-desktop-nav { 
+    display: none !important; 
+  }
+  .navbar-mobile-btn  { 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+  }
+  .navbar-topbar      { 
+    display: none !important; 
+  }
 }
 
 @keyframes typeCursorBlink {
@@ -434,5 +450,215 @@ img {
   }
 }
 
+/* ═══════════════════════════════════════════════════
+   SMOOTH HORIZON & SCROLL REVEAL ANIMATION SYSTEM
+═══════════════════════════════════════════════════ */
 
+/* Base transition parameters for sections when JS is active */
+.js-scroll-reveal section:not(.no-reveal),
+.js-scroll-reveal .reveal-on-scroll,
+.js-scroll-reveal .reveal-fade-up,
+.js-scroll-reveal .reveal-fade-left,
+.js-scroll-reveal .reveal-fade-right,
+.js-scroll-reveal .reveal-zoom {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Default vertical horizon entrance (smooth glide upward) */
+.js-scroll-reveal section:not(.no-reveal),
+.js-scroll-reveal .reveal-on-scroll,
+.js-scroll-reveal .reveal-fade-up {
+  transform: translateY(36px);
+}
+
+/* Directional & zoom reveal variants */
+.js-scroll-reveal .reveal-fade-left {
+  transform: translateX(-40px);
+}
+
+.js-scroll-reveal .reveal-fade-right {
+  transform: translateX(40px);
+}
+
+.js-scroll-reveal .reveal-zoom {
+  transform: scale(0.94);
+}
+
+/* When revealed into viewport */
+.js-scroll-reveal section:not(.no-reveal).is-revealed,
+.js-scroll-reveal .reveal-on-scroll.is-revealed,
+.js-scroll-reveal .reveal-fade-up.is-revealed,
+.js-scroll-reveal .reveal-fade-left.is-revealed,
+.js-scroll-reveal .reveal-fade-right.is-revealed,
+.js-scroll-reveal .reveal-zoom.is-revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Smooth staggered child elements */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-revealed .reveal-stagger > *:nth-child(1),
+.reveal-stagger.is-revealed > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.is-revealed .reveal-stagger > *:nth-child(2),
+.reveal-stagger.is-revealed > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.16s;
+}
+
+.is-revealed .reveal-stagger > *:nth-child(3),
+.reveal-stagger.is-revealed > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.24s;
+}
+
+.is-revealed .reveal-stagger > *:nth-child(4),
+.reveal-stagger.is-revealed > *:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.32s;
+}
+
+.is-revealed .reveal-stagger > *:nth-child(5),
+.reveal-stagger.is-revealed > *:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.40s;
+}
+
+.is-revealed .reveal-stagger > *:nth-child(6),
+.reveal-stagger.is-revealed > *:nth-child(6) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.48s;
+}
+
+/* Stagger & animation delays */
+.delay-100 { transition-delay: 0.1s !important; }
+.delay-200 { transition-delay: 0.2s !important; }
+.delay-300 { transition-delay: 0.3s !important; }
+.delay-400 { transition-delay: 0.4s !important; }
+
+/* Subtle Horizon separator style */
+.horizon-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+.horizon-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(44, 90, 160, 0.15) 50%, transparent 100%);
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .js-scroll-reveal section:not(.no-reveal),
+  .js-scroll-reveal .reveal-on-scroll,
+  .js-scroll-reveal .reveal-fade-up,
+  .js-scroll-reveal .reveal-fade-left,
+  .js-scroll-reveal .reveal-fade-right,
+  .js-scroll-reveal .reveal-zoom,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .services-marquee-track {
+    animation: none !important;
+    overflow-x: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTINUOUS SERVICES HORIZONTAL MARQUEE SLIDER
+═══════════════════════════════════════════════════ */
+
+@keyframes marqueeInfiniteLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.services-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0 2rem;
+}
+
+.services-marquee-wrapper::before,
+.services-marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.services-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8fafc 15%, transparent 100%);
+}
+
+.services-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8fafc 15%, transparent 100%);
+}
+
+.services-marquee-track {
+  display: flex;
+  gap: 1.8rem;
+  width: max-content;
+  animation: marqueeInfiniteLeft 40s linear infinite;
+  will-change: transform;
+}
+
+.services-marquee-wrapper:hover .services-marquee-track {
+  animation-play-state: paused;
+}
+
+.services-marquee-card {
+  width: 350px;
+  flex: 0 0 350px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.services-marquee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(44, 90, 160, 0.16);
+  border-color: #93c5fd;
+}
 

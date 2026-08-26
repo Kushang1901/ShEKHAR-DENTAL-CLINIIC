@@ -91,17 +91,17 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="navbar-desktop-nav" style={{ alignItems: 'center', gap: '0.25rem' }}>
-            <ul style={{ display: 'flex', listStyle: 'none', margin: 0, padding: 0, gap: '0.1rem' }}>
+          <nav className="navbar-desktop-nav" style={{ alignItems: 'center', gap: '0.4rem', flexWrap: 'nowrap', flexShrink: 0 }}>
+            <ul style={{ display: 'flex', listStyle: 'none', margin: 0, padding: 0, gap: '0.15rem', alignItems: 'center', flexWrap: 'nowrap' }}>
               {navLinks.map((link) => {
                 const active = pathname === link.href;
                 return (
-                  <li key={link.name}>
+                  <li key={link.name} style={{ flexShrink: 0 }}>
                     <Link
                       href={link.href}
                       style={{
                         display: 'block',
-                        padding: '0.45rem 0.9rem',
+                        padding: '0.45rem 0.85rem',
                         borderRadius: '7px',
                         fontSize: '0.92rem',
                         fontWeight: active ? 700 : 500,
@@ -110,6 +110,7 @@ export default function Navbar() {
                         background: active ? '#eff6ff' : 'transparent',
                         borderBottom: active ? '2px solid #2c5aa0' : '2px solid transparent',
                         transition: 'all 0.18s ease',
+                        whiteSpace: 'nowrap',
                       }}
                     >
                       {link.name}
@@ -136,6 +137,7 @@ export default function Navbar() {
                 textDecoration: 'none',
                 boxShadow: '0 4px 14px rgba(30,60,114,0.25)',
                 whiteSpace: 'nowrap',
+                flexShrink: 0,
                 transition: 'all 0.22s ease',
               }}
             >
@@ -151,8 +153,6 @@ export default function Navbar() {
             aria-expanded={mobileOpen}
             className="navbar-mobile-btn"
             style={{
-              alignItems: 'center',
-              justifyContent: 'center',
               width: '42px',
               height: '42px',
               borderRadius: '9px',
