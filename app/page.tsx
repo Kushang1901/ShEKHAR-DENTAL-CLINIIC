@@ -72,158 +72,32 @@ export default function HomePage() {
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          backgroundColor: '#f8fafc',
-          backgroundImage: 'linear-gradient(160deg, rgba(240, 247, 255, 0.88) 0%, rgba(232, 244, 253, 0.80) 40%, rgba(255, 255, 255, 0.92) 100%), url(/hero-bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
         }}
       >
-        {/* ── Professional background decorations ── */}
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
-          {/* Background image overlay layer */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'url(/hero-bg.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: 0.15,
-            }}
-          />
+        {/* ── Full background image ── */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(/hero-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            backgroundRepeat: 'no-repeat',
+            zIndex: 0,
+          }}
+        />
 
-          {/* Soft ambient gradient blobs */}
-          <div style={{
-            position: 'absolute', top: '-15%', right: '-8%',
-            width: '60vw', height: '60vw', maxWidth: '750px', maxHeight: '750px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(44,90,160,0.09) 0%, transparent 68%)',
-          }} />
-          <div style={{
-            position: 'absolute', bottom: '-12%', left: '-10%',
-            width: '50vw', height: '50vw', maxWidth: '620px', maxHeight: '620px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(79,172,254,0.09) 0%, transparent 68%)',
-          }} />
-
-          {/* Subtle dot grid */}
-          <div style={{
-            position: 'absolute', inset: 0,
-            backgroundImage: 'radial-gradient(circle, rgba(30,60,114,0.09) 1px, transparent 1px)',
-            backgroundSize: '34px 34px',
-          }} />
-
-          {/* Large watermark tooth SVG — top-right */}
-          <svg
-            viewBox="0 0 200 220"
-            style={{ position: 'absolute', top: '4%', right: '2%', width: 'clamp(180px, 22vw, 320px)', opacity: 0.045 }}
-            fill="#1e3c72"
-          >
-            <path d="M100 10 C60 10, 20 40, 20 80 C20 110, 30 130, 40 155 C50 180, 55 210, 65 210 C75 210, 78 185, 85 170 C90 158, 95 150, 100 150 C105 150, 110 158, 115 170 C122 185, 125 210, 135 210 C145 210, 150 180, 160 155 C170 130, 180 110, 180 80 C180 40, 140 10, 100 10 Z" />
-          </svg>
-
-          {/* Medium watermark tooth — bottom-left */}
-          <svg
-            viewBox="0 0 200 220"
-            style={{ position: 'absolute', bottom: '5%', left: '3%', width: 'clamp(120px, 15vw, 220px)', opacity: 0.04, transform: 'rotate(-15deg)' }}
-            fill="#2c5aa0"
-          >
-            <path d="M100 10 C60 10, 20 40, 20 80 C20 110, 30 130, 40 155 C50 180, 55 210, 65 210 C75 210, 78 185, 85 170 C90 158, 95 150, 100 150 C105 150, 110 158, 115 170 C122 185, 125 210, 135 210 C145 210, 150 180, 160 155 C170 130, 180 110, 180 80 C180 40, 140 10, 100 10 Z" />
-          </svg>
-
-          {/* Medical cross — upper left */}
-          <svg
-            viewBox="0 0 60 60"
-            style={{ position: 'absolute', top: '12%', left: '6%', width: 'clamp(40px, 5vw, 72px)', opacity: 0.09 }}
-            fill="#1e3c72"
-          >
-            <rect x="22" y="4" width="16" height="52" rx="4" />
-            <rect x="4" y="22" width="52" height="16" rx="4" />
-          </svg>
-
-          {/* Medical cross — mid right */}
-          <svg
-            viewBox="0 0 60 60"
-            style={{ position: 'absolute', top: '55%', right: '5%', width: 'clamp(30px, 4vw, 55px)', opacity: 0.07, transform: 'rotate(15deg)' }}
-            fill="#2c5aa0"
-          >
-            <rect x="22" y="4" width="16" height="52" rx="4" />
-            <rect x="4" y="22" width="52" height="16" rx="4" />
-          </svg>
-
-          {/* Small cross — bottom center */}
-          <svg
-            viewBox="0 0 60 60"
-            style={{ position: 'absolute', bottom: '18%', left: '42%', width: '36px', opacity: 0.06, transform: 'rotate(-10deg)' }}
-            fill="#1e3c72"
-          >
-            <rect x="22" y="4" width="16" height="52" rx="4" />
-            <rect x="4" y="22" width="52" height="16" rx="4" />
-          </svg>
-
-          {/* Decorative ring — top center */}
-          <svg
-            viewBox="0 0 200 200"
-            style={{
-              position: 'absolute',
-              top: '-6%',
-              left: '35%',
-              width: 'clamp(140px, 18vw, 260px)',
-              opacity: 0.08,
-              animation: 'spinContinuous 32s linear infinite',
-              transformOrigin: 'center',
-            }}
-            fill="none" stroke="#2c5aa0" strokeWidth="8"
-          >
-            <circle cx="100" cy="100" r="90" />
-            <circle cx="100" cy="100" r="70" strokeDasharray="12 10" />
-          </svg>
-
-          {/* Decorative ring — bottom right */}
-          <svg
-            viewBox="0 0 200 200"
-            style={{
-              position: 'absolute',
-              bottom: '-12%',
-              right: '20%',
-              width: 'clamp(120px, 15vw, 220px)',
-              opacity: 0.08,
-              animation: 'spinContinuousReverse 26s linear infinite',
-              transformOrigin: 'center',
-            }}
-            fill="none" stroke="#1e3c72" strokeWidth="8"
-          >
-            <circle cx="100" cy="100" r="90" />
-            <circle cx="100" cy="100" r="65" strokeDasharray="8 12" />
-          </svg>
-
-          {/* Heartbeat / pulse line — decorative */}
-          <svg
-            viewBox="0 0 500 80"
-            style={{ position: 'absolute', bottom: '28%', left: '0', width: '55%', opacity: 0.06 }}
-            fill="none" stroke="#1e3c72" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
-          >
-            <polyline points="0,40 60,40 90,10 120,70 150,40 200,40 230,5 260,75 290,40 360,40 380,25 400,55 420,40 500,40" />
-          </svg>
-
-          {/* Bottom wave divider */}
-          <svg
-            viewBox="0 0 1440 90"
-            style={{ position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%' }}
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,90 L0,90 Z"
-              fill="rgba(30,60,114,0.04)"
-            />
-            <path
-              d="M0,70 C360,40 720,90 1080,60 C1260,46 1380,70 1440,75 L1440,90 L0,90 Z"
-              fill="rgba(44,90,160,0.05)"
-            />
-          </svg>
-        </div>
+        {/* ── Overlay: keeps text readable over image ── */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(105deg, rgba(255,255,255,0.93) 0%, rgba(240,247,255,0.90) 45%, rgba(220,235,255,0.65) 75%, rgba(200,225,255,0.30) 100%)',
+            zIndex: 1,
+          }}
+        />
 
         {/* ── Main content ── */}
         <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%', padding: '5rem 1.5rem 5rem' }}>
