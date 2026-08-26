@@ -91,53 +91,28 @@ export default function AppointmentPage() {
       </section>
 
       {/* Main Appointment Section */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
+      <section style={{ padding: '4.5rem 0 5.5rem', background: '#f8fafc' }}>
         <div className="container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '3.5rem',
-              alignItems: 'flex-start',
-            }}
-          >
+          <div className="form-layout-wrapper">
             {/* Left Column: Booking Form */}
-            <div
-              style={{
-                background: '#ffffff',
-                borderRadius: '24px',
-                padding: '3rem',
-                boxShadow: 'var(--shadow-xl)',
-                border: '1px solid #e2e8f0',
-                gridColumn: 'span 2',
-              }}
-            >
+            <div className="form-card">
               <div style={{ marginBottom: '2rem' }}>
                 <span className="section-badge">Online Scheduling</span>
-                <h2 style={{ fontSize: '2.2rem', color: '#1e3c72', marginBottom: '0.5rem' }}>
+                <h2 style={{ fontSize: '2.1rem', color: '#1e3c72', marginBottom: '0.5rem', lineHeight: '1.25' }}>
                   Reserve Your Visit
                 </h2>
-                <p style={{ color: '#64748b', fontSize: '1rem', margin: 0 }}>
-                  Enter your details below. Once submitted, WhatsApp will open to confirm your booking directly with the clinic reception.
+                <p style={{ color: '#64748b', fontSize: '0.98rem', margin: 0, lineHeight: '1.6' }}>
+                  Enter your details below. Once submitted, WhatsApp will open to confirm your booking directly with our clinic reception.
                 </p>
               </div>
 
               {isSuccess ? (
-                <div
-                  style={{
-                    background: '#dcfce7',
-                    border: '2px solid #86efac',
-                    color: '#14532d',
-                    padding: '2.5rem',
-                    borderRadius: '18px',
-                    textAlign: 'center',
-                  }}
-                >
+                <div className="form-success-box">
                   <CheckCircle2 size={56} color="#16a34a" style={{ margin: '0 auto 1rem' }} />
-                  <h3 style={{ fontSize: '1.6rem', marginBottom: '0.8rem', color: '#14532d' }}>
+                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: '#14532d' }}>
                     Appointment Request Dispatched!
                   </h3>
-                  <p style={{ fontSize: '1.05rem', lineHeight: '1.7', maxWidth: '550px', margin: '0 auto 1.5rem' }}>
+                  <p style={{ fontSize: '1rem', lineHeight: '1.7', maxWidth: '520px', margin: '0 auto 1.5rem', color: '#166534' }}>
                     Thank you, <strong>{formData.name}</strong>! Your appointment request for <strong>{formData.service}</strong> on <strong>{formData.preferredDate} ({formData.timeSlot})</strong> has been forwarded to our WhatsApp coordinator.
                   </p>
                   <button
@@ -161,10 +136,10 @@ export default function AppointmentPage() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <form onSubmit={handleSubmit} className="form-grid-2col">
                   {/* Name */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <User size={16} color="#2563eb" />
                       <span>Full Name *</span>
                     </label>
@@ -174,19 +149,13 @@ export default function AppointmentPage() {
                       placeholder="e.g. Ramesh Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                      }}
+                      className="form-input"
                     />
                   </div>
 
                   {/* Phone */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <Phone size={16} color="#2563eb" />
                       <span>Phone Number *</span>
                     </label>
@@ -196,19 +165,13 @@ export default function AppointmentPage() {
                       placeholder="e.g. +91 96672 66301"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                      }}
+                      className="form-input"
                     />
                   </div>
 
                   {/* Email */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <Mail size={16} color="#2563eb" />
                       <span>Email Address (Optional)</span>
                     </label>
@@ -217,19 +180,13 @@ export default function AppointmentPage() {
                       placeholder="your.email@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                      }}
+                      className="form-input"
                     />
                   </div>
 
                   {/* Service Selector */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <Sparkles size={16} color="#2563eb" />
                       <span>Select Treatment *</span>
                     </label>
@@ -237,14 +194,7 @@ export default function AppointmentPage() {
                       required
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        background: '#ffffff',
-                      }}
+                      className="form-select"
                     >
                       <option value="General Checkup & Consultation">General Checkup & Consultation (Free on Sundays)</option>
                       {servicesData.map((s) => (
@@ -256,8 +206,8 @@ export default function AppointmentPage() {
                   </div>
 
                   {/* Preferred Date */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <Calendar size={16} color="#2563eb" />
                       <span>Preferred Date *</span>
                     </label>
@@ -267,19 +217,13 @@ export default function AppointmentPage() {
                       min={today}
                       value={formData.preferredDate}
                       onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                      }}
+                      className="form-input"
                     />
                   </div>
 
                   {/* Alternate Date */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group">
+                    <label className="form-label">
                       <Calendar size={16} color="#2563eb" />
                       <span>Alternate Date (Optional)</span>
                     </label>
@@ -288,29 +232,17 @@ export default function AppointmentPage() {
                       min={formData.preferredDate || today}
                       value={formData.alternateDate}
                       onChange={(e) => setFormData({ ...formData, alternateDate: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                      }}
+                      className="form-input"
                     />
                   </div>
 
                   {/* Time Slots Selector */}
-                  <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group full-width">
+                    <label className="form-label">
                       <Clock size={16} color="#2563eb" />
                       <span>Choose Preferred Time Slot *</span>
                     </label>
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                        gap: '0.75rem',
-                      }}
-                    >
+                    <div className="time-slots-grid">
                       {timeSlots.map((slot) => {
                         const isSelected = formData.timeSlot === slot;
                         return (
@@ -318,18 +250,7 @@ export default function AppointmentPage() {
                             type="button"
                             key={slot}
                             onClick={() => setFormData({ ...formData, timeSlot: slot })}
-                            style={{
-                              padding: '0.75rem 1rem',
-                              borderRadius: '10px',
-                              border: isSelected ? '2px solid #2563eb' : '1px solid #cbd5e1',
-                              background: isSelected ? '#eff6ff' : '#ffffff',
-                              color: isSelected ? '#1e40af' : '#334155',
-                              fontWeight: isSelected ? 600 : 500,
-                              fontSize: '0.9rem',
-                              cursor: 'pointer',
-                              textAlign: 'center',
-                              transition: 'all 0.2s ease',
-                            }}
+                            className={`time-slot-btn ${isSelected ? 'active' : ''}`}
                           >
                             {slot}
                           </button>
@@ -339,8 +260,8 @@ export default function AppointmentPage() {
                   </div>
 
                   {/* Notes */}
-                  <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="form-group full-width">
+                    <label className="form-label">
                       <FileText size={16} color="#2563eb" />
                       <span>Additional Notes or Symptoms (Optional)</span>
                     </label>
@@ -349,25 +270,17 @@ export default function AppointmentPage() {
                       placeholder="e.g. Tooth sensitivity in upper right molar, previous fillings, etc."
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      style={{
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        fontFamily: 'inherit',
-                        resize: 'vertical',
-                      }}
+                      className="form-textarea"
                     />
                   </div>
 
                   {/* Submit Button */}
-                  <div style={{ gridColumn: '1 / -1', marginTop: '0.5rem' }}>
+                  <div className="form-group full-width" style={{ marginTop: '0.4rem' }}>
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className="btn btn-primary"
-                      style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}
+                      style={{ width: '100%', minHeight: '52px', fontSize: '1.05rem' }}
                     >
                       <MessageCircle size={20} />
                       <span>{isSubmitting ? 'Opening WhatsApp...' : 'Confirm & Book via WhatsApp'}</span>

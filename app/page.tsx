@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Calendar,
@@ -10,11 +10,13 @@ import {
   Clock,
   Sparkles,
   Users,
-  CheckCircle2,
   Star,
-  ArrowRight,
   Stethoscope,
-  HeartHandshake
+  MapPin,
+  ChevronLeft,
+  ChevronRight,
+  HeartHandshake,
+  ArrowRight
 } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
 import { servicesData } from '@/data/services';
@@ -23,319 +25,185 @@ import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import ServicesCarousel from '@/components/ServicesCarousel';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
-const heroPhrases = [
-  'Starts Here',
-  'Starts Today',
-  'Starts With A Great Day',
-  'Starts With Expert Care',
+/* ─── Slide data ─── */
+const HERO_SLIDES = [
+  {
+    image: '/gallery/implant_procedure.png',
+    badge: 'Advanced Implantology',
+    thin: 'Restore Your',
+    bold: 'Perfect Smile.',
+    sub: 'Single-tooth to full-arch dental implants using precision zirconia crowns — natural-looking, lifetime results.',
+    cta: 'Book Implant Consult',
+  },
+  {
+    image: '/gallery/dental_procedure.png',
+    badge: 'Expert Root Canal Care',
+    thin: 'Pain-Free',
+    bold: 'Root Canals.',
+    sub: 'Modern rotary endodontics in a single visit — save your natural tooth comfortably with zero anxiety.',
+    cta: 'Book Free Consultation',
+  },
+  {
+    image: '/gallery/orthodontic.png',
+    badge: 'Orthodontics & Aligners',
+    thin: 'Straighten Teeth',
+    bold: 'Invisibly.',
+    sub: 'Metal braces, ceramic braces, and clear Invisalign-style aligners for teens and adults — discreet & effective.',
+    cta: 'See Aligner Options',
+  },
+  {
+    image: '/gallery/cosmetic.png',
+    badge: 'Cosmetic Dentistry',
+    thin: 'Your Dream',
+    bold: 'Hollywood Smile.',
+    sub: 'Laser whitening, porcelain veneers, composite bonding and complete smile makeovers at Delhi\'s best prices.',
+    cta: 'Start My Makeover',
+  },
+  {
+    image: '/gallery/dental_surgery2.png',
+    badge: 'Oral Surgery Specialists',
+    thin: 'Safe, Sterile,',
+    bold: 'Expert Surgery.',
+    sub: 'Wisdom tooth extractions, bone grafts, and surgical procedures under expert care with hospital-grade sterilization.',
+    cta: 'Book a Consultation',
+  },
 ];
+
+const SLIDE_DURATION = 5000;
 
 export default function HomePage() {
   const featuredServices = servicesData.slice(0, 6);
+  void featuredServices;
+  void doctorsData;
 
-  const [phraseIndex, setPhraseIndex] = React.useState(0);
-  const [currentText, setCurrentText] = React.useState(heroPhrases[0]);
-  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const [animating, setAnimating] = useState(false);
 
-  React.useEffect(() => {
-    const currentPhrase = heroPhrases[phraseIndex];
-    let timeout: NodeJS.Timeout;
+  const goTo = useCallback((idx: number) => {
+    if (animating) return;
+    setPrev(active);
+    setActive(idx);
+    setAnimating(true);
+    setTimeout(() => {
+      setPrev(null);
+      setAnimating(false);
+    }, 900);
+  }, [active, animating]);
 
-    if (!isDeleting && currentText === currentPhrase) {
-      timeout = setTimeout(() => setIsDeleting(true), 2200);
-    } else if (isDeleting && currentText === '') {
-      setIsDeleting(false);
-      setPhraseIndex((prev) => (prev + 1) % heroPhrases.length);
-    } else {
-      const speed = isDeleting ? 40 : 85;
-      timeout = setTimeout(() => {
-        setCurrentText(
-          isDeleting
-            ? currentPhrase.slice(0, currentText.length - 1)
-            : currentPhrase.slice(0, currentText.length + 1)
-        );
-      }, speed);
-    }
+  const next = useCallback(() => goTo((active + 1) % HERO_SLIDES.length), [active, goTo]);
+  const prev_ = useCallback(() => goTo((active - 1 + HERO_SLIDES.length) % HERO_SLIDES.length), [active, goTo]);
 
-    return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, phraseIndex]);
+  /* Auto-advance */
+  useEffect(() => {
+    const id = setInterval(next, SLIDE_DURATION);
+    return () => clearInterval(id);
+  }, [next]);
+
+  const slide = HERO_SLIDES[active];
 
   return (
     <>
       {/* ═══════════════════════════════════════════
-          PROFESSIONAL HERO SECTION
+          PREMIUM HERO SLIDER
       ═══════════════════════════════════════════ */}
-      <section
-        style={{
-          position: 'relative',
-          minHeight: 'calc(100vh - 80px)',
-          display: 'flex',
-          alignItems: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        {/* ── Full background image ── */}
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'url(/hero-bg.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            backgroundRepeat: 'no-repeat',
-            zIndex: 0,
-          }}
-        />
+      <section className="hero-root">
 
-        {/* ── Overlay: keeps text readable over image ── */}
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(105deg, rgba(255,255,255,0.93) 0%, rgba(240,247,255,0.90) 45%, rgba(220,235,255,0.65) 75%, rgba(200,225,255,0.30) 100%)',
-            zIndex: 1,
-          }}
-        />
+        {/* ── Background slides (crossfade right-to-left) ── */}
+        <div className="hero-slides-track" aria-hidden>
+          {HERO_SLIDES.map((s, i) => (
+            <div
+              key={i}
+              className={[
+                'hero-slide-bg',
+                i === active ? 'slide-active' : '',
+                i === prev   ? 'slide-leaving' : '',
+              ].join(' ')}
+              style={{ backgroundImage: `url(${s.image})` }}
+            />
+          ))}
+        </div>
 
-        {/* ── Main content ── */}
-        <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%', padding: '5rem 1.5rem 5rem' }}>
+        {/* ── Cinematic dark overlay ── */}
+        <div className="hero-overlay-layer" aria-hidden />
 
-          {/* Two-column layout */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4rem',
-            flexWrap: 'wrap',
-          }}>
+        {/* ── Glow blobs ── */}
+        <div className="hero-glow hero-glow-1" aria-hidden />
+        <div className="hero-glow hero-glow-2" aria-hidden />
 
-            {/* ── LEFT: Text content ── */}
-            <div style={{ flex: '1 1 480px', maxWidth: '640px' }}>
+        {/* ══ FOREGROUND CONTENT (changes with slide) ══ */}
+        <div className="hero-content-wrapper">
 
-              {/* Badge */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: '#eff6ff',
-                border: '1px solid #bfdbfe',
-                padding: '6px 18px',
-                borderRadius: '40px',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                color: '#1d4ed8',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                marginBottom: '1.5rem',
-              }}>
-                <Sparkles size={13} color="#2563eb" />
-                Delhi&apos;s Premier Dental &amp; Orthodontic Center
-                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#16a34a', display: 'inline-block' }} />
-                <span style={{ color: '#16a34a', fontSize: '0.78rem' }}>Open Now</span>
-              </div>
+          {/* Badge */}
+          <div key={`badge-${active}`} className="hero-badge hero-slide-in">
+            <span className="hero-badge-dot" />
+            <MapPin size={13} />
+            {slide.badge}
+            <span className="hero-badge-open">● Open Now</span>
+          </div>
 
-              {/* Headline with Typewriter Animation */}
-              <h1 style={{
-                fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
-                fontWeight: 900,
-                color: '#0f172a',
-                lineHeight: 1.15,
-                marginBottom: '1.3rem',
-                letterSpacing: '-0.025em',
-                minHeight: '2.4em',
-              }}>
-                Your Perfect Smile<br />
-                <span style={{
-                  color: '#1e3c72',
-                  display: 'inline-block',
-                }}>
-                  {currentText}
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      width: '3px',
-                      height: '0.85em',
-                      backgroundColor: '#2563eb',
-                      marginLeft: '5px',
-                      verticalAlign: 'baseline',
-                      animation: 'typeCursorBlink 0.9s infinite',
-                    }}
-                    aria-hidden="true"
-                  />
-                </span>
-              </h1>
+          {/* Headline */}
+          <h1 key={`h1-${active}`} className="hero-headline hero-slide-in" style={{ animationDelay: '0.08s' }}>
+            <span className="hero-headline-thin">{slide.thin}</span>
+            <br />
+            <span className="hero-headline-bold">{slide.bold}</span>
+          </h1>
 
-              {/* Sub-text */}
-              <p style={{
-                fontSize: '1.12rem',
-                lineHeight: 1.75,
-                color: '#64748b',
-                marginBottom: '2.2rem',
-                maxWidth: '520px',
-              }}>
-                Experience painless, modern dentistry with cutting-edge technology and trusted specialists. Serving Delhi families with gentle care for over <strong style={{ color: '#1e3c72' }}>10&nbsp;years</strong>.
-              </p>
+          {/* Sub-text */}
+          <p key={`sub-${active}`} className="hero-subtext hero-slide-in" style={{ animationDelay: '0.18s' }}>
+            {slide.sub}
+          </p>
 
-              {/* CTA Buttons */}
-              <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-                <Link
-                  href="/appointment"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '9px',
-                    padding: '0.9rem 2rem',
-                    background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
-                    color: '#ffffff', fontWeight: 700, fontSize: '1rem',
-                    borderRadius: '50px', textDecoration: 'none',
-                    boxShadow: '0 6px 22px rgba(30,60,114,0.30)',
-                    transition: 'all 0.25s ease',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.transform = 'translateY(-3px)';
-                    el.style.boxShadow = '0 12px 32px rgba(30,60,114,0.42)';
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.transform = 'translateY(0)';
-                    el.style.boxShadow = '0 6px 22px rgba(30,60,114,0.30)';
-                  }}
-                >
-                  <Calendar size={18} />
-                  Book Free Consultation
-                </Link>
+          {/* CTAs */}
+          <div key={`cta-${active}`} className="hero-cta-row hero-slide-in" style={{ animationDelay: '0.28s' }}>
+            <Link href="/appointment" className="hero-btn-primary">
+              <Calendar size={18} />
+              {slide.cta}
+            </Link>
+            <a href={`tel:${clinicInfo.phoneNumbers[0].clean}`} className="hero-btn-ghost">
+              <Phone size={18} />
+              {clinicInfo.phoneNumbers[0].label}
+            </a>
+          </div>
 
-                <a
-                  href={`tel:${clinicInfo.phoneNumbers[0].clean}`}
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '9px',
-                    padding: '0.9rem 2rem',
-                    background: '#ffffff', color: '#1e3c72',
-                    fontWeight: 700, fontSize: '1rem',
-                    borderRadius: '50px', textDecoration: 'none',
-                    border: '2px solid #e2e8f0',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
-                    transition: 'all 0.25s ease',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = '#2c5aa0';
-                    el.style.transform = 'translateY(-3px)';
-                    el.style.boxShadow = '0 8px 20px rgba(30,60,114,0.14)';
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = '#e2e8f0';
-                    el.style.transform = 'translateY(0)';
-                    el.style.boxShadow = '0 2px 10px rgba(0,0,0,0.06)';
-                  }}
-                >
-                  <Phone size={18} />
-                  {clinicInfo.phoneNumbers[0].label}
-                </a>
-              </div>
-
-              {/* Trust checkmarks */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem 1.6rem', paddingTop: '1.6rem', borderTop: '1px solid #e2e8f0' }}>
-                {[
-                  'Sunday Free Checkups',
-                  'Painless Rotary Tech',
-                  'Hospital-Grade Sterilization',
-                  'Same-Day Emergency Care',
-                ].map((t, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', color: '#334155', fontWeight: 500 }}>
-                    <CheckCircle2 size={16} color="#16a34a" />
-                    <span>{t}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── RIGHT: Stats card panel ── */}
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
-
-              {/* Main highlight card */}
-              <div style={{
-                background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
-                borderRadius: '24px',
-                padding: '2.2rem 2rem',
-                color: '#fff',
-                boxShadow: '0 20px 50px rgba(30,60,114,0.25)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}>
-                <div aria-hidden style={{
-                  position: 'absolute', top: '-40%', right: '-20%',
-                  width: '200px', height: '200px', borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.06)',
-                }} />
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: '0.6rem' }}>
-                  Trusted by Delhi Families
-                </div>
-                <div style={{ fontSize: '3.2rem', fontWeight: 900, lineHeight: 1, marginBottom: '0.3rem' }}>
-                  <AnimatedCounter target={5000} suffix="+" duration={2200} />
-                </div>
-                <div style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.80)' }}>Happy Patients &amp; Counting</div>
-
-                {/* Star rating row */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '1.2rem' }}>
-                  {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} color="#fbbf24" fill="#fbbf24" />)}
-                  <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', marginLeft: '6px' }}>4.9 / 5 Rating</span>
-                </div>
-              </div>
-
-              {/* 3-stat row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
-                {[
-                  { value: '10+', label: 'Years', icon: <Award size={18} color="#1e3c72" /> },
-                  { value: '12+', label: 'Services', icon: <Stethoscope size={18} color="#1e3c72" /> },
-                  { value: '99%', label: 'Success', icon: <ShieldCheck size={18} color="#1e3c72" /> },
-                ].map((s, i) => (
-                  <div key={i} style={{
-                    background: '#ffffff',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '16px',
-                    padding: '1rem 0.6rem',
-                    textAlign: 'center',
-                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-                    transition: 'all 0.25s ease',
-                  }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLDivElement;
-                      el.style.borderColor = '#2c5aa0';
-                      el.style.transform = 'translateY(-4px)';
-                      el.style.boxShadow = '0 10px 24px rgba(30,60,114,0.14)';
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLDivElement;
-                      el.style.borderColor = '#e2e8f0';
-                      el.style.transform = 'translateY(0)';
-                      el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.05)';
-                    }}
-                  >
-                    <div style={{ marginBottom: '0.4rem', display: 'flex', justifyContent: 'center' }}>{s.icon}</div>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#1e3c72', lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '2px' }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Doctor badge */}
-              <div style={{
-                background: '#f0fdf4', border: '1px solid #bbf7d0',
-                borderRadius: '14px', padding: '1rem 1.2rem',
-                display: 'flex', alignItems: 'center', gap: '10px',
-              }}>
-                <HeartHandshake size={22} color="#16a34a" />
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#15803d' }}>Sunday Free Checkup</div>
-                  <div style={{ fontSize: '0.78rem', color: '#4ade80', fontWeight: 500 }}>Every Sunday · No Appointment Needed</div>
-                </div>
-              </div>
-            </div>
-
+          {/* Slide dot indicators */}
+          <div className="hero-dots">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                className={`hero-dot${i === active ? ' hero-dot-active' : ''}`}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
+
+        {/* ── Arrow controls ── */}
+        <button className="hero-arrow hero-arrow-left"  onClick={prev_} aria-label="Previous slide">
+          <ChevronLeft size={26} />
+        </button>
+        <button className="hero-arrow hero-arrow-right" onClick={next}  aria-label="Next slide">
+          <ChevronRight size={26} />
+        </button>
+
+        {/* ── Floating stat bar ── */}
+        <div className="hero-stats-bar">
+          {[
+            { value: '5,000+', label: 'Happy Patients',  icon: <Users      size={20} color="#2563eb" /> },
+            { value: '10+',    label: 'Years of Care',   icon: <Award      size={20} color="#7c3aed" /> },
+            { value: '4.9 ★',  label: 'Google Rating',   icon: <Star       size={20} color="#f59e0b" fill="#f59e0b" /> },
+            { value: '99%',    label: 'Success Rate',    icon: <ShieldCheck size={20} color="#10b981" /> },
+            { value: '12+',    label: 'Dental Services', icon: <Stethoscope size={20} color="#ec4899" /> },
+          ].map((s, i) => (
+            <div key={i} className="hero-stat-card">
+              <div className="hero-stat-icon">{s.icon}</div>
+              <div className="hero-stat-value">{s.value}</div>
+              <div className="hero-stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
       </section>
 
       {/* Stats Counter Section */}

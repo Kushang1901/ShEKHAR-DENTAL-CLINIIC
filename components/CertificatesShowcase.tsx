@@ -310,7 +310,7 @@ export default function CertificatesShowcase({
       </div>
 
       {/* Lightbox Zoom Modal rendered via Portal to ensure 100% viewport centering */}
-      {mounted && activeCert && createPortal(
+      {mounted && activeCert && typeof document !== 'undefined' && createPortal(
         <div
           onClick={() => setActiveCert(null)}
           style={{

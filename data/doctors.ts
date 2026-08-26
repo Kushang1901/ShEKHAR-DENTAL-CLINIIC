@@ -46,6 +46,7 @@ export const doctorsData: DoctorMember[] = [
     experience: "14+ Years",
     specialties: ["Treatment Planning", "Case Consultation", "Advanced Diagnostics", "Periodontal Care"],
     description: "Provides specialized guidance and comprehensive multidisciplinary treatment planning for intricate patient dental cases.",
+    image: "/images/mama.jpg",
     icon: "stethoscope"
   }
 ];

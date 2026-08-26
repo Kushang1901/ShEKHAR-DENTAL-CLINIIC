@@ -37,7 +37,7 @@ export default function LightboxModal({ item, onClose, onPrev, onNext }: Lightbo
     };
   }, [item, onClose, onPrev, onNext]);
 
-  if (!item || !mounted) return null;
+  if (!item || !mounted || typeof document === 'undefined') return null;
 
   return createPortal(
     <div

@@ -7,21 +7,30 @@ export default function ScrollObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
     // Add JS indicator class to documentElement
     document.documentElement.classList.add('js-scroll-reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      // Fallback for environments without IntersectionObserver: reveal everything
+      document.querySelectorAll<HTMLElement>(
+        'section:not(.no-reveal), .reveal-on-scroll, .reveal-fade-up, .reveal-fade-left, .reveal-fade-right, .reveal-zoom'
+      ).forEach((el) => el.classList.add('is-revealed'));
+      return;
+    }
 
     // Create an intersection observer with a subtle horizon offset
     const observerOptions: IntersectionObserverInit = {
       root: null,
-      rootMargin: '0px 0px -50px 0px', // Trigger slightly before it hits bottom of horizon
-      threshold: 0.08, // Trigger when 8% of the section is visible
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.08,
     };
 
     const handleIntersect: IntersectionObserverCallback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-          // Once revealed, unobserve to keep it permanently visible & preserve performance
           observer.unobserve(entry.target);
         }
       });

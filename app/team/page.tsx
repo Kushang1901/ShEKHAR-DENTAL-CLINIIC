@@ -14,7 +14,6 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { doctorsData, teamStats } from '@/data/doctors';
-import CertificatesShowcase from '@/components/CertificatesShowcase';
 
 export const metadata: Metadata = {
   title: 'Our Expert Dental Team | Shekhar Dental Clinic Delhi',
@@ -205,17 +204,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Official Certifications & Accreditations Section */}
-      <section style={{ padding: '5.5rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
-        <div className="container">
-          <CertificatesShowcase 
-            badge="Doctor Accreditations & Licenses"
-            title="Verified Dental Registrations & Honors"
-            subtitle="View official certifications of our clinical faculty across dental implants, invisible aligners, state medical council licenses, and community dental work."
-          />
-        </div>
-      </section>
-
       {/* Areas of Expertise */}
       <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
         <div className="container">
@@ -252,6 +240,16 @@ export default function TeamPage() {
                 icon: <Sparkles size={26} color="#f59e0b" />,
                 title: 'Cosmetic Dentistry',
                 desc: 'Laser teeth whitening, composite bonding, porcelain veneers, and bridal smile makeovers.',
+              },
+              {
+                icon: <Award size={26} color="#0284c7" />,
+                title: 'Implantology & Prosthodontics',
+                desc: 'Single-tooth and full-arch dental implants, precision zirconia crowns, and restorative bridges.',
+              },
+              {
+                icon: <ShieldCheck size={26} color="#8b5cf6" />,
+                title: 'Periodontics & Gum Care',
+                desc: 'Deep ultrasonic scaling, root planing, laser gum therapy, and preventive periodontal treatments.',
               },
             ].map((exp, idx) => (
               <div

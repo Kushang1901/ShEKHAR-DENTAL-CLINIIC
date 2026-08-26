@@ -3,7 +3,6 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FloatingContact from '@/components/FloatingContact';
-import ScrollObserver from '@/components/ScrollObserver';
 import { clinicInfo } from '@/data/clinicInfo';
 
 export const metadata: Metadata = {
@@ -60,7 +59,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body suppressHydrationWarning>
-        <ScrollObserver />
         <Navbar />
         <main>{children}</main>
         <Footer />

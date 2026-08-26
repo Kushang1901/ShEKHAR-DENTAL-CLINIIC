@@ -254,9 +254,9 @@ export default function AboutPage() {
       <section style={{ padding: '5.5rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <CertificatesShowcase 
-            badge="Verified Accreditations"
-            title="Official Certifications & Clinical Distinctions"
-            subtitle="Explore our government state council licenses, implantology credentials, clear aligner awards, and healthcare leadership achievements."
+            badge="Doctor Accreditations & Licenses"
+            title="Verified Dental Registrations & Honors"
+            subtitle="View official certifications of our clinical faculty across dental implants, invisible aligners, state medical council licenses, and community dental work."
           />
         </div>
       </section>

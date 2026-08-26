@@ -189,117 +189,73 @@ export default function ContactPage() {
           </div>
 
           {/* Quick Message Form */}
-          <div
-            style={{
-              background: '#ffffff',
-              borderRadius: '24px',
-              padding: '3.5rem',
-              boxShadow: 'var(--shadow-xl)',
-              border: '1px solid #e2e8f0',
-              maxWidth: '850px',
-              margin: '0 auto',
-            }}
-          >
+          <div className="form-card" style={{ maxWidth: '850px', margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span className="section-badge">Send a Message</span>
-              <h2 style={{ fontSize: '2.2rem', color: '#1e3c72', marginBottom: '0.5rem' }}>Have a Quick Question?</h2>
-              <p style={{ color: '#64748b', fontSize: '1rem', margin: 0 }}>
+              <h2 style={{ fontSize: '2.1rem', color: '#1e3c72', marginBottom: '0.5rem', lineHeight: '1.25' }}>Have a Quick Question?</h2>
+              <p style={{ color: '#64748b', fontSize: '0.98rem', margin: 0, lineHeight: '1.6' }}>
                 Fill in the details below and our team will get in touch directly via WhatsApp or phone.
               </p>
             </div>
 
             {submitted ? (
-              <div
-                style={{
-                  background: '#dcfce7',
-                  border: '1px solid #86efac',
-                  color: '#14532d',
-                  padding: '2rem',
-                  borderRadius: '16px',
-                  textAlign: 'center',
-                }}
-              >
+              <div className="form-success-box">
                 <CheckCircle2 size={48} color="#16a34a" style={{ margin: '0 auto 1rem' }} />
                 <h3 style={{ fontSize: '1.4rem', marginBottom: '0.5rem', color: '#14532d' }}>Message Sent Successfully!</h3>
-                <p style={{ margin: 0, fontSize: '0.95rem' }}>
+                <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: '1.6', color: '#166534' }}>
                   Thank you for reaching out. We have opened WhatsApp with your message and our clinic reception will assist you shortly.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="btn btn-primary"
-                  style={{ marginTop: '1.5rem', padding: '0.7rem 1.5rem', fontSize: '0.9rem' }}
+                  style={{ marginTop: '1.5rem', padding: '0.75rem 1.75rem', fontSize: '0.92rem' }}
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Your Full Name *</label>
+              <form onSubmit={handleSubmit} className="form-grid-2col">
+                <div className="form-group">
+                  <label className="form-label">Your Full Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Manikant Kumar"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '1rem',
-                      outline: 'none',
-                    }}
+                    className="form-input"
                   />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Phone Number *</label>
+                <div className="form-group">
+                  <label className="form-label">Phone Number *</label>
                   <input
                     type="tel"
                     required
                     placeholder="e.g. +91 96672 66301"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '1rem',
-                      outline: 'none',
-                    }}
+                    className="form-input"
                   />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Email Address (Optional)</label>
+                <div className="form-group">
+                  <label className="form-label">Email Address (Optional)</label>
                   <input
                     type="email"
                     placeholder="your.email@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '1rem',
-                      outline: 'none',
-                    }}
+                    className="form-input"
                   />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Treatment / Topic</label>
+                <div className="form-group">
+                  <label className="form-label">Treatment / Topic</label>
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '1rem',
-                      outline: 'none',
-                      background: '#ffffff',
-                    }}
+                    className="form-select"
                   >
                     <option value="General Consultation">General Consultation & Checkup</option>
                     <option value="Dental Implants">Dental Implants</option>
@@ -312,27 +268,19 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#334155' }}>Your Message / Symptoms</label>
+                <div className="form-group full-width">
+                  <label className="form-label">Your Message / Symptoms</label>
                   <textarea
                     rows={4}
                     placeholder="Briefly describe your symptoms or query..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '1rem',
-                      outline: 'none',
-                      fontFamily: 'inherit',
-                      resize: 'vertical',
-                    }}
+                    className="form-textarea"
                   />
                 </div>
 
-                <div style={{ gridColumn: '1 / -1' }}>
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
+                <div className="form-group full-width" style={{ marginTop: '0.4rem' }}>
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: '52px', fontSize: '1.05rem' }}>
                     <MessageCircle size={20} />
                     <span>Send Message via WhatsApp</span>
                   </button>

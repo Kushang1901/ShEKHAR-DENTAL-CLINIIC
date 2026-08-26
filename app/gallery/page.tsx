@@ -6,7 +6,6 @@ import { ChevronRight, Calendar, ZoomIn, Star } from 'lucide-react';
 import { galleryItems, galleryCategories, GalleryItem } from '@/data/gallery';
 import { testimonialsData } from '@/data/testimonials';
 import LightboxModal from '@/components/LightboxModal';
-import CertificatesShowcase from '@/components/CertificatesShowcase';
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -184,17 +183,6 @@ export default function GalleryPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Accreditations & Certificates Section */}
-      <section style={{ padding: '5.5rem 0', background: '#ffffff', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
-        <div className="container">
-          <CertificatesShowcase 
-            badge="Clinic Accreditations & Honors"
-            title="Official Certifications & Awards"
-            subtitle="Browse authenticated certificates, Delhi Dental Council statutory registrations, implantology diplomas, and community dental outreach awards."
-          />
         </div>
       </section>
 
