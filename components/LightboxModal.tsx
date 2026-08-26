@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryItem } from '@/data/gallery';
 
@@ -12,6 +13,12 @@ interface LightboxModalProps {
 }
 
 export default function LightboxModal({ item, onClose, onPrev, onNext }: LightboxModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -30,21 +37,23 @@ export default function LightboxModal({ item, onClose, onPrev, onNext }: Lightbo
     };
   }, [item, onClose, onPrev, onNext]);
 
-  if (!item) return null;
+  if (!item || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
       onClick={onClose}
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 2000,
-        backgroundColor: 'rgba(15, 23, 42, 0.92)',
-        backdropFilter: 'blur(8px)',
+        zIndex: 99999,
+        backgroundColor: 'rgba(15, 23, 42, 0.94)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1.5rem',
+        padding: '1.2rem',
+        overflowY: 'auto',
       }}
     >
       <div
@@ -170,6 +179,7 @@ export default function LightboxModal({ item, onClose, onPrev, onNext }: Lightbo
           <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem' }}>{item.caption}</p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

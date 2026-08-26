@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Award, 
   ShieldCheck, 
@@ -32,6 +33,11 @@ export default function CertificatesShowcase({
   limit,
 }: CertificatesShowcaseProps) {
   const [activeCert, setActiveCert] = useState<CertificateItem | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const displayCerts = limit ? certificatesData.slice(0, limit) : certificatesData;
 
@@ -303,20 +309,22 @@ export default function CertificatesShowcase({
         ))}
       </div>
 
-      {/* Lightbox Zoom Modal */}
-      {activeCert && (
+      {/* Lightbox Zoom Modal rendered via Portal to ensure 100% viewport centering */}
+      {mounted && activeCert && createPortal(
         <div
           onClick={() => setActiveCert(null)}
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 3000,
+            zIndex: 99999,
             backgroundColor: 'rgba(15, 23, 42, 0.94)',
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: '1.2rem',
+            overflowY: 'auto',
           }}
         >
           <div
@@ -325,14 +333,15 @@ export default function CertificatesShowcase({
               position: 'relative',
               maxWidth: '1050px',
               width: '100%',
-              maxHeight: '92vh',
+              maxHeight: '90vh',
               background: '#ffffff',
               borderRadius: '24px',
               overflow: 'hidden',
-              boxShadow: '0 30px 80px rgba(0, 0, 0, 0.6)',
+              boxShadow: '0 30px 80px rgba(0, 0, 0, 0.65)',
               display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)',
-              animation: 'fadeInUp 0.3s ease',
+              gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)',
+              margin: 'auto',
+              animation: 'fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             className="cert-modal-grid"
           >
@@ -344,19 +353,27 @@ export default function CertificatesShowcase({
                 position: 'absolute',
                 top: '16px',
                 right: '16px',
-                zIndex: 20,
+                zIndex: 30,
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(15, 23, 42, 0.75)',
+                background: 'rgba(15, 23, 42, 0.85)',
                 color: '#ffffff',
-                border: '1px solid rgba(255,255,255,0.3)',
+                border: '1px solid rgba(255,255,255,0.35)',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                transition: 'background 0.2s',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#ef4444';
+                e.currentTarget.style.transform = 'scale(1.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(15, 23, 42, 0.85)';
+                e.currentTarget.style.transform = 'scale(1)';
               }}
             >
               <X size={22} />
@@ -371,8 +388,9 @@ export default function CertificatesShowcase({
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: '24px',
-                minHeight: '400px',
+                minHeight: '380px',
               }}
+              className="cert-modal-image-area"
             >
               {/* Prev / Next controls */}
               <button
@@ -390,7 +408,7 @@ export default function CertificatesShowcase({
                   width: '44px',
                   height: '44px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.85)',
+                  background: 'rgba(255, 255, 255, 0.9)',
                   color: '#1e293b',
                   border: 'none',
                   cursor: 'pointer',
@@ -398,6 +416,15 @@ export default function CertificatesShowcase({
                   alignItems: 'center',
                   justifyContent: 'center',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
                 }}
               >
                 <ChevronLeft size={26} />
@@ -418,7 +445,7 @@ export default function CertificatesShowcase({
                   width: '44px',
                   height: '44px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.85)',
+                  background: 'rgba(255, 255, 255, 0.9)',
                   color: '#1e293b',
                   border: 'none',
                   cursor: 'pointer',
@@ -426,6 +453,15 @@ export default function CertificatesShowcase({
                   alignItems: 'center',
                   justifyContent: 'center',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
                 }}
               >
                 <ChevronRight size={26} />
@@ -435,12 +471,15 @@ export default function CertificatesShowcase({
               <div
                 style={{
                   maxWidth: '100%',
-                  maxHeight: '80vh',
+                  maxHeight: '76vh',
                   boxShadow: '0 15px 40px rgba(0,0,0,0.8)',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   overflow: 'hidden',
                   background: '#ffffff',
                   padding: '6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -448,12 +487,13 @@ export default function CertificatesShowcase({
                   src={activeCert.image}
                   alt={activeCert.title}
                   style={{
-                    maxHeight: '74vh',
+                    maxHeight: '70vh',
                     width: 'auto',
                     maxWidth: '100%',
                     objectFit: 'contain',
                     display: 'block',
                   }}
+                  className="cert-full-img"
                 />
               </div>
             </div>
@@ -469,9 +509,10 @@ export default function CertificatesShowcase({
                 overflowY: 'auto',
                 maxHeight: '85vh',
               }}
+              className="cert-modal-details"
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
                   <span
                     style={{
                       fontSize: '0.8rem',
@@ -497,7 +538,7 @@ export default function CertificatesShowcase({
                   )}
                 </div>
 
-                <h3 style={{ fontSize: '1.6rem', color: '#1e3c72', fontWeight: 800, lineHeight: '1.3', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '1.5rem', color: '#1e3c72', fontWeight: 800, lineHeight: '1.3', marginBottom: '10px' }}>
                   {activeCert.title}
                 </h3>
 
@@ -510,17 +551,17 @@ export default function CertificatesShowcase({
                   </div>
                 </div>
 
-                <p style={{ color: '#475569', fontSize: '0.98rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                <p style={{ color: '#475569', fontSize: '0.96rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
                   {activeCert.description}
                 </p>
 
-                <h4 style={{ fontSize: '1rem', color: '#1e293b', fontWeight: 700, marginBottom: '0.8rem' }}>
+                <h4 style={{ fontSize: '0.98rem', color: '#1e293b', fontWeight: 700, marginBottom: '0.8rem' }}>
                   Key Credential Highlights
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '1.5rem' }}>
                   {activeCert.highlights.map((hl, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: '#334155' }}>
-                      <CheckCircle2 size={18} style={{ color: '#059669', flexShrink: 0, marginTop: '2px' }} />
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.9rem', color: '#334155' }}>
+                      <CheckCircle2 size={17} style={{ color: '#059669', flexShrink: 0, marginTop: '2px' }} />
                       <span>{hl}</span>
                     </div>
                   ))}
@@ -530,7 +571,7 @@ export default function CertificatesShowcase({
               {/* Verified Stamp Note */}
               <div
                 style={{
-                  padding: '1rem',
+                  padding: '0.9rem 1rem',
                   borderRadius: '12px',
                   background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
                   border: '1px solid #bbf7d0',
@@ -540,14 +581,15 @@ export default function CertificatesShowcase({
                   marginTop: '1rem'
                 }}
               >
-                <Award size={28} style={{ color: '#16a34a', flexShrink: 0 }} />
-                <div style={{ fontSize: '0.84rem', color: '#14532d' }}>
+                <Award size={26} style={{ color: '#16a34a', flexShrink: 0 }} />
+                <div style={{ fontSize: '0.82rem', color: '#14532d', lineHeight: '1.5' }}>
                   <strong>Authenticated Clinical Credential:</strong> Verified for patient transparency, regulatory compliance, and clinical safety standards.
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       <style jsx global>{`
@@ -560,8 +602,19 @@ export default function CertificatesShowcase({
         @media (max-width: 860px) {
           .cert-modal-grid {
             grid-template-columns: 1fr !important;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-height: 90vh !important;
+            overflow-y: auto !important;
+          }
+          .cert-modal-image-area {
+            min-height: 280px !important;
+            padding: 16px !important;
+          }
+          .cert-full-img {
+            max-height: 42vh !important;
+          }
+          .cert-modal-details {
+            padding: 1.5rem 1.2rem !important;
+            max-height: none !important;
           }
         }
       `}</style>
