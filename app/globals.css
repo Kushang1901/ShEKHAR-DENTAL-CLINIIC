@@ -389,7 +389,7 @@ img {
   display: block !important; 
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1140px) {
   .navbar-desktop-nav { 
     display: none !important; 
   }

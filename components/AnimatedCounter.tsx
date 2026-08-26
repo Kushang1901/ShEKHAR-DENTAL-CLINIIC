@@ -29,38 +29,49 @@ export default function AnimatedCounter({
     const el = containerRef.current;
     if (!el) return;
 
+    const startAnimation = () => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
+
+      const startTime = performance.now();
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth cubic ease-out slowdown
+        const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = Math.floor(easeOutProgress * target);
+
+        setCount(currentVal);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setCount(target);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    // If element is already in viewport on mount (e.g. Hero section)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+      const timer = setTimeout(startAnimation, 150);
+      return () => clearTimeout(timer);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-
-          const startTime = performance.now();
-
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // Ease out cubic: smooth slowdown towards the end
-            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.floor(easeOutProgress * target);
-
-            setCount(currentVal);
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setCount(target);
-            }
-          };
-
-          requestAnimationFrame(animate);
+        if (entry.isIntersecting) {
+          startAnimation();
           observer.unobserve(el);
         }
       },
       {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.05,
       }
     );
 

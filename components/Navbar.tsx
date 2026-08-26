@@ -91,8 +91,8 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="navbar-desktop-nav" style={{ alignItems: 'center', gap: '0.4rem', flexWrap: 'nowrap', flexShrink: 0 }}>
-            <ul style={{ display: 'flex', listStyle: 'none', margin: 0, padding: 0, gap: '0.15rem', alignItems: 'center', flexWrap: 'nowrap' }}>
+          <nav className="navbar-desktop-nav" style={{ alignItems: 'center', gap: '0.6rem', flexWrap: 'nowrap', flexShrink: 0 }}>
+            <ul style={{ display: 'flex', listStyle: 'none', margin: 0, padding: 0, gap: '0.2rem', alignItems: 'center', flexWrap: 'nowrap' }}>
               {navLinks.map((link) => {
                 const active = pathname === link.href;
                 return (
@@ -101,9 +101,9 @@ export default function Navbar() {
                       href={link.href}
                       style={{
                         display: 'block',
-                        padding: '0.45rem 0.85rem',
+                        padding: '0.45rem 0.75rem',
                         borderRadius: '7px',
-                        fontSize: '0.92rem',
+                        fontSize: '0.9rem',
                         fontWeight: active ? 700 : 500,
                         color: active ? '#1e3c72' : '#475569',
                         textDecoration: 'none',
@@ -120,7 +120,7 @@ export default function Navbar() {
               })}
             </ul>
 
-            <div style={{ width: '1px', height: '22px', background: '#e2e8f0', margin: '0 0.5rem', flexShrink: 0 }} />
+            <div style={{ width: '1px', height: '22px', background: '#e2e8f0', margin: '0 0.35rem', flexShrink: 0 }} />
 
             <Link
               href="/appointment"
@@ -128,7 +128,7 @@ export default function Navbar() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '7px',
-                padding: '0.52rem 1.2rem',
+                padding: '0.52rem 1.15rem',
                 background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
                 color: '#ffffff',
                 fontWeight: 700,
@@ -142,7 +142,7 @@ export default function Navbar() {
               }}
             >
               <Calendar size={14} />
-              Book Appointment
+              <span>Book Appointment</span>
             </Link>
           </nav>
 
