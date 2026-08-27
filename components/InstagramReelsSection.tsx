@@ -37,6 +37,7 @@ interface ReelItem {
   category: string;
   thumbnail: string;
   url: string;
+  videoUrl?: string;
   likes?: string;
 }
 
@@ -133,11 +134,17 @@ const REELS_DATA: ReelItem[] = [
 
 export default function InstagramReelsSection() {
   const [selectedReel, setSelectedReel] = useState<ReelItem | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(4);
   const [isHovered, setIsHovered] = useState(false);
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const simulationTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -147,7 +154,7 @@ export default function InstagramReelsSection() {
   useEffect(() => {
     const updateVisibleCards = () => {
       if (window.innerWidth < 640) {
-        setVisibleCards(1); // 1 card at a time on mobile
+        setVisibleCards(1);
       } else if (window.innerWidth < 960) {
         setVisibleCards(2);
       } else if (window.innerWidth < 1200) {
@@ -180,7 +187,7 @@ export default function InstagramReelsSection() {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   }, [maxIndex]);
 
-  // Auto-play timer: moves 1 card at a time every 2.8 seconds (pauses on hover or when modal is open)
+  // Auto-play timer: moves 1 card at a time every 2.8 seconds
   useEffect(() => {
     if (isHovered || selectedReel) return;
 
@@ -222,14 +229,92 @@ export default function InstagramReelsSection() {
     };
   }, [selectedReel]);
 
+  // Reset video state when modal closes
+  const closeModal = useCallback(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+    if (simulationTimerRef.current) {
+      clearInterval(simulationTimerRef.current);
+    }
+    setIsPlaying(false);
+    setProgress(0);
+    setSelectedReel(null);
+  }, []);
+
+  // Open modal and auto-play
+  const openModal = (reel: ReelItem) => {
+    setSelectedReel(reel);
+    setProgress(0);
+    setIsPlaying(true);
+  };
+
   // Handle ESC key to close modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedReel(null);
+      if (e.key === 'Escape') closeModal();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [closeModal]);
+
+  // Video play/pause toggle
+  const handleTogglePlay = () => {
+    if (selectedReel?.videoUrl && videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      }
+    } else {
+      setIsPlaying((prev) => !prev);
+    }
+  };
+
+  // Sync simulated progress when no mp4 videoUrl is present
+  useEffect(() => {
+    if (!selectedReel) return;
+
+    if (isPlaying && !selectedReel.videoUrl) {
+      simulationTimerRef.current = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + 1;
+        });
+      }, 150); // 15s loop
+    } else if (simulationTimerRef.current) {
+      clearInterval(simulationTimerRef.current);
+    }
+
+    return () => {
+      if (simulationTimerRef.current) clearInterval(simulationTimerRef.current);
+    };
+  }, [isPlaying, selectedReel]);
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const total = videoRef.current.duration;
+      if (total > 0) {
+        setProgress((current / total) * 100);
+      }
+    }
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const newProgress = Math.max(0, Math.min(100, (clickX / rect.width) * 100));
+    setProgress(newProgress);
+
+    if (videoRef.current && videoRef.current.duration) {
+      videoRef.current.currentTime = (newProgress / 100) * videoRef.current.duration;
+    }
+  };
 
   return (
     <section className="reels-section-root">
@@ -307,12 +392,12 @@ export default function InstagramReelsSection() {
               >
                 <div
                   className="reel-card"
-                  onClick={() => setSelectedReel(reel)}
+                  onClick={() => openModal(reel)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
-                      setSelectedReel(reel);
+                      openModal(reel);
                     }
                   }}
                 >
@@ -354,12 +439,12 @@ export default function InstagramReelsSection() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          POPUP REEL MODAL LIGHTBOX
+          IN-POPUP REEL VIDEO PLAYER MODAL
       ═══════════════════════════════════════════ */}
       {mounted && selectedReel && (
         <div
           className="reel-modal-backdrop"
-          onClick={() => setSelectedReel(null)}
+          onClick={closeModal}
           role="dialog"
           aria-modal="true"
         >
@@ -367,25 +452,153 @@ export default function InstagramReelsSection() {
             className="reel-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Top Row with Close Button */}
-            <div className="reel-modal-close-row">
-              <button
-                className="reel-modal-close-btn"
-                onClick={() => setSelectedReel(null)}
-                aria-label="Close modal"
-              >
-                <X size={20} />
-              </button>
+            {/* Modal Header */}
+            <div className="reel-modal-header">
+              <div className="reel-modal-author">
+                <div className="reel-modal-avatar">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo.png" alt="Shekhar Dental Logo" />
+                </div>
+                <div className="reel-modal-author-meta">
+                  <div className="reel-modal-author-name">
+                    <span>shekhar_dental</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" className="reel-verified-icon">
+                      <circle cx="12" cy="12" r="10" fill="#38bdf8" />
+                      <path d="M9 12l2 2 4-4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    </svg>
+                  </div>
+                  <span className="reel-modal-category">{selectedReel.category}</span>
+                </div>
+              </div>
+
+              <div className="reel-modal-actions">
+                <a
+                  href={selectedReel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="reel-modal-ig-link"
+                  title="View original on Instagram"
+                >
+                  <Instagram size={14} />
+                  <span>Instagram</span>
+                  <ExternalLink size={12} />
+                </a>
+                <button
+                  className="reel-modal-close-btn"
+                  onClick={closeModal}
+                  aria-label="Close modal"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
-            {/* Reel Video Iframe Embed */}
-            <div className="reel-iframe-container">
-              <iframe
-                src={`https://www.instagram.com/reel/${selectedReel.id}/embed/`}
-                className="reel-iframe"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                title={selectedReel.title}
-              />
+            {/* In-Popup Reel Video Player Container */}
+            <div
+              className="reel-video-container"
+              onClick={handleTogglePlay}
+            >
+              {selectedReel.videoUrl ? (
+                <video
+                  ref={videoRef}
+                  src={selectedReel.videoUrl}
+                  poster={selectedReel.thumbnail}
+                  className="reel-video-element"
+                  playsInline
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  onTimeUpdate={handleTimeUpdate}
+                  onEnded={() => setIsPlaying(false)}
+                />
+              ) : (
+                <div
+                  className="reel-poster-player"
+                  style={{ backgroundImage: `url(${selectedReel.thumbnail})` }}
+                >
+                  {/* Subtle video pulse overlay when active */}
+                  <div className={`reel-poster-overlay ${isPlaying ? 'is-playing' : ''}`} />
+                </div>
+              )}
+
+              {/* Center Play / Pause Indicator */}
+              <div className={`reel-center-play-wrapper ${isPlaying ? 'fade-out' : 'fade-in'}`}>
+                <button
+                  type="button"
+                  className="reel-center-play-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleTogglePlay();
+                  }}
+                  aria-label={isPlaying ? 'Pause video' : 'Play video'}
+                >
+                  {isPlaying ? (
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff">
+                      <rect x="6" y="4" width="4" height="16" rx="1.5" />
+                      <rect x="14" y="4" width="4" height="16" rx="1.5" />
+                    </svg>
+                  ) : (
+                    <Play size={28} fill="#ffffff" color="#ffffff" style={{ marginLeft: '3px' }} />
+                  )}
+                </button>
+              </div>
+
+              {/* Bottom Video Controls & Info Overlay */}
+              <div className="reel-video-overlay-bottom" onClick={(e) => e.stopPropagation()}>
+                {/* Progress Timeline Bar */}
+                <div
+                  className="reel-progress-bar-container"
+                  onClick={handleSeek}
+                  title="Click to seek"
+                >
+                  <div
+                    className="reel-progress-bar-fill"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+
+                <div className="reel-controls-row">
+                  <button
+                    type="button"
+                    className="reel-ctrl-btn"
+                    onClick={handleTogglePlay}
+                    aria-label={isPlaying ? 'Pause' : 'Play'}
+                  >
+                    {isPlaying ? (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1" />
+                        <rect x="14" y="4" width="4" height="16" rx="1" />
+                      </svg>
+                    ) : (
+                      <Play size={18} fill="currentColor" style={{ marginLeft: '2px' }} />
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    className="reel-ctrl-btn"
+                    onClick={() => setIsMuted(!isMuted)}
+                    aria-label={isMuted ? 'Unmute' : 'Mute'}
+                  >
+                    {isMuted ? (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                        <line x1="23" y1="9" x2="17" y2="15" />
+                        <line x1="17" y1="9" x2="23" y2="15" />
+                      </svg>
+                    ) : (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                      </svg>
+                    )}
+                  </button>
+
+                  <div className="reel-video-title-text">
+                    {selectedReel.title}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
