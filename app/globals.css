@@ -1748,13 +1748,13 @@ img {
 }
 
 /* ═══════════════════════════════════════════
-   POPUP LIGHTBOX MODAL
+   POPUP LIGHTBOX MODAL (CLEAN WHITE THEME)
 ═══════════════════════════════════════════ */
 
 .reel-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 99999;
@@ -1776,16 +1776,17 @@ img {
 
 .reel-modal-content {
   position: relative;
-  background: #0f172a;
-  border-radius: 16px;
+  background: #ffffff;
+  border-radius: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   max-height: 94vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1);
-  animation: scaleUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  animation: scaleUpModal 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  border: 1px solid #e2e8f0;
 }
 
 @keyframes scaleUpModal {
@@ -1803,9 +1804,9 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.85rem 1rem;
-  background: rgba(15, 23, 42, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.9rem 1.15rem;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
   z-index: 10;
 }
 
@@ -1816,16 +1817,17 @@ img {
 }
 
 .reel-modal-avatar {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: #ffffff;
   padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid #38bdf8;
+  border: 2px solid #0ea5e9;
   overflow: hidden;
+  box-shadow: 0 2px 6px rgba(14, 165, 233, 0.2);
 }
 
 .reel-modal-avatar img {
@@ -1842,10 +1844,10 @@ img {
 .reel-modal-author-name {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.9rem;
+  gap: 5px;
+  font-size: 0.92rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .reel-verified-icon {
@@ -1853,9 +1855,9 @@ img {
 }
 
 .reel-modal-category {
-  font-size: 0.72rem;
-  color: #94a3b8;
-  font-weight: 500;
+  font-size: 0.74rem;
+  color: #0284c7;
+  font-weight: 600;
 }
 
 .reel-modal-actions {
@@ -1868,12 +1870,12 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
-  background: linear-gradient(45deg, rgba(240, 148, 51, 0.2), rgba(220, 39, 67, 0.2));
-  border: 1px solid rgba(220, 39, 67, 0.4);
-  color: #f43f5e;
-  font-size: 0.76rem;
+  background: rgba(225, 48, 108, 0.08);
+  border: 1px solid rgba(225, 48, 108, 0.25);
+  color: #e1306c;
+  font-size: 0.78rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -1883,14 +1885,16 @@ img {
   background: linear-gradient(45deg, #f09433, #dc2743);
   color: #ffffff;
   border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
 }
 
 .reel-modal-close-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  color: #94a3b8;
-  width: 30px;
-  height: 30px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1901,165 +1905,82 @@ img {
 }
 
 .reel-modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: scale(1.05);
 }
 
-.reel-video-container {
-  width: 100%;
-  height: 560px;
-  max-height: 75vh;
-  background: #000000;
+/* Modal Player Container */
+.reel-modal-player-wrapper {
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  height: 540px;
+  max-height: calc(85vh - 100px);
+  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.reel-video-element {
+.reel-embed-iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  min-height: 520px;
+  border: none;
   display: block;
 }
 
-.reel-poster-player {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.reel-poster-overlay {
+/* Loading State Spinner */
+.reel-modal-loading-state {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
-  transition: background 0.3s ease;
-}
-
-.reel-poster-overlay.is-playing {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
-}
-
-.reel-center-play-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   z-index: 5;
 }
 
-.reel-center-play-wrapper.fade-out {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.85);
-}
-
-.reel-center-play-wrapper.fade-in {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.reel-center-play-button {
-  width: 64px;
-  height: 64px;
+.reel-loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #0284c7;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: reelSpin 0.8s linear infinite;
 }
 
-.reel-center-play-button:hover {
-  transform: scale(1.1);
-  background: rgba(14, 165, 233, 0.85);
-  border-color: rgba(255, 255, 255, 0.6);
+@keyframes reelSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.reel-video-overlay-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem 1rem 0.85rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.95) 100%);
-  z-index: 6;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.reel-progress-bar-container {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: height 0.15s ease;
-}
-
-.reel-progress-bar-container:hover {
-  height: 6px;
-}
-
-.reel-progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-  border-radius: 2px;
-  transition: width 0.1s linear;
-}
-
-.reel-controls-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-}
-
-.reel-ctrl-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.reel-ctrl-btn:hover {
-  background: rgba(56, 189, 248, 0.8);
-  transform: scale(1.08);
-}
-
-.reel-video-title-text {
+.reel-loading-text {
   font-size: 0.84rem;
+  color: #64748b;
   font-weight: 500;
-  color: #f1f5f9;
+}
+
+/* Modal Footer */
+.reel-modal-footer {
+  padding: 0.75rem 1.15rem;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.reel-modal-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 1;
 }
 
 @media (max-width: 480px) {
@@ -2069,12 +1990,12 @@ img {
 
   .reel-modal-content {
     max-width: 100%;
-    border-radius: 12px;
+    border-radius: 16px;
   }
 
-  .reel-video-container {
-    height: 520px;
-    max-height: 78vh;
+  .reel-modal-player-wrapper {
+    height: 500px;
+    max-height: calc(88vh - 90px);
   }
 }
 
