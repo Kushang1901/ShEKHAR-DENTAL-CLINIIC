@@ -64,31 +64,25 @@ export default function Footer() {
                 style={{ height: '36px', width: 'auto', objectFit: 'contain', maxWidth: '240px' }}
               />
             </div>
-            <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.2rem' }}>
+            <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.4rem' }}>
               Providing top-tier, painless, and aesthetic dental care in Sagarpur, Delhi. Dedicated to patient comfort, modern sterilization protocols, and radiant healthy smiles.
             </p>
-            
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid rgba(59, 130, 246, 0.2)', marginBottom: '1.5rem' }}>
-              <span style={{ height: '8px', width: '8px', borderRadius: '50%', background: '#10b981' }}></span>
-              <span style={{ color: '#93c5fd', fontSize: '0.85rem', fontWeight: 500 }}>Accepting New Patients</span>
-            </div>
 
             {/* Social Media Links Row */}
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 Follow Our Practice
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {/* Instagram */}
                 <a
                   href={clinicInfo.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram - @shekhar_dental"
-                  className="footer-social-pill footer-social-ig"
+                  className="footer-social-circle footer-social-ig"
                 >
-                  <InstagramIcon size={18} />
-                  <span>Instagram</span>
+                  <InstagramIcon size={20} />
                 </a>
 
                 {/* Threads / X */}
@@ -97,10 +91,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Threads / X - @shekhar_dental"
-                  className="footer-social-pill footer-social-threads"
+                  className="footer-social-circle footer-social-threads"
                 >
-                  <ThreadsIcon size={16} />
-                  <span>Threads / X</span>
+                  <ThreadsIcon size={19} />
                 </a>
 
                 {/* WhatsApp */}
@@ -108,11 +101,10 @@ export default function Footer() {
                   href={clinicInfo.socials.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="WhatsApp Us"
-                  className="footer-social-pill footer-social-wa"
+                  aria-label="WhatsApp - Shekhar Dental"
+                  className="footer-social-circle footer-social-wa"
                 >
-                  <MessageCircle size={16} />
-                  <span>WhatsApp</span>
+                  <MessageCircle size={20} />
                 </a>
               </div>
             </div>
