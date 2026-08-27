@@ -368,7 +368,7 @@ export default function InstagramReelsSection() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          IN-POPUP REEL VIDEO PLAYER MODAL (WHITE THEME)
+          IN-POPUP REEL MODAL (EXACT INSTAGRAM CARD)
       ═══════════════════════════════════════════ */}
       {mounted && selectedReel && (
         <div
@@ -381,48 +381,18 @@ export default function InstagramReelsSection() {
             className="reel-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* White Theme Modal Header */}
-            <div className="reel-modal-header">
-              <div className="reel-modal-author">
-                <div className="reel-modal-avatar">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logo.png" alt="Shekhar Dental Logo" />
-                </div>
-                <div className="reel-modal-author-meta">
-                  <div className="reel-modal-author-name">
-                    <span>shekhar_dental</span>
-                    <svg viewBox="0 0 24 24" width="14" height="14" className="reel-verified-icon">
-                      <circle cx="12" cy="12" r="10" fill="#0284c7" />
-                      <path d="M9 12l2 2 4-4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                    </svg>
-                  </div>
-                  <span className="reel-modal-category">{selectedReel.category}</span>
-                </div>
-              </div>
-
-              <div className="reel-modal-actions">
-                <a
-                  href={selectedReel.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="reel-modal-ig-link"
-                  title="Open on Instagram"
-                >
-                  <Instagram size={13} />
-                  <span>Instagram</span>
-                  <ExternalLink size={11} />
-                </a>
-                <button
-                  className="reel-modal-close-btn"
-                  onClick={closeModal}
-                  aria-label="Close modal"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+            {/* Top Close Button */}
+            <div className="reel-modal-top-bar">
+              <button
+                className="reel-modal-close-btn"
+                onClick={closeModal}
+                aria-label="Close modal"
+              >
+                <X size={20} />
+              </button>
             </div>
 
-            {/* In-Popup Reel Embed Player Container */}
+            {/* In-Popup Instagram Reel Card Embed */}
             <div className="reel-modal-player-wrapper">
               {isIframeLoading && (
                 <div className="reel-modal-loading-state">
@@ -432,7 +402,7 @@ export default function InstagramReelsSection() {
               )}
               <iframe
                 key={selectedReel.id}
-                src={`https://www.instagram.com/reel/${selectedReel.id}/embed/`}
+                src={`https://www.instagram.com/reel/${selectedReel.id}/embed/captioned/`}
                 className="reel-embed-iframe"
                 scrolling="no"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
@@ -440,11 +410,6 @@ export default function InstagramReelsSection() {
                 onLoad={() => setIsIframeLoading(false)}
                 title={selectedReel.title}
               />
-            </div>
-
-            {/* Bottom Title Bar */}
-            <div className="reel-modal-footer">
-              <p className="reel-modal-title">{selectedReel.title}</p>
             </div>
           </div>
         </div>
