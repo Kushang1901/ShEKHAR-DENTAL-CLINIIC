@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Shekhar Dental Clinic | Sagarpur East, New Delhi',
     description: 'Get in touch for appointments, clinic address, timings, and emergencies at Shekhar Dental Clinic.',
-    url: 'https://shekhardental.com/contact',
+    url: 'https://shekhardental.in/contact',
   },
 };
 

@@ -4,7 +4,7 @@ import { servicesData } from '@/data/services';
 import { doctorsData } from '@/data/doctors';
 
 export default function JsonLd() {
-  const baseUrl = 'https://shekhardental.com';
+  const baseUrl = 'https://shekhardental.in';
 
   // 1. LocalBusiness / Dentist / MedicalBusiness Schema
   const dentistSchema = {
@@ -123,7 +123,8 @@ export default function JsonLd() {
       worstRating: '1'
     },
     sameAs: [
-      'https://www.instagram.com/shekhar_dental/',
+      clinicInfo.socials.instagram,
+      clinicInfo.socials.threads,
       'https://maps.app.goo.gl/PzB2t2M5oW9Q6K546'
     ]
   };
@@ -178,7 +179,7 @@ export default function JsonLd() {
         name: 'How can I book an appointment with Dr. Vivek Shekhar?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'You can book an appointment online via our website at https://shekhardental.com/appointment, or by calling our clinic desk directly at +91 96672 66301 or +91 98702 94558.'
+          text: 'You can book an appointment online via our website at https://shekhardental.in/appointment, or by calling our clinic desk directly at +91 96672 66301 or +91 98702 94558.'
         }
       }
     ]

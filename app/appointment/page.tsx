@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Book Dental Appointment | Shekhar Dental Clinic Delhi',
     description: 'Fast, easy online dental appointment scheduling. Select your preferred date, time slot, and treatment.',
-    url: 'https://shekhardental.com/appointment',
+    url: 'https://shekhardental.in/appointment',
   },
 };
 

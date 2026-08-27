@@ -8,7 +8,7 @@ export const clinicInfo = {
     { label: "+91 98702 94558", value: "+919870294558", clean: "919870294558" }
   ],
   whatsappNumber: "919667266301",
-  email: "info@shekhardental.com",
+  email: "info@shekhardental.in",
   address: {
     line1: "1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar",
     line2: "Sant Mohalla, Sagarpur East",
@@ -30,5 +30,10 @@ export const clinicInfo = {
   developer: {
     name: "Kushang Acharya",
     url: "https://kushangacharya.vercel.app/"
+  },
+  socials: {
+    instagram: "https://www.instagram.com/shekhar_dental/",
+    threads: "https://www.threads.com/@shekhar_dental?xmt=AQG0cE0GVI0xeznRLoXDBwhBesb0ztQexaaGDgQ_tA-G2og",
+    whatsapp: "https://wa.me/919667266301"
   }
 };

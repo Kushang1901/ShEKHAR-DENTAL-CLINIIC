@@ -1893,3 +1893,47 @@ img {
     height: 48px;
   }
 }
+
+/* Footer Social Pills */
+.footer-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-social-pill:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.footer-social-ig:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.4);
+}
+
+.footer-social-threads:hover {
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+
+.footer-social-wa:hover {
+  background: #10b981;
+  border-color: #34d399;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.footer-nav-link:hover {
+  color: #38bdf8 !important;
+}

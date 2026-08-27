@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Shekhar Dental & Orthodontic Center | Sagarpur, Delhi',
     description: 'Learn about our journey, patient-first philosophy, clinical certifications, and dental technology in Sagarpur, Delhi.',
-    url: 'https://shekhardental.com/about',
+    url: 'https://shekhardental.in/about',
   },
 };
 

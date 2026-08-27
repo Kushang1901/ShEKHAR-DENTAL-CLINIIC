@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dental Gallery & Smile Transformations | Shekhar Dental Clinic',
     description: 'Explore real patient surgical results, cosmetic smile makeovers, and modern clinical equipment in Sagarpur, Delhi.',
-    url: 'https://shekhardental.com/gallery',
+    url: 'https://shekhardental.in/gallery',
     images: ['/gallery/cosmetic.png'],
   },
 };

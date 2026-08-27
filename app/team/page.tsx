@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Our Specialist Doctors & Dental Team | Shekhar Dental Clinic',
     description: 'Meet our experienced team of oral surgeons, orthodontists, and dental specialists in Sagarpur, Delhi.',
-    url: 'https://shekhardental.com/team',
+    url: 'https://shekhardental.in/team',
   },
 };
 

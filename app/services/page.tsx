@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dental Services & Treatment Pricing | Shekhar Dental Clinic',
     description: 'Comprehensive dental services with upfront transparent pricing in Sagarpur, Delhi. Dental implants, RCT, braces, aligners, crowns & whitening.',
-    url: 'https://shekhardental.com/services',
+    url: 'https://shekhardental.in/services',
   },
 };
 

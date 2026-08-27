@@ -14,7 +14,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://shekhardental.com'),
+  metadataBase: new URL('https://shekhardental.in'),
   title: {
     default: `${clinicInfo.name} | Best Dentist & Orthodontist in Sagarpur Delhi`,
     template: `%s | ${clinicInfo.shortName}`,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     'Emergency Dentist Sagarpur',
     'Cosmetic Smile Makeover Delhi'
   ],
-  authors: [{ name: clinicInfo.name, url: 'https://shekhardental.com' }],
+  authors: [{ name: clinicInfo.name, url: 'https://shekhardental.in' }],
   creator: clinicInfo.name,
   publisher: clinicInfo.name,
   applicationName: clinicInfo.shortName,
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://shekhardental.com',
+    url: 'https://shekhardental.in',
     siteName: clinicInfo.name,
     title: `${clinicInfo.name} | Premier Dental Care in Sagarpur, Delhi`,
     description:
