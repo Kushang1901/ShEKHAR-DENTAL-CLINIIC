@@ -16,8 +16,23 @@ import {
 import { doctorsData, teamStats } from '@/data/doctors';
 
 export const metadata: Metadata = {
-  title: 'Our Expert Dental Team | Shekhar Dental Clinic Delhi',
-  description: 'Meet the experienced dental specialists at Shekhar Dental Clinic in Sagarpur, Delhi. Oral surgeons, orthodontists, endodontists, and cosmetic dental surgeons.',
+  title: 'Our Specialist Doctors & Dental Team | Shekhar Dental Clinic Delhi',
+  description: 'Meet Dr. Vivek Shekhar (MDS Orthodontics) and Dr. Prakash Thakur (BDS) at Shekhar Dental & Orthodontic Center, Sagarpur, Delhi. Over 10+ years of clinical excellence in dental implants, braces, RCT, and smile design.',
+  keywords: [
+    'Dr Vivek Shekhar Dentist',
+    'Dr Prakash Thakur Dental Surgeon',
+    'Orthodontist in Delhi',
+    'Best Dental Surgeon Sagarpur',
+    'Dentist Qualifications Shekhar Dental'
+  ],
+  alternates: {
+    canonical: '/team',
+  },
+  openGraph: {
+    title: 'Our Specialist Doctors & Dental Team | Shekhar Dental Clinic',
+    description: 'Meet our experienced team of oral surgeons, orthodontists, and dental specialists in Sagarpur, Delhi.',
+    url: 'https://shekhardental.com/team',
+  },
 };
 
 export default function TeamPage() {

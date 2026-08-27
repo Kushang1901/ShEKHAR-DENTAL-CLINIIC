@@ -7,6 +7,9 @@ import { clinicInfo } from '@/data/clinicInfo';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Shekhar Dental & Orthodontic Center',
   description: 'Learn how Shekhar Dental Clinic protects your personal data, medical records, and healthcare confidentiality.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicyPage() {

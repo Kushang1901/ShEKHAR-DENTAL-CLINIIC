@@ -24,6 +24,7 @@ import { doctorsData } from '@/data/doctors';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import ServicesCarousel from '@/components/ServicesCarousel';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import InstagramReelsSection from '@/components/InstagramReelsSection';
 
 /* ─── Slide data ─── */
 const HERO_SLIDES = [
@@ -470,6 +471,8 @@ export default function HomePage() {
       {/* Google Reviews Carousel */}
       <GoogleReviewsCarousel />
 
+      {/* Instagram Reels Video Carousel */}
+      <InstagramReelsSection />
 
       {/* Emergency Callout Banner */}
       <section style={{ padding: '4rem 0', background: 'linear-gradient(135deg, #ef4444 0%, #ee5a24 100%)', color: '#ffffff' }}>

@@ -7,6 +7,9 @@ import { clinicInfo } from '@/data/clinicInfo';
 export const metadata: Metadata = {
   title: 'Terms and Conditions | Shekhar Dental & Orthodontic Center',
   description: 'Terms of service, clinical consultation guidelines, appointment policies, and patient agreements for Shekhar Dental Clinic.',
+  alternates: {
+    canonical: '/terms',
+  },
 };
 
 export default function TermsAndConditionsPage() {
