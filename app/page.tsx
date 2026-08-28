@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect, useCallback } from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import {
   Calendar,
@@ -12,200 +10,25 @@ import {
   Users,
   Star,
   Stethoscope,
-  MapPin,
-  ChevronLeft,
-  ChevronRight,
   HeartHandshake,
   ArrowRight
 } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
-import { servicesData } from '@/data/services';
 import { doctorsData } from '@/data/doctors';
+import HeroSlider from '@/components/HeroSlider';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import ServicesCarousel from '@/components/ServicesCarousel';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import InstagramReelsSection from '@/components/InstagramReelsSection';
 
-/* ─── Slide data ─── */
-const HERO_SLIDES = [
-  {
-    image: '/gallery/implant_procedure.png',
-    badge: 'Advanced Implantology',
-    thin: 'Restore Your',
-    bold: 'Perfect Smile.',
-    sub: 'Single-tooth to full-arch dental implants using precision zirconia crowns — natural-looking, lifetime results.',
-    cta: 'Book Implant Consult',
-  },
-  {
-    image: '/gallery/dental_procedure.png',
-    badge: 'Expert Root Canal Care',
-    thin: 'Pain-Free',
-    bold: 'Root Canals.',
-    sub: 'Modern rotary endodontics in a single visit — save your natural tooth comfortably with zero anxiety.',
-    cta: 'Book Free Consultation',
-  },
-  {
-    image: '/gallery/orthodontic.png',
-    badge: 'Orthodontics & Aligners',
-    thin: 'Straighten Teeth',
-    bold: 'Invisibly.',
-    sub: 'Metal braces, ceramic braces, and clear Invisalign-style aligners for teens and adults — discreet & effective.',
-    cta: 'See Aligner Options',
-  },
-  {
-    image: '/gallery/cosmetic.png',
-    badge: 'Cosmetic Dentistry',
-    thin: 'Your Dream',
-    bold: 'Hollywood Smile.',
-    sub: 'Laser whitening, porcelain veneers, composite bonding and complete smile makeovers at Delhi\'s best prices.',
-    cta: 'Start My Makeover',
-  },
-  {
-    image: '/gallery/dental_surgery2.png',
-    badge: 'Oral Surgery Specialists',
-    thin: 'Safe, Sterile,',
-    bold: 'Expert Surgery.',
-    sub: 'Wisdom tooth extractions, bone grafts, and surgical procedures under expert care with hospital-grade sterilization.',
-    cta: 'Book a Consultation',
-  },
-];
-
-const SLIDE_DURATION = 5000;
-
 export default function HomePage() {
-  const featuredServices = servicesData.slice(0, 6);
-  void featuredServices;
-  void doctorsData;
-
-  const [active, setActive] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-  const [animating, setAnimating] = useState(false);
-
-  const goTo = useCallback((idx: number) => {
-    if (animating) return;
-    setPrev(active);
-    setActive(idx);
-    setAnimating(true);
-    setTimeout(() => {
-      setPrev(null);
-      setAnimating(false);
-    }, 900);
-  }, [active, animating]);
-
-  const next = useCallback(() => goTo((active + 1) % HERO_SLIDES.length), [active, goTo]);
-  const prev_ = useCallback(() => goTo((active - 1 + HERO_SLIDES.length) % HERO_SLIDES.length), [active, goTo]);
-
-  /* Auto-advance */
-  useEffect(() => {
-    const id = setInterval(next, SLIDE_DURATION);
-    return () => clearInterval(id);
-  }, [next]);
-
-  const slide = HERO_SLIDES[active];
-
   return (
     <>
-      {/* ═══════════════════════════════════════════
-          PREMIUM HERO SLIDER
-      ═══════════════════════════════════════════ */}
-      <section className="hero-root">
-
-        {/* ── Background slides (crossfade right-to-left) ── */}
-        <div className="hero-slides-track" aria-hidden>
-          {HERO_SLIDES.map((s, i) => (
-            <div
-              key={i}
-              className={[
-                'hero-slide-bg',
-                i === active ? 'slide-active' : '',
-                i === prev   ? 'slide-leaving' : '',
-              ].join(' ')}
-              style={{ backgroundImage: `url(${s.image})` }}
-            />
-          ))}
-        </div>
-
-        {/* ── Cinematic dark overlay ── */}
-        <div className="hero-overlay-layer" aria-hidden />
-
-        {/* ── Glow blobs ── */}
-        <div className="hero-glow hero-glow-1" aria-hidden />
-        <div className="hero-glow hero-glow-2" aria-hidden />
-
-        {/* ══ FOREGROUND CONTENT (changes with slide) ══ */}
-        <div className="hero-content-wrapper">
-
-          {/* Badge */}
-          <div key={`badge-${active}`} className="hero-badge hero-slide-in">
-            <span className="hero-badge-dot" />
-            <MapPin size={13} />
-            {slide.badge}
-            <span className="hero-badge-open">● Open Now</span>
-          </div>
-
-          {/* Headline */}
-          <h1 key={`h1-${active}`} className="hero-headline hero-slide-in" style={{ animationDelay: '0.08s' }}>
-            <span className="hero-headline-thin">{slide.thin}</span>
-            <br />
-            <span className="hero-headline-bold">{slide.bold}</span>
-          </h1>
-
-          {/* Sub-text */}
-          <p key={`sub-${active}`} className="hero-subtext hero-slide-in" style={{ animationDelay: '0.18s' }}>
-            {slide.sub}
-          </p>
-
-          {/* CTAs */}
-          <div key={`cta-${active}`} className="hero-cta-row hero-slide-in" style={{ animationDelay: '0.28s' }}>
-            <Link href="/appointment" className="hero-btn-primary">
-              <Calendar size={18} />
-              {slide.cta}
-            </Link>
-            <a href={`tel:${clinicInfo.phoneNumbers[0].clean}`} className="hero-btn-ghost">
-              <Phone size={18} />
-              {clinicInfo.phoneNumbers[0].label}
-            </a>
-          </div>
-
-          {/* Slide dot indicators */}
-          <div className="hero-dots">
-            {HERO_SLIDES.map((_, i) => (
-              <button
-                key={i}
-                className={`hero-dot${i === active ? ' hero-dot-active' : ''}`}
-                onClick={() => goTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* ── Arrow controls ── */}
-        <button className="hero-arrow hero-arrow-left"  onClick={prev_} aria-label="Previous slide">
-          <ChevronLeft size={26} />
-        </button>
-        <button className="hero-arrow hero-arrow-right" onClick={next}  aria-label="Next slide">
-          <ChevronRight size={26} />
-        </button>
-
-        {/* ── Floating stat bar ── */}
-        <div className="hero-stats-bar">
-          {[
-            { value: '5,000+', label: 'Happy Patients',  icon: <Users      size={20} color="#2563eb" /> },
-            { value: '10+',    label: 'Years of Care',   icon: <Award      size={20} color="#7c3aed" /> },
-            { value: '4.9 ★',  label: 'Google Rating',   icon: <Star       size={20} color="#f59e0b" fill="#f59e0b" /> },
-            { value: '99%',    label: 'Success Rate',    icon: <ShieldCheck size={20} color="#10b981" /> },
-            { value: '12+',    label: 'Dental Services', icon: <Stethoscope size={20} color="#ec4899" /> },
-          ].map((s, i) => (
-            <div key={i} className="hero-stat-card">
-              <div className="hero-stat-icon">{s.icon}</div>
-              <div className="hero-stat-value">{s.value}</div>
-              <div className="hero-stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-      </section>
+      {/* ─────────────────────────────────────────────
+          HERO — Client slider component (animations)
+          Server-rendered wrapper keeps FCP fast
+      ───────────────────────────────────────────── */}
+      <HeroSlider />
 
       {/* Stats Counter Section */}
       <section style={{ padding: '3.5rem 0', background: '#f8fafc' }}>
@@ -334,7 +157,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Services Section with Arrows & Auto-Slide */}
+      {/* Featured Services Section */}
       <section style={{ padding: '5.5rem 0', background: '#f8fafc', overflow: 'hidden' }}>
         <div className="container">
           <div className="section-header">
@@ -343,7 +166,6 @@ export default function HomePage() {
             <p>From routine cleanings to complete full-mouth implant restorations, explore our patient-approved treatments.</p>
           </div>
 
-          {/* Interactive Services Carousel with Left/Right Arrows */}
           <ServicesCarousel />
 
           <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
@@ -389,7 +211,8 @@ export default function HomePage() {
               </span>
               <h2 style={{ fontSize: '2.5rem', color: '#ffffff', marginBottom: '1rem' }}>Meet Our Senior Dentists</h2>
               <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '2rem' }}>
-                Led by Founder &amp; Lead Dental Surgeon Dr. Prakash Thakur, our clinical panel brings over 50 years of combined experience across implantology, orthodontic bite correction, and endodontics.
+                Led by Founder &amp; Lead Dental Surgeon Dr. Prakash Thakur, our clinical panel brings over 50 years of combined experience
+                across implantology, orthodontic bite correction, and endodontics.
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <Link href="/team" className="btn btn-white">
