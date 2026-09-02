@@ -118,8 +118,8 @@ export default function TeamPage() {
                 {/* Doctor Avatar / Photo Header */}
                 <div
                   style={{
-                    height: '240px',
-                    background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)',
+                    height: '280px',
+                    background: 'linear-gradient(135deg, #0f172a 0%, #1e3c72 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -129,12 +129,28 @@ export default function TeamPage() {
                   }}
                 >
                   {doc.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={doc.image}
-                      alt={doc.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
-                    />
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={doc.image}
+                        alt={doc.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: doc.imagePosition || 'center 20%',
+                          transition: 'transform 0.4s ease',
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(to top, rgba(15, 23, 42, 0.4) 0%, transparent 40%)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+                    </>
                   ) : (
                     <div
                       style={{
@@ -165,6 +181,7 @@ export default function TeamPage() {
                       borderRadius: '12px',
                       fontSize: '0.8rem',
                       fontWeight: 600,
+                      zIndex: 2,
                     }}
                   >
                     {doc.experience}

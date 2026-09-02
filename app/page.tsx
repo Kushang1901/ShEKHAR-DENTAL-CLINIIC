@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import {
   Calendar,
@@ -254,7 +254,7 @@ export default function HomePage() {
                           height: '52px',
                           borderRadius: '50%',
                           objectFit: 'cover',
-                          objectPosition: 'center 20%',
+                          objectPosition: doc.imagePosition || 'center 38%',
                           border: '2px solid rgba(255, 255, 255, 0.5)',
                           flexShrink: 0,
                         }}
