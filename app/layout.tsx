@@ -148,7 +148,11 @@ export default function RootLayout({
           href="/gallery/implant_procedure.png"
           fetchPriority="high"
         />
-        {/* DNS prefetch for third-party origins */}
+        {/* DNS prefetch & preconnect for third-party origins */}
+        <link rel="preconnect" href="https://translate.googleapis.com" />
+        <link rel="preconnect" href="https://translate.google.com" />
+        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
+        <link rel="dns-prefetch" href="https://translate.google.com" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="icon" href="/favicon.png" type="image/png" />
