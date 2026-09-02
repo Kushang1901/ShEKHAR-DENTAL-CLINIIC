@@ -30,7 +30,7 @@ export const doctorsData: DoctorMember[] = [
     specialties: ["Braces Treatment", "Clear Aligners", "Bite Correction", "Jaw Alignment"],
     description: "Specialist in modern orthodontics, dedicated to creating aesthetic smiles and correcting malocclusion using cutting-edge ceramic brackets and invisible aligners.",
     image: "/gallery/dr.vivek.jpeg",
-    imagePosition: "center 15%",
+    imagePosition: "center 50%",
     icon: "teeth"
   },
   {
@@ -40,9 +40,7 @@ export const doctorsData: DoctorMember[] = [
     experience: "9+ Years",
     specialties: ["Rotary Root Canal Therapy", "Endodontic Surgery", "Pulp Treatment", "Tooth Preservation"],
     description: "Expert endodontist specializing in single-sitting painless root canals, re-RCT treatments, and tooth-saving micro-endodontic procedures.",
-    image: "/gallery/dr.tushar.jpg",
-    imagePosition: "center 18%",
-    icon: "heartbeat"
+    icon: "stethoscope"
   },
   {
     id: "dr-prakash-consultant",

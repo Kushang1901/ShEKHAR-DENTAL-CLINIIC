@@ -154,18 +154,74 @@ export default function TeamPage() {
                   ) : (
                     <div
                       style={{
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
-                        background: 'rgba(255, 255, 255, 0.15)',
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
-                        border: '2px solid rgba(255, 255, 255, 0.3)',
+                        gap: '12px',
+                        width: '100%',
+                        height: '100%',
+                        background: 'linear-gradient(135deg, #1e3c72 0%, #2563eb 50%, #0284c7 100%)',
+                        position: 'relative',
                       }}
                     >
-                      <Stethoscope size={50} color="#ffffff" />
+                      {/* Decorative subtle background rings */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          width: '200px',
+                          height: '200px',
+                          borderRadius: '50%',
+                          border: '1px solid rgba(255, 255, 255, 0.12)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: 'absolute',
+                          width: '260px',
+                          height: '260px',
+                          borderRadius: '50%',
+                          border: '1px solid rgba(255, 255, 255, 0.06)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+
+                      {/* Icon circle */}
+                      <div
+                        style={{
+                          width: '92px',
+                          height: '92px',
+                          borderRadius: '50%',
+                          background: 'rgba(255, 255, 255, 0.18)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '0 12px 30px rgba(0, 0, 0, 0.25)',
+                          border: '2px solid rgba(255, 255, 255, 0.35)',
+                        }}
+                      >
+                        <Stethoscope size={46} color="#ffffff" />
+                      </div>
+
+                      {/* Pill Badge */}
+                      <span
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.18)',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          color: '#ffffff',
+                          padding: '4px 14px',
+                          borderRadius: '20px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          letterSpacing: '0.04em',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        Specialist Clinician
+                      </span>
                     </div>
                   )}
 
