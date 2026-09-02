@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Calendar, Phone, Menu, X, Clock } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
+import LanguageToggle from '@/components/LanguageToggle';
 
 const navLinks = [
   { name: 'Home',     href: '/' },
@@ -122,6 +123,8 @@ export default function Navbar() {
 
             <div style={{ width: '1px', height: '22px', background: '#e2e8f0', margin: '0 0.35rem', flexShrink: 0 }} />
 
+            <LanguageToggle variant="desktop" />
+
             <Link
               href="/appointment"
               style={{
@@ -233,6 +236,9 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+
+        {/* Language switch inside mobile drawer */}
+        <LanguageToggle variant="mobile" />
 
         {/* Nav links */}
         <ul style={{

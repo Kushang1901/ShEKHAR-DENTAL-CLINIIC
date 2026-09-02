@@ -1962,3 +1962,35 @@ img {
 .footer-nav-link:hover {
   color: #38bdf8 !important;
 }
+
+/* ═══════════════════════════════════════════════════
+   GOOGLE TRANSLATE SEAMLESS OVERRIDES
+   Keeps site UI clean without default Google banners & tooltips
+═══════════════════════════════════════════════════ */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+.skiptranslate:not(.notranslate) {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+/* Fix any highlight overlays */
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
