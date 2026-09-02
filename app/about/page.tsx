@@ -15,21 +15,26 @@ import { clinicInfo } from '@/data/clinicInfo';
 import CertificatesShowcase from '@/components/CertificatesShowcase';
 
 export const metadata: Metadata = {
-  title: 'About Us & Clinical Standards | Shekhar Dental & Orthodontic Center Delhi',
-  description: 'Learn about Shekhar Dental & Orthodontic Center in Sagarpur, Delhi. Founded with a commitment to hospital-grade sterilization, advanced rotary dentistry, and affordable patient care.',
+  title: 'About SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Dr. Prakash Thakur Delhi',
+  description: 'Learn about SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, New Delhi, founded by Dr. Prakash Thakur (Doctor Prakash Thakur). Committed to hospital-grade sterilization, advanced rotary dentistry, and ethical patient care.',
   keywords: [
+    'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
     'About Shekhar Dental',
+    'Dr Prakash Thakur',
+    'Doctor Prakash Thakur',
+    'Prakash Thakur',
+    'Dr Prakash Thakur Dentist',
     'Dental Clinic Sagarpur History',
     'Dr Vivek Shekhar Orthodontist',
-    'Dr Prakash Thakur Dentist',
     'Dental Sterilization Standards Delhi'
   ],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Shekhar Dental & Orthodontic Center | Sagarpur, Delhi',
-    description: 'Learn about our journey, patient-first philosophy, clinical certifications, and dental technology in Sagarpur, Delhi.',
+    title: 'About SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Dr. Prakash Thakur | Delhi',
+    description: 'Learn about our journey, patient-first philosophy, clinical certifications, and dental technology in Sagarpur, Delhi founded by Dr. Prakash Thakur.',
     url: 'https://shekhardental.in/about',
   },
 };

@@ -14,24 +14,26 @@ import { servicesData } from '@/data/services';
 import { clinicInfo } from '@/data/clinicInfo';
 
 export const metadata: Metadata = {
-  title: 'Our Dental Services & Transparent Pricing | Shekhar Dental Clinic Delhi',
-  description: 'Explore our complete list of dental treatments with transparent pricing in Sagarpur, Delhi. Dental Implants (₹25,000), Braces & Aligners (₹30,000), Root Canal (₹2,500), Zirconia Caps (₹5,000), and Laser Whitening (₹8,000).',
+  title: 'Dental Treatments & Pricing | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+  description: 'Explore our complete list of dental treatments with transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi, headed by Dr. Prakash Thakur. Dental Implants (₹25,000), Braces (₹30,000), Root Canal (₹2,500), Zirconia Caps (₹5,000).',
   keywords: [
+    'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
+    'Dr Prakash Thakur Dental Clinic',
     'Dental Services Sagarpur',
     'Dental Treatment Cost Delhi',
     'Root Canal Price Delhi',
     'Dental Implant Cost Sagarpur',
     'Braces Cost Janakpuri',
     'Zirconia Crown Price Delhi',
-    'Teeth Whitening Price Delhi',
-    'Dentures Price Sagarpur'
+    'Teeth Whitening Price Delhi'
   ],
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Dental Services & Treatment Pricing | Shekhar Dental Clinic',
-    description: 'Comprehensive dental services with upfront transparent pricing in Sagarpur, Delhi. Dental implants, RCT, braces, aligners, crowns & whitening.',
+    title: 'Dental Services & Treatment Pricing | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    description: 'Comprehensive dental services with upfront transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi with Dr. Prakash Thakur.',
     url: 'https://shekhardental.in/services',
   },
 };

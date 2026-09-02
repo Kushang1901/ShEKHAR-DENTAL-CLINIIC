@@ -1,11 +1,22 @@
 export const clinicInfo = {
-  name: "Shekhar Dental & Orthodontic Center",
+  name: "SHEKHAR DENTAL AND ORTHODONTIC CENTRE",
   shortName: "Shekhar Dental Clinic",
-  tagline: "Premier Dental Care Services in Delhi",
-  founder: "Dr. Vivek Shekhar",
+  tagline: "Premier Dental Care & Orthodontic Services in Delhi",
+  founder: "Dr. Prakash Thakur",
+  leadDoctor: "Dr. Prakash Thakur",
+  alternateNames: [
+    "SHEKHAR DENTAL AND ORTHODONTIC CENTRE",
+    "SHEKHAR DENTAL AND ORTHODONTIC CENTER",
+    "Shekhar Dental & Orthodontic Center",
+    "Shekhar Dental Clinic",
+    "Dr. Prakash Thakur Dental Clinic",
+    "Doctor Prakash Thakur Clinic",
+    "shekhar dental and orthodentic center",
+    "shekhar dental and orthodentic centre"
+  ],
   phoneNumbers: [
-    { label: "+91 96672 66301", value: "+919667266301", clean: "919667266301" },
-    { label: "+91 98702 94558", value: "+919870294558", clean: "919870294558" }
+    { label: "+91 98702 94558", value: "+919870294558", clean: "919870294558" },
+    { label: "+91 96672 66301", value: "+919667266301", clean: "919667266301" }
   ],
   whatsappNumber: "919667266301",
   email: "info@shekhardental.in",
@@ -22,7 +33,7 @@ export const clinicInfo = {
   ],
   stats: [
     { value: "5000+", label: "Happy Patients" },
-    { value: "10+", label: "Years Experience" },
+    { value: "15+", label: "Years Experience" },
     { value: "12+", label: "Services Offered" },
     { value: "99%", label: "Success Rate" }
   ],

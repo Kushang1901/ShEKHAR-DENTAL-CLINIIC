@@ -16,7 +16,7 @@ export const doctorsData: DoctorMember[] = [
     role: "Founder & Lead Dental Surgeon",
     experience: "15+ Years",
     specialties: ["Practice Management", "General Dentistry", "Complex Rehabilitations", "Patient Care"],
-    description: "Leading Shekhar Dental Clinic with over 15 years of clinical expertise, dedicated to bringing painless and world-class dental treatments to patients.",
+    description: "Dr. Prakash Thakur (Doctor Prakash Thakur) is the Founder & Lead Dental Surgeon at SHEKHAR DENTAL AND ORTHODONTIC CENTRE with over 15 years of clinical expertise, dedicated to bringing painless, ethical and world-class dental care to patients in Sagarpur, New Delhi.",
     image: "/images/mama.jpg",
     icon: "crown"
   },
