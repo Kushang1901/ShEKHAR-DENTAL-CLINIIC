@@ -33,14 +33,38 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Dental Services & Treatment Pricing | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    description: 'Comprehensive dental services with upfront transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi with Dr. Prakash Thakur.',
+    description: 'Comprehensive dental services with upfront transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi with Dr. Prakash Thakur. Dental Implants ₹25,000 | Braces ₹30,000 | Root Canal ₹2,500 | Zirconia Cap ₹5,000.',
     url: 'https://shekhardental.in/services',
   },
+};
+
+const servicesBreadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE', item: 'https://shekhardental.in' },
+    { '@type': 'ListItem', position: 2, name: 'Dental Services & Treatments', item: 'https://shekhardental.in/services' },
+  ],
+};
+
+const servicesFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is the cost of a dental implant at SHEKHAR DENTAL AND ORTHODONTIC CENTRE?', acceptedAnswer: { '@type': 'Answer', text: 'A single dental implant at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi costs ₹25,000 including the titanium implant post, abutment, and zirconia crown. No hidden charges. Contact Dr. Prakash Thakur at 098702 94558.' } },
+    { '@type': 'Question', name: 'How much does root canal treatment cost at Shekhar Dental Clinic?', acceptedAnswer: { '@type': 'Answer', text: 'Root Canal Treatment (RCT) at SHEKHAR DENTAL AND ORTHODONTIC CENTRE, Sagarpur starts from ₹2,500 per tooth using modern Protaper rotary instruments under local anesthesia. A protective crown is recommended after RCT.' } },
+    { '@type': 'Question', name: 'What is the price of braces and clear aligners at Shekhar Dental?', acceptedAnswer: { '@type': 'Answer', text: 'Braces and clear aligners at SHEKHAR DENTAL AND ORTHODONTIC CENTRE start from ₹30,000 for a full treatment course. Available options include metal braces, ceramic braces, and clear aligners, all managed by specialist orthodontists.' } },
+    { '@type': 'Question', name: 'How much do zirconia dental caps cost at SHEKHAR DENTAL AND ORTHODONTIC CENTRE?', acceptedAnswer: { '@type': 'Answer', text: 'Zirconia dental caps (ceramic crowns) at Shekhar Dental Clinic cost ₹5,000 per tooth. These are 100% metal-free, biocompatible, and match natural tooth shade for a seamless result.' } },
+    { '@type': 'Question', name: 'What dental treatments are available at SHEKHAR DENTAL AND ORTHODONTIC CENTRE Sagarpur?', acceptedAnswer: { '@type': 'Answer', text: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE offers: Dental Implants (₹25,000), Braces & Aligners (₹30,000), Root Canal RCT (₹2,500), Zirconia Caps (₹5,000), Teeth Whitening (₹8,000), Ultrasonic Scaling (₹1,000), Wisdom Tooth Extraction (₹5,000), PFM Crowns (₹2,500), Composite Fillings, Removable Dentures (₹15,000), and Night Guards.' } },
+    { '@type': 'Question', name: 'Does SHEKHAR DENTAL AND ORTHODONTIC CENTRE offer free dental check-ups?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. SHEKHAR DENTAL AND ORTHODONTIC CENTRE led by Dr. Prakash Thakur offers Free Dental Check-ups every Sunday from 10:00 AM to 1:00 PM by prior appointment. Call 098702 94558 to book your free Sunday slot.' } },
+  ],
 };
 
 export default function ServicesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqSchema) }} />
       {/* Subpage Header Banner */}
       <section className="subpage-banner">
         <div className="container">

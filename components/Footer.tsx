@@ -159,22 +159,21 @@ export default function Footer() {
             <h4 style={{ color: '#ffffff', fontSize: '1.1rem', marginBottom: '1.2rem', fontWeight: 600 }}>Treatments</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               {[
-                { name: 'Dental Implants', price: '₹25,000' },
-                { name: 'Braces & Clear Aligners', price: '₹30,000' },
-                { name: 'Root Canal Treatment', price: '₹2,500' },
-                { name: 'Zirconia Aesthetic Cap', price: '₹5,000' },
-                { name: 'Teeth Whitening & Bleach', price: '₹8,000' },
-                { name: 'Ultrasonic Scaling', price: '₹1,000' },
-              ].map((item) => (
-                <li key={item.name} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
+                'Dental Implants',
+                'Braces & Clear Aligners',
+                'Root Canal Treatment',
+                'Zirconia Aesthetic Cap',
+                'Teeth Whitening & Bleach',
+                'Ultrasonic Scaling',
+              ].map((name) => (
+                <li key={name} style={{ fontSize: '0.95rem' }}>
                   <Link
                     href="/services"
                     className="footer-nav-link"
                     style={{ color: '#94a3b8', transition: 'color 0.2s' }}
                   >
-                    {item.name}
+                    {name}
                   </Link>
-                  <span style={{ color: '#f59e0b', fontWeight: 500, fontSize: '0.85rem' }}>{item.price}</span>
                 </li>
               ))}
             </ul>

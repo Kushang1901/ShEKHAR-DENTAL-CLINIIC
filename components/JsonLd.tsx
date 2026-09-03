@@ -20,8 +20,24 @@ export default function JsonLd() {
       'Doctor Prakash Thakur Shekhar Dental'
     ],
     jobTitle: 'Founder & Lead Dental Surgeon',
+    description: 'Dr. Prakash Thakur (BDS, MIDA) is the Founder and Lead Dental Surgeon at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur East, New Delhi. With 15+ years of clinical experience, he specializes in dental implants, rotary root canal treatment, and oral rehabilitation.',
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'degree',
+        name: 'Bachelor of Dental Surgery (BDS)',
+        recognizedBy: { '@type': 'Organization', name: 'Dental Council of India' }
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'certification',
+        name: 'MIDA (Member of Indian Dental Association)',
+        recognizedBy: { '@type': 'Organization', name: 'Indian Dental Association' }
+      }
+    ],
     worksFor: {
       '@type': 'Dentist',
+      '@id': `${baseUrl}/#dentist`,
       name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
       url: baseUrl,
       telephone: '+919870294558'
@@ -56,7 +72,7 @@ export default function JsonLd() {
 
   const dentistSchema = {
     '@context': 'https://schema.org',
-    '@type': ['Dentist', 'MedicalBusiness', 'LocalBusiness', 'HealthAndBeautyBusiness'],
+    '@type': ['Dentist', 'MedicalClinic', 'MedicalBusiness', 'LocalBusiness', 'HealthAndBeautyBusiness'],
     '@id': `${baseUrl}/#dentist`,
     name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
     alternateName: [
@@ -129,17 +145,20 @@ export default function JsonLd() {
       '@type': 'Physician', name: d.name, jobTitle: d.role, description: d.description,
       medicalSpecialty: d.specialties.join(', '), worksFor: { '@id': `${baseUrl}/#dentist` }, knowsAbout: d.specialties
     })),
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '520', bestRating: '5', worstRating: '1' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.5', reviewCount: '31', bestRating: '5', worstRating: '1' },
     review: [
       { '@type': 'Review', author: { '@type': 'Person', name: 'Rajesh Kumar' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Best dental clinic in Sagarpur! Dr. Prakash Thakur and team provide excellent dental care. Treatment was completely painless and results are amazing.', datePublished: '2024-08-10' },
       { '@type': 'Review', author: { '@type': 'Person', name: 'Priya Sharma' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Got my root canal done here by Doctor Prakash Thakur and team. Absolutely painless with rotary technique. Excellent hygiene standards.', datePublished: '2024-09-05' },
       { '@type': 'Review', author: { '@type': 'Person', name: 'Amit Verma' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Got dental implants here at Shekhar Dental & Orthodontic Center. Looks and feels just like natural teeth. Free Sunday checkup is a great community initiative.', datePublished: '2024-11-12' }
     ],
     sameAs: [
-      clinicInfo.socials.instagram, clinicInfo.socials.threads,
+      clinicInfo.socials.instagram,
+      clinicInfo.socials.threads,
       'https://maps.app.goo.gl/PzB2t2M5oW9Q6K546',
-      'https://www.google.com/maps/place/SHEKHAR+DENTAL+AND+ORTHODONTIC+CENTRE',
-      'https://www.justdial.com', 'https://www.practo.com', 'https://www.sulekha.com'
+      'https://www.google.com/maps/place/SHEKHAR+DENTAL+AND+ORTHODONTIC+CENTRE/@28.6033997,77.1033054',
+      'https://www.justdial.com/Delhi/Shekhar-Dental-And-Orthodontic-Centre-Near-Baraat-Ghar-Sagarpur-East/011PXX11-XX11-221124191147-D8X6_BZDET',
+      'https://www.practo.com/delhi/clinic/shekhar-dental-and-orthodontic-centre-sagarpur',
+      'https://www.sulekha.com/shekhar-dental-and-orthodontic-centre-sagarpur-east-new-delhi'
     ]
   };
 
@@ -237,20 +256,50 @@ export default function JsonLd() {
   const websiteSchema = {
     '@context': 'https://schema.org', '@type': 'WebSite',
     '@id': `${baseUrl}/#website`,
-    url: baseUrl, name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE', description: 'Premier Dental Clinic in Sagarpur Delhi founded by Dr. Prakash Thakur',
+    url: baseUrl,
+    name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    alternateName: 'Shekhar Dental Clinic Sagarpur Delhi',
+    description: 'Premier Dental Clinic in Sagarpur, Delhi. Headed by Dr. Prakash Thakur (BDS, MIDA), Founder & Lead Dental Surgeon. Specializing in Dental Implants, Braces, Root Canal, and Sunday Free Consultations.',
     publisher: { '@id': `${baseUrl}/#dentist` },
-    inLanguage: 'en-IN',
+    inLanguage: ['en-IN', 'hi-IN'],
     potentialAction: {
       '@type': 'SearchAction',
       target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}/?s={search_term_string}` },
       'query-input': 'required name=search_term_string'
     },
-    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', '.section-header p'] }
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', '.section-header p', '.subpage-banner h1', '.subpage-banner p'] }
   };
 
   const homeBreadcrumb = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-    itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl }]
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE', item: baseUrl }
+    ]
+  };
+
+  const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${baseUrl}/contact#contactpage`,
+    name: 'Contact SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    url: `${baseUrl}/contact`,
+    description: 'Contact SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur East, New Delhi. Call Dr. Prakash Thakur on 098702 94558 or book online.',
+    mainEntity: { '@id': `${baseUrl}/#dentist` }
+  };
+
+  const appointmentPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${baseUrl}/appointment#appointmentpage`,
+    name: 'Book Dental Appointment — SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    url: `${baseUrl}/appointment`,
+    description: 'Book a dental appointment with Dr. Prakash Thakur at SHEKHAR DENTAL AND ORTHODONTIC CENTRE, Sagarpur East, New Delhi. Sunday Free Check-up available.',
+    mainEntity: { '@id': `${baseUrl}/#dentist` },
+    potentialAction: {
+      '@type': 'ReserveAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}/appointment` },
+      name: 'Book Dental Appointment'
+    }
   };
 
   return (
@@ -264,6 +313,8 @@ export default function JsonLd() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sundayEventSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appointmentPageSchema) }} />
     </>
   );
 }
