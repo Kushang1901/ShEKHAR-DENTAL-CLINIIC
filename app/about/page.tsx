@@ -39,21 +39,171 @@ export const metadata: Metadata = {
   },
 };
 
+function ToothWatermark() {
+  return (
+    <svg
+      width="220"
+      height="260"
+      viewBox="0 0 160 190"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        left: '-15px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        opacity: 0.28,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}
+    >
+      <path
+        d="M48 22 C24 22 12 38 12 60 C12 78 18 94 24 114 C30 136 36 158 42 180 C44 186 50 190 56 190 C62 190 67 186 70 180 L76 164 L82 180 C85 186 90 190 96 190 C102 190 108 186 110 180 C116 158 122 136 128 114 C134 94 140 78 140 60 C140 38 128 22 104 22 C88 22 80 32 76 38 C72 32 64 22 48 22 Z"
+        stroke="#38bdf8"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M136 32 L139 20 L142 32 L154 35 L142 38 L139 50 L136 38 L124 35 Z" fill="#38bdf8" opacity="0.85" />
+      <path d="M148 64 L150 56 L152 64 L160 66 L152 68 L150 76 L148 68 L140 66 Z" fill="#60a5fa" opacity="0.75" />
+      <path d="M22 64 L24 57 L26 64 L33 66 L26 68 L24 75 L22 68 L15 66 Z" fill="#38bdf8" opacity="0.65" />
+    </svg>
+  );
+}
+
+function FloatingToothIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 2c-2.5 0-4.5 2-4.5 4.5 0 2 .8 3.5 1.5 5.5.8 2.2 1.5 4.5 2 7 .3 1.5 1.5 2.5 3 2.5 1 0 1.8-.5 2.2-1.5L12 18l.8 2c.4 1 1.2 1.5 2.2 1.5 1.5 0 2.7-1 3-2.5.5-2.5 1.2-4.8 2-7 .7-2 1.5-3.5 1.5-5.5C21.5 4 19.5 2 17 2c-2 0-3.5 1-5 2.5C10.5 3 9 2 7 2z" />
+    </svg>
+  );
+}
+
 export default function AboutPage() {
   return (
     <>
-      {/* Subpage Header Banner */}
-      <section className="subpage-banner">
-        <div className="container">
-          <div className="animate-fade-in">
-            <h1>About Shekhar Dental & Orthodontic Center</h1>
-            <p>
-              Dedicated to delivering painless, advanced, and compassionate dental care in Sagarpur, Delhi for over a decade.
-            </p>
-            <div className="breadcrumbs">
-              <Link href="/">Home</Link>
-              <ChevronRight size={14} />
-              <span>About Us</span>
+      {/* Modern Light Hero Banner matching screenshot */}
+      <section
+        style={{
+          background: 'linear-gradient(135deg, #f0f7ff 0%, #ffffff 45%, #f8fafc 100%)',
+          padding: '3.5rem 0 3.5rem',
+          position: 'relative',
+          overflow: 'hidden',
+          borderBottom: '1px solid #e2e8f0',
+        }}
+      >
+        <div className="container" style={{ position: 'relative' }}>
+          <ToothWatermark />
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2.5rem',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 1,
+            }}
+          >
+            {/* Left Column: Heading, Badge, Description, Breadcrumbs */}
+            <div style={{ paddingLeft: '0.5rem' }}>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  background: '#dbeafe',
+                  color: '#1e40af',
+                  padding: '5px 15px',
+                  borderRadius: '999px',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  marginBottom: '1.2rem',
+                }}
+              >
+                ABOUT US
+              </div>
+
+              <h1
+                style={{
+                  fontSize: 'clamp(2.1rem, 3.8vw, 3.2rem)',
+                  fontWeight: 800,
+                  color: '#1e3a8a',
+                  lineHeight: 1.18,
+                  marginBottom: '1.1rem',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                About Shekhar Dental<br />&amp; Orthodontic Center
+              </h1>
+
+              <p
+                style={{
+                  color: '#64748b',
+                  fontSize: '1.05rem',
+                  lineHeight: '1.7',
+                  maxWidth: '520px',
+                  marginBottom: '1.6rem',
+                }}
+              >
+                Dedicated to delivering painless, advanced, and compassionate dental care in Sagarpur, Delhi for over a decade.
+              </p>
+
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '0.92rem',
+                  fontWeight: 500,
+                }}
+              >
+                <Link
+                  href="/"
+                  style={{
+                    color: '#2563eb',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s',
+                  }}
+                >
+                  Home
+                </Link>
+                <ChevronRight size={14} color="#94a3b8" />
+                <span style={{ color: '#64748b' }}>About Us</span>
+              </div>
+            </div>
+
+            {/* Right Column: Operatory Image with curved left edge & floating badge */}
+            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+              <div
+                className="about-hero-image-wrap"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '580px',
+                  height: '340px',
+                  borderRadius: '160px 24px 24px 160px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px -15px rgba(30, 60, 114, 0.12)',
+                  border: '4px solid #ffffff',
+                  background: '#f1f5f9',
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/dental_chair_drawing.jpg"
+                  alt="Modern Dental Chair Line Art Drawing — Shekhar Dental"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    display: 'block',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

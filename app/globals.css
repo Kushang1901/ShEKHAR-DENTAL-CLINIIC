@@ -449,6 +449,13 @@ img {
   }
 }
 
+@media (max-width: 640px) {
+  .about-hero-image-wrap {
+    height: 250px !important;
+    border-radius: 40px 16px 16px 40px !important;
+  }
+}
+
 @keyframes typeCursorBlink {
 
   0%,
