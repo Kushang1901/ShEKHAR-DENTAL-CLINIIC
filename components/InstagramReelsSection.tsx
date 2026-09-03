@@ -280,7 +280,6 @@ export default function InstagramReelsSection() {
   return (
     <section className="reels-section-root">
       <div className="container">
-        
         {/* Section Header */}
         <div className="reels-header-wrapper">
           <div>
@@ -396,11 +395,10 @@ export default function InstagramReelsSection() {
             ))}
           </div>
         </div>
-
       </div>
 
       {/* ═══════════════════════════════════════════
-          IN-POPUP REEL MODAL (EXACT INSTAGRAM CARD)
+          IN-POPUP REEL MODAL (INSTAGRAM CARD EMBED)
       ═══════════════════════════════════════════ */}
       {mounted && selectedReel && (
         <div
@@ -434,7 +432,7 @@ export default function InstagramReelsSection() {
               )}
               <iframe
                 key={selectedReel.id}
-                src={`https://www.instagram.com/reel/${selectedReel.id}/embed/captioned/`}
+                src={`https://www.instagram.com/reel/${selectedReel.id}/embed/`}
                 className="reel-embed-iframe"
                 scrolling="no"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
@@ -449,3 +447,4 @@ export default function InstagramReelsSection() {
     </section>
   );
 }
+
