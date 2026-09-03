@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, ZoomIn, Star } from 'lucide-react';
+import { ChevronRight, ZoomIn, ShieldCheck, Award, Clock, Smile, HeartHandshake, Sparkles, Calendar, Phone } from 'lucide-react';
 import { galleryItems, galleryCategories, GalleryItem } from '@/data/gallery';
-import { testimonialsData } from '@/data/testimonials';
 import LightboxModal from '@/components/LightboxModal';
 
 export default function GalleryClient() {
@@ -186,51 +185,132 @@ export default function GalleryClient() {
         </div>
       </section>
 
-      {/* Patient Testimonials Strip */}
-      <section style={{ padding: '5rem 0', background: '#ffffff' }}>
+      {/* Why Visit Our Clinic — Static Trust Section */}
+      <section style={{ padding: '5.5rem 0', background: '#ffffff' }}>
         <div className="container">
           <div className="section-header">
-            <span className="section-badge">Verified Reviews</span>
-            <h2>What Patients Say</h2>
-            <p>Real stories of restored smiles, painless procedures, and friendly dental care.</p>
+            <span className="section-badge">Our Promise</span>
+            <h2>Why Visit SHEKHAR DENTAL?</h2>
+            <p>Every procedure at our clinic is backed by years of expertise, hospital-grade sterilization, and a patient-first philosophy.</p>
           </div>
 
+          {/* 6 Trust Highlight Cards */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+              gap: '1.8rem',
+              marginBottom: '4rem',
             }}
           >
-            {testimonialsData.map((testi) => (
+            {[
+              {
+                icon: <ShieldCheck size={28} color="#10b981" />,
+                bg: '#ecfdf5',
+                title: 'Hospital-Grade Sterilization',
+                desc: 'Class B autoclave sterilization, UV-sterilized operatory, single-use disposables, and individually sealed sterile kits — for every patient, every time.',
+              },
+              {
+                icon: <Award size={28} color="#2563eb" />,
+                bg: '#eff6ff',
+                title: 'BDS & MIDA Certified Doctors',
+                desc: 'Led by Dr. Prakash Thakur (BDS, MIDA) with 15+ years of clinical experience. Multi-specialist team covering implantology, orthodontics, and endodontics.',
+              },
+              {
+                icon: <Smile size={28} color="#f59e0b" />,
+                bg: '#fffbeb',
+                title: '5,000+ Smiles Restored',
+                desc: 'From routine cleanings to complete full-mouth implant restorations — over five thousand patients have trusted us with their smile.',
+              },
+              {
+                icon: <Clock size={28} color="#8b5cf6" />,
+                bg: '#f5f3ff',
+                title: 'Open Till 10 PM + Sundays',
+                desc: 'Morning and late evening appointments Mon–Sat. Free dental check-ups every Sunday (10 AM – 1 PM) for the whole family by prior appointment.',
+              },
+              {
+                icon: <HeartHandshake size={28} color="#ec4899" />,
+                bg: '#fdf2f8',
+                title: 'Painless & Gentle Dentistry',
+                desc: 'Computer-assisted local anesthesia, rotary instrumentation, and a calm clinical ambience ensure a virtually pain-free experience for every patient.',
+              },
+              {
+                icon: <Sparkles size={28} color="#06b6d4" />,
+                bg: '#ecfeff',
+                title: 'Transparent Pricing, No Surprises',
+                desc: 'Upfront cost estimates shared before any treatment begins. Affordable pricing with UPI, credit/debit cards, and major digital wallets accepted.',
+              },
+            ].map((card, idx) => (
               <div
-                key={testi.id}
+                key={idx}
+                className="hover-lift-sm"
                 style={{
-                  background: '#f8fafc',
-                  padding: '2rem',
+                  background: '#ffffff',
                   borderRadius: '18px',
                   border: '1px solid #e2e8f0',
+                  padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  gap: '1rem',
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', gap: '3px', marginBottom: '0.8rem' }}>
-                    {[...Array(testi.rating)].map((_, idx) => (
-                      <Star key={idx} size={16} color="#f59e0b" fill="#f59e0b" />
-                    ))}
-                  </div>
-                  <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.7', fontStyle: 'italic', marginBottom: '1.2rem' }}>
-                    &ldquo;{testi.comment}&rdquo;
-                  </p>
+                <div
+                  style={{
+                    width: '58px',
+                    height: '58px',
+                    borderRadius: '14px',
+                    background: card.bg,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  {card.icon}
                 </div>
-                <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '0.8rem' }}>
-                  <h4 style={{ color: '#1e293b', fontSize: '1rem', margin: 0 }}>{testi.name}</h4>
-                  <span style={{ color: '#64748b', fontSize: '0.85rem' }}>{testi.treatment}</span>
+                <div>
+                  <h3 style={{ fontSize: '1.15rem', color: '#1e293b', marginBottom: '0.5rem' }}>{card.title}</h3>
+                  <p style={{ color: '#64748b', fontSize: '0.93rem', lineHeight: '1.7', margin: 0 }}>{card.desc}</p>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Stat Bar */}
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #1e3c72 0%, #2c5aa0 100%)',
+              borderRadius: '20px',
+              padding: '2.5rem 3rem',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: '2rem',
+              textAlign: 'center',
+            }}
+          >
+            {[
+              { value: '15+', label: 'Years Experience' },
+              { value: '5000+', label: 'Patients Treated' },
+              { value: '12+', label: 'Treatments Available' },
+              { value: '4.5★', label: 'Google Rating' },
+            ].map((stat, i) => (
+              <div key={i}>
+                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.5px' }}>{stat.value}</div>
+                <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.75)', fontWeight: 500, marginTop: '4px' }}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Row */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginTop: '3rem' }}>
+            <a href="/appointment" className="btn btn-primary" style={{ padding: '1rem 2.2rem', fontSize: '1.05rem' }}>
+              <Calendar size={18} />
+              <span>Book Your Visit</span>
+            </a>
+            <a href="tel:+919870294558" className="btn btn-outline" style={{ padding: '1rem 2.2rem', fontSize: '1.05rem', border: '2px solid #1e3c72', color: '#1e3c72' }}>
+              <Phone size={18} />
+              <span>Call: 098702 94558</span>
+            </a>
           </div>
         </div>
       </section>
