@@ -1,3 +1,15 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "headers": [
+    {
+      "source": "/(.*\\.(?:svg|jpg|jpeg|png|webp|gif|ico|webmanifest|mp4|woff|woff2))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }
+
