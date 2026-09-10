@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { servicesData } from '@/data/services';
+import { blogsData } from '@/data/blogs';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://shekhardental.in';
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Use static dates to prevent unnecessary recrawl churn
   const corePagesDate = new Date('2025-06-01');
   const servicesPagesDate = new Date('2025-05-15');
+  const blogPagesDate = new Date('2026-02-15');
   const legalPagesDate = new Date('2024-12-01');
   const galleryDate = new Date('2025-07-01');
 
@@ -28,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: corePagesDate,
       changeFrequency: 'weekly',
       priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: blogPagesDate,
+      changeFrequency: 'weekly',
+      priority: 0.90,
     },
     {
       url: `${baseUrl}/about`,
@@ -63,6 +71,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: s.popular ? 0.9 : 0.85,
   }));
 
+  // Dental health blog posts authored by Dr. Prakash Thakur
+  const blogPostPages: MetadataRoute.Sitemap = blogsData.map((b) => ({
+    url: `${baseUrl}/blog/${b.slug}`,
+    lastModified: new Date(b.publishedTime),
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  }));
+
   const legalPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/privacy-policy`,
@@ -78,5 +94,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...corePages, ...servicePages, ...legalPages];
+  return [...corePages, ...servicePages, ...blogPostPages, ...legalPages];
 }

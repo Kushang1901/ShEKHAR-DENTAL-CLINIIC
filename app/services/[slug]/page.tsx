@@ -347,10 +347,11 @@ export default async function ServiceDetailPage({ params }: Props) {
               {/* Lead Doctor Card */}
               <div
                 style={{
-                  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+                  background: '#ffffff',
                   borderRadius: '24px',
                   padding: '2rem',
-                  color: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  boxShadow: 'var(--shadow-md)',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '1rem' }}>
@@ -359,20 +360,21 @@ export default async function ServiceDetailPage({ params }: Props) {
                       width: '54px',
                       height: '54px',
                       borderRadius: '50%',
-                      background: 'rgba(255, 255, 255, 0.15)',
+                      background: '#eff6ff',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      border: '1px solid #dbeafe',
                     }}
                   >
-                    <Stethoscope size={26} color="#38bdf8" />
+                    <Stethoscope size={26} color="#2563eb" />
                   </div>
                   <div>
-                    <h4 style={{ margin: 0, fontSize: '1.2rem', color: '#ffffff' }}>Dr. Prakash Thakur</h4>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#38bdf8' }}>Founder & Lead Dental Surgeon (BDS, MIDA)</p>
+                    <h4 style={{ margin: 0, fontSize: '1.2rem', color: '#1e293b' }}>Dr. Prakash Thakur</h4>
+                    <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: '#2563eb', fontWeight: 600 }}>Founder &amp; Lead Dental Surgeon (BDS, MIDA)</p>
                   </div>
                 </div>
-                <p style={{ color: '#cbd5e1', fontSize: '0.92rem', lineHeight: '1.6', margin: 0 }}>
+                <p style={{ color: '#64748b', fontSize: '0.94rem', lineHeight: '1.6', margin: 0 }}>
                   With over 15 years of clinical practice, Dr. Prakash Thakur personally supervises all {service.name} procedures to ensure gentle, painless, and aesthetic results.
                 </p>
               </div>

@@ -129,6 +129,7 @@ export default function Footer() {
                 { name: 'About Clinic', href: '/about' },
                 { name: 'Our Services & Pricing', href: '/services' },
                 { name: 'Dental Specialists & Team', href: '/team' },
+                { name: 'Dental Health Blog', href: '/blog' },
                 { name: 'Treatment Gallery', href: '/gallery' },
                 { name: 'Contact & Directions', href: '/contact' },
                 { name: 'Book Appointment', href: '/appointment' },

@@ -24,6 +24,7 @@ import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import ServicesCarousel from '@/components/ServicesCarousel';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import InstagramReelsSection from '@/components/InstagramReelsSection';
+import { blogsData } from '@/data/blogs';
 
 export default function HomePage() {
   return (
@@ -418,6 +419,125 @@ export default function HomePage() {
 
       {/* Google Reviews Carousel */}
       <GoogleReviewsCarousel />
+
+      {/* ─────────────────────────────────────────────
+          FEATURED DENTAL BLOGS — By Dr. Prakash Thakur
+      ───────────────────────────────────────────── */}
+      <section style={{ padding: '5.5rem 0', background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-badge">Doctor's Blog &amp; Insights</span>
+            <h2>Dental Health Guides by Dr. Prakash Thakur</h2>
+            <p>Clinical articles, treatment comparisons, and practical oral health advice written by Founder &amp; Lead Surgeon Dr. Prakash Thakur (BDS, MIDA).</p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2rem',
+              marginBottom: '3rem',
+            }}
+          >
+            {blogsData.slice(0, 3).map((blog) => (
+              <article
+                key={blog.slug}
+                className="hover-lift-sm"
+                style={{
+                  background: '#ffffff',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  border: '1px solid #e2e8f0',
+                  boxShadow: 'var(--shadow-md)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div style={{ height: '210px', position: 'relative', background: '#f1f5f9', overflow: 'hidden' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      background: 'rgba(30, 60, 114, 0.9)',
+                      backdropFilter: 'blur(6px)',
+                      color: '#ffffff',
+                      padding: '4px 12px',
+                      borderRadius: '16px',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                    }}
+                  >
+                    {blog.category}
+                  </div>
+                </div>
+
+                <div style={{ padding: '1.8rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.82rem', color: '#64748b', marginBottom: '0.75rem' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Calendar size={14} color="#2563eb" />
+                      {blog.date}
+                    </span>
+                    <span>•</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Clock size={14} color="#2563eb" />
+                      {blog.readTime}
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: '1.25rem', color: '#1e3c72', lineHeight: 1.35, marginBottom: '0.75rem' }}>
+                    <Link href={`/blog/${blog.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {blog.title}
+                    </Link>
+                  </h3>
+
+                  <p style={{ color: '#64748b', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.4rem', flex: 1 }}>
+                    {blog.excerpt}
+                  </p>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #f1f5f9', paddingTop: '1rem', marginTop: 'auto' }}>
+                    <div style={{ fontSize: '0.82rem', color: '#1e293b', fontWeight: 600 }}>
+                      By {blog.author.name}
+                    </div>
+                    <Link
+                      href={`/blog/${blog.slug}`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        color: '#2563eb',
+                        fontWeight: 700,
+                        fontSize: '0.88rem',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <span>Read Guide</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <Link
+              href="/blog"
+              className="btn btn-primary"
+              style={{ padding: '0.9rem 2.2rem', fontSize: '1.05rem' }}
+            >
+              <span>Explore All 7+ Dental Health Guides</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Instagram Reels Video Carousel */}
       <InstagramReelsSection />
