@@ -15,11 +15,18 @@ import { clinicInfo } from '@/data/clinicInfo';
 import CertificatesShowcase from '@/components/CertificatesShowcase';
 
 export const metadata: Metadata = {
-  title: 'About SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Dr. Prakash Thakur Delhi',
-  description: 'Learn about SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, New Delhi, founded by Dr. Prakash Thakur (Doctor Prakash Thakur). Committed to hospital-grade sterilization, advanced rotary dentistry, and ethical patient care.',
+  title: 'About Shekhar Dental Clinic | SHEKHAR DENTAL AND ORTHODONTIC CENTRE Delhi',
+  description: 'Learn about Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, Delhi, founded by Dr. Prakash Thakur (BDS, MIDA). Recognized as the best service giving dental clinic in Delhi with hospital-grade sterilization and rotary painless care.',
   keywords: [
+    'shekhar dental clinic',
+    'shekhar dental and orthodontic center',
     'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
+    'shekhar dental clinic delhi',
+    'shekhar dental clinic sagarpur',
+    'best clinic in delhi',
+    'best dental clinic in delhi',
+    'best service giving dental clinic in delhi',
+    'best service giving clinic',
     'About Shekhar Dental',
     'Dr Prakash Thakur',
     'Doctor Prakash Thakur',
@@ -33,8 +40,8 @@ export const metadata: Metadata = {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Dr. Prakash Thakur | Delhi',
-    description: 'Learn about our journey, patient-first philosophy, clinical certifications, and dental technology in Sagarpur, Delhi founded by Dr. Prakash Thakur.',
+    title: 'About Shekhar Dental Clinic | Best Dental Clinic in Delhi | Dr. Prakash Thakur',
+    description: 'Learn about our 15+ year journey, patient-first philosophy, clinical certifications, and dental technology in Sagarpur, Delhi founded by Dr. Prakash Thakur.',
     url: 'https://shekhardental.in/about',
   },
 };

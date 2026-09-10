@@ -14,14 +14,20 @@ import { servicesData } from '@/data/services';
 import { clinicInfo } from '@/data/clinicInfo';
 
 export const metadata: Metadata = {
-  title: 'Dental Treatments & Pricing | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-  description: 'Explore our complete list of dental treatments with transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi, headed by Dr. Prakash Thakur. Dental Implants (₹25,000), Braces (₹30,000), Root Canal (₹2,500), Zirconia Caps (₹5,000).',
+  title: 'Dental Treatments & Pricing | Shekhar Dental Clinic & Orthodontic Center Delhi',
+  description: 'Explore complete dental treatments with transparent pricing at Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, Delhi led by Dr. Prakash Thakur. Dental Implants (₹25,000), Braces (₹30,000), Root Canal (₹2,500), Zirconia Caps (₹5,000). Best service giving dental clinic in Delhi.',
   keywords: [
+    'shekhar dental clinic',
+    'shekhar dental and orthodontic center',
     'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
+    'best clinic in delhi',
+    'best dental clinic in delhi',
+    'best service giving dental clinic in delhi',
+    'best service giving clinic',
     'Dr Prakash Thakur Dental Clinic',
     'Dental Services Sagarpur',
     'Dental Treatment Cost Delhi',
+    'Dental Implants in Delhi',
     'Root Canal Price Delhi',
     'Dental Implant Cost Sagarpur',
     'Braces Cost Janakpuri',
@@ -32,8 +38,8 @@ export const metadata: Metadata = {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Dental Services & Treatment Pricing | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    description: 'Comprehensive dental services with upfront transparent pricing at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur, Delhi with Dr. Prakash Thakur. Dental Implants ₹25,000 | Braces ₹30,000 | Root Canal ₹2,500 | Zirconia Cap ₹5,000.',
+    title: 'Dental Treatments & Pricing | Shekhar Dental Clinic & Orthodontic Center Delhi',
+    description: 'Comprehensive dental services with upfront transparent pricing at Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur, Delhi with Dr. Prakash Thakur. Dental Implants ₹25,000 | Braces ₹30,000 | Root Canal ₹2,500 | Zirconia Cap ₹5,000.',
     url: 'https://shekhardental.in/services',
   },
 };
@@ -338,7 +344,11 @@ export default function ServicesPage() {
                   {/* Service Info */}
                   <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{ marginBottom: '1rem' }}>
-                      <h3 style={{ fontSize: '1.45rem', color: '#1e3c72', marginBottom: '0.5rem' }}>{service.name}</h3>
+                      <h3 style={{ fontSize: '1.45rem', color: '#1e3c72', marginBottom: '0.5rem' }}>
+                        <Link href={`/services/${service.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                          {service.name}
+                        </Link>
+                      </h3>
                       <p style={{ color: '#475569', fontSize: '0.98rem', lineHeight: '1.7', margin: 0 }}>
                         {service.fullDescription}
                       </p>
@@ -360,8 +370,11 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Actions */}
-                    <div style={{ display: 'flex', gap: '0.8rem', marginTop: 'auto' }}>
-                      <Link href="/appointment" className="btn btn-primary" style={{ flex: 1, padding: '0.8rem 1rem', fontSize: '0.95rem' }}>
+                    <div style={{ display: 'flex', gap: '0.8rem', marginTop: 'auto', flexWrap: 'wrap' }}>
+                      <Link href={`/services/${service.id}`} className="btn btn-outline" style={{ flex: '1 1 120px', padding: '0.8rem 0.8rem', fontSize: '0.92rem', justifyContent: 'center' }}>
+                        <span>Learn More</span>
+                      </Link>
+                      <Link href="/appointment" className="btn btn-primary" style={{ flex: '1 1 120px', padding: '0.8rem 0.8rem', fontSize: '0.92rem', justifyContent: 'center' }}>
                         <Calendar size={16} />
                         <span>Book Slot</span>
                       </Link>

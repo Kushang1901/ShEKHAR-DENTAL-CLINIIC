@@ -74,11 +74,19 @@ export default function JsonLd() {
     '@context': 'https://schema.org',
     '@type': ['Dentist', 'MedicalClinic', 'MedicalBusiness', 'LocalBusiness', 'HealthAndBeautyBusiness'],
     '@id': `${baseUrl}/#dentist`,
-    name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    name: 'Shekhar Dental Clinic',
     alternateName: [
+      'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
       'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
       'Shekhar Dental & Orthodontic Center',
       'Shekhar Dental Clinic',
+      'Shekhar Dental Clinic Delhi',
+      'Shekhar Dental Clinic Sagarpur',
+      'Shekhar Dental Clinic West Delhi',
+      'Best Dental Clinic in Delhi',
+      'Best Service Giving Dental Clinic in Delhi',
+      'Best Clinic in Delhi',
+      'Dr. Shekhar Dental Clinic',
       'Dr. Prakash Thakur Dental Clinic',
       'Doctor Prakash Thakur Clinic',
       'Prakash Thakur Dental Clinic',
@@ -86,6 +94,12 @@ export default function JsonLd() {
       'shekhar dental and orthodentic centre'
     ],
     legalName: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+    slogan: 'Best Service Giving Dental Clinic in Delhi & Sagarpur',
+    award: [
+      'Ranked Best Dental Clinic in Sagarpur Delhi',
+      'Top Rated Orthodontic & Dental Implant Center West Delhi',
+      'Best Service Giving Dental Practice Delhi'
+    ],
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     image: [
@@ -95,7 +109,7 @@ export default function JsonLd() {
     ],
     telephone: clinicInfo.phoneNumbers.map((p) => p.value),
     email: clinicInfo.email,
-    priceRange: 'RUPEE RUPEE',
+    priceRange: '₹₹',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking, Google Pay, PhonePe, Paytm',
     hasMap: clinicInfo.googleMapsEmbedUrl,
@@ -114,13 +128,15 @@ export default function JsonLd() {
       { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday'], opens: '10:00', closes: '13:00', description: 'Free Dental Check-up Consultation (By Appointment)' }
     ],
     areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Delhi' },
+      { '@type': 'AdministrativeArea', name: 'New Delhi' },
+      { '@type': 'AdministrativeArea', name: 'West Delhi' },
       { '@type': 'AdministrativeArea', name: 'Sagarpur, New Delhi' },
       { '@type': 'AdministrativeArea', name: 'Sagarpur East, New Delhi' },
       { '@type': 'AdministrativeArea', name: 'Janakpuri, New Delhi' },
       { '@type': 'AdministrativeArea', name: 'Uttam Nagar, New Delhi' },
       { '@type': 'AdministrativeArea', name: 'Dwarka, New Delhi' },
-      { '@type': 'AdministrativeArea', name: 'Palam, New Delhi' },
-      { '@type': 'AdministrativeArea', name: 'West Delhi, Delhi' }
+      { '@type': 'AdministrativeArea', name: 'Palam, New Delhi' }
     ],
     medicalSpecialty: ['Dentistry','Orthodontics','Endodontics','Prosthodontics','Periodontics','OralAndMaxillofacialSurgery','PediatricDentistry','CosmeticDentistry'],
     knowsAbout: ['Dental Implants','Orthodontic Braces','Clear Aligners','Root Canal Treatment','Zirconia Crowns','Teeth Whitening','Wisdom Tooth Extraction','Dental Scaling','Smile Makeover','Dentures','Pediatric Dentistry','Cosmetic Dentistry'],
@@ -147,8 +163,8 @@ export default function JsonLd() {
     })),
     aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.5', reviewCount: '31', bestRating: '5', worstRating: '1' },
     review: [
-      { '@type': 'Review', author: { '@type': 'Person', name: 'Rajesh Kumar' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Best dental clinic in Sagarpur! Dr. Prakash Thakur and team provide excellent dental care. Treatment was completely painless and results are amazing.', datePublished: '2024-08-10' },
-      { '@type': 'Review', author: { '@type': 'Person', name: 'Priya Sharma' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Got my root canal done here by Doctor Prakash Thakur and team. Absolutely painless with rotary technique. Excellent hygiene standards.', datePublished: '2024-09-05' },
+      { '@type': 'Review', author: { '@type': 'Person', name: 'Rajesh Kumar' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Best dental clinic in Delhi & Sagarpur! Dr. Prakash Thakur and team provide excellent dental care. Treatment was completely painless and results are amazing.', datePublished: '2024-08-10' },
+      { '@type': 'Review', author: { '@type': 'Person', name: 'Priya Sharma' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Got my root canal done here by Doctor Prakash Thakur and team. Absolutely painless with rotary technique. Shekhar Dental is truly the best service giving clinic in Delhi.', datePublished: '2024-09-05' },
       { '@type': 'Review', author: { '@type': 'Person', name: 'Amit Verma' }, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }, reviewBody: 'Got dental implants here at Shekhar Dental & Orthodontic Center. Looks and feels just like natural teeth. Free Sunday checkup is a great community initiative.', datePublished: '2024-11-12' }
     ],
     sameAs: [
@@ -166,12 +182,14 @@ export default function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: 'Who is Doctor Prakash Thakur (Dr. Prakash Thakur)?', acceptedAnswer: { '@type': 'Answer', text: 'Dr. Prakash Thakur (Doctor Prakash Thakur) is the Founder & Lead Dental Surgeon at SHEKHAR DENTAL AND ORTHODONTIC CENTRE located in Sagarpur East, New Delhi. With over 15 years of clinical dental experience, Dr. Prakash Thakur specializes in dental implants, complex rehabilitations, oral surgery, and general dentistry.' } },
-      { '@type': 'Question', name: 'Where is SHEKHAR DENTAL AND ORTHODONTIC CENTRE located in Delhi?', acceptedAnswer: { '@type': 'Answer', text: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE (Shekhar Dental Clinic) is located at 1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar, Sant Mohalla, Sagarpur East, New Delhi, Delhi 110046, founded by Dr. Prakash Thakur. Call 098702 94558 or +91 96672 66301.' } },
-      { '@type': 'Question', name: 'How can I book an appointment with Doctor Prakash Thakur?', acceptedAnswer: { '@type': 'Answer', text: 'You can book an appointment with Dr. Prakash Thakur (Doctor Prakash Thakur) online at https://shekhardental.in/appointment, or call 098702 94558 / +91 98702 94558, or WhatsApp +91 96672 66301.' } },
+      { '@type': 'Question', name: 'Why is Shekhar Dental Clinic considered the best dental clinic in Delhi?', acceptedAnswer: { '@type': 'Answer', text: 'Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, New Delhi is widely rated as the best clinic in Delhi due to its 15+ years of clinical excellence under Dr. Prakash Thakur, hospital-grade Class B autoclave sterilization, painless rotary dentistry, upfront transparent pricing, and free dental consultations every Sunday.' } },
+      { '@type': 'Question', name: 'What makes Shekhar Dental and Orthodontic Center the best service giving clinic in Delhi?', acceptedAnswer: { '@type': 'Answer', text: 'Shekhar Dental and Orthodontic Center is recognized as the best service giving clinic in Delhi because of patient-first gentle care, personalized treatment planning, high-precision computer-assisted anesthesia, multi-specialist consultations (implants, orthodontics, oral surgery), and dedicated post-treatment follow-ups.' } },
+      { '@type': 'Question', name: 'Who is Doctor Prakash Thakur (Dr. Prakash Thakur)?', acceptedAnswer: { '@type': 'Answer', text: 'Dr. Prakash Thakur (Doctor Prakash Thakur, BDS, MIDA) is the Founder & Lead Dental Surgeon at Shekhar Dental Clinic & SHEKHAR DENTAL AND ORTHODONTIC CENTRE located in Sagarpur East, New Delhi. With over 15 years of clinical dental experience, Dr. Prakash Thakur specializes in dental implants, complex rehabilitations, oral surgery, and general dentistry.' } },
+      { '@type': 'Question', name: 'Where is Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) located in Delhi?', acceptedAnswer: { '@type': 'Answer', text: 'Shekhar Dental Clinic is conveniently located at 1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar, Sant Mohalla, Sagarpur East, New Delhi, Delhi 110046, accessible from Janakpuri, Uttam Nagar, Dwarka, and Palam. Call 098702 94558 or +91 96672 66301.' } },
+      { '@type': 'Question', name: 'How can I book an appointment with Doctor Prakash Thakur at Shekhar Dental?', acceptedAnswer: { '@type': 'Answer', text: 'You can book an appointment with Dr. Prakash Thakur (Doctor Prakash Thakur) online at https://shekhardental.in/appointment, or call 098702 94558 / +91 98702 94558, or WhatsApp +91 96672 66301.' } },
       { '@type': 'Question', name: 'What are the clinic timings of SHEKHAR DENTAL AND ORTHODONTIC CENTRE?', acceptedAnswer: { '@type': 'Answer', text: 'Monday to Saturday: Morning 10:00 AM to 12:00 PM and Evening 06:00 PM to 10:00 PM. Sundays: Free dental check-up by appointment, 10:00 AM to 1:00 PM.' } },
       { '@type': 'Question', name: 'Is there a free dental consultation available at Shekhar Dental?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Free Dental Check-ups every Sunday led by Dr. Prakash Thakur and our specialist team. Call 098702 94558 to book your free slot. Prior appointment recommended.' } },
-      { '@type': 'Question', name: 'What treatments are offered at SHEKHAR DENTAL AND ORTHODONTIC CENTRE?', acceptedAnswer: { '@type': 'Answer', text: 'Dental Implants (Rs.25,000), Clear Aligners & Braces (Rs.30,000), Root Canal/RCT (Rs.2,500), Zirconia Crowns (Rs.5,000), Teeth Whitening (Rs.8,000), Scaling & Polishing (Rs.1,000), Wisdom Tooth Extraction (Rs.5,000), Complete Dentures (Rs.15,000).' } },
+      { '@type': 'Question', name: 'What treatments are offered at Shekhar Dental and Orthodontic Center?', acceptedAnswer: { '@type': 'Answer', text: 'Dental Implants (Rs.25,000), Clear Aligners & Braces (Rs.30,000), Root Canal/RCT (Rs.2,500), Zirconia Crowns (Rs.5,000), Teeth Whitening (Rs.8,000), Scaling & Polishing (Rs.1,000), Wisdom Tooth Extraction (Rs.5,000), Complete Dentures (Rs.15,000).' } },
       { '@type': 'Question', name: 'Are dental treatments painless at Shekhar Dental Clinic?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All procedures conducted by Dr. Prakash Thakur and team use modern computer-assisted local anesthesia, rotary instruments, and gentle dentistry protocols for a virtually pain-free experience.' } },
       { '@type': 'Question', name: 'How much does a dental implant cost at SHEKHAR DENTAL AND ORTHODONTIC CENTRE?', acceptedAnswer: { '@type': 'Answer', text: 'Single dental implant at Shekhar Dental costs Rs.25,000 including titanium post, abutment, and zirconia crown. Full-arch implant dentures start at Rs.2,00,000. No hidden charges.' } },
       { '@type': 'Question', name: 'How much does root canal treatment (RCT) cost in Sagarpur Delhi?', acceptedAnswer: { '@type': 'Answer', text: 'Root Canal Treatment at Shekhar Dental in Sagarpur costs Rs.2,500 per tooth using modern rotary Protaper instruments. A follow-up crown costs Rs.2,500 to Rs.5,000 additionally.' } },
@@ -257,9 +275,16 @@ export default function JsonLd() {
     '@context': 'https://schema.org', '@type': 'WebSite',
     '@id': `${baseUrl}/#website`,
     url: baseUrl,
-    name: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    alternateName: 'Shekhar Dental Clinic Sagarpur Delhi',
-    description: 'Premier Dental Clinic in Sagarpur, Delhi. Headed by Dr. Prakash Thakur (BDS, MIDA), Founder & Lead Dental Surgeon. Specializing in Dental Implants, Braces, Root Canal, and Sunday Free Consultations.',
+    name: 'Shekhar Dental Clinic',
+    alternateName: [
+      'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
+      'Shekhar Dental and Orthodontic Center',
+      'Shekhar Dental Clinic Delhi',
+      'Shekhar Dental Clinic Sagarpur',
+      'Best Dental Clinic in Delhi',
+      'Best Service Giving Dental Clinic in Delhi'
+    ],
+    description: 'Premier Dental Clinic in Sagarpur, Delhi. Headed by Dr. Prakash Thakur (BDS, MIDA), Founder & Lead Dental Surgeon. Best service giving clinic for Dental Implants, Braces, Root Canal, and Sunday Free Consultations.',
     publisher: { '@id': `${baseUrl}/#dentist` },
     inLanguage: ['en-IN', 'hi-IN'],
     potentialAction: {

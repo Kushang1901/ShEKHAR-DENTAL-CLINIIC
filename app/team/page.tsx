@@ -16,8 +16,8 @@ import {
 import { doctorsData, teamStats } from '@/data/doctors';
 
 export const metadata: Metadata = {
-  title: 'Dr. Prakash Thakur (Doctor Prakash Thakur) & Specialists | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-  description: 'Meet Dr. Prakash Thakur (Doctor Prakash Thakur - Founder & Lead Dental Surgeon) and our specialist team at SHEKHAR DENTAL AND ORTHODONTIC CENTRE, Sagarpur, New Delhi. Over 15+ years of clinical excellence in dental implants, oral surgery, and painless dentistry.',
+  title: 'Dr. Prakash Thakur & Specialist Team | Shekhar Dental Clinic Delhi',
+  description: 'Meet Dr. Prakash Thakur (Doctor Prakash Thakur - Founder & Lead Dental Surgeon) and specialist dentists at Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, Delhi. Best service giving dental clinic in Delhi with 15+ years experience in implants, braces & surgery.',
   keywords: [
     'Dr Prakash Thakur',
     'Doctor Prakash Thakur',
@@ -27,9 +27,13 @@ export const metadata: Metadata = {
     'Dr Prakash Thakur Dental Surgeon',
     'Doctor Prakash Thakur Sagarpur',
     'Dr Prakash Thakur Shekhar Dental',
+    'shekhar dental clinic',
+    'shekhar dental and orthodontic center',
     'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    'SHEKHAR DENTAL AND ORTHODONTIC CENTER',
     'Shekhar Dental and Orthodontic Centre Delhi',
+    'best clinic in delhi',
+    'best dental clinic in delhi',
+    'best service giving dental clinic in delhi',
     'Dr Vivek Shekhar Orthodontist',
     'Best Dental Surgeon Sagarpur',
     'Dentist in Sagarpur East Delhi'
@@ -38,8 +42,8 @@ export const metadata: Metadata = {
     canonical: '/team',
   },
   openGraph: {
-    title: 'Dr. Prakash Thakur & Specialist Dentists | SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-    description: 'Meet Dr. Prakash Thakur (Doctor Prakash Thakur) and expert dental specialists at SHEKHAR DENTAL AND ORTHODONTIC CENTRE, Sagarpur, Delhi.',
+    title: 'Dr. Prakash Thakur & Specialist Team | Shekhar Dental Clinic Delhi',
+    description: 'Meet Dr. Prakash Thakur (Doctor Prakash Thakur) and expert dental specialists at Shekhar Dental Clinic & Orthodontic Center in Sagarpur, Delhi.',
     url: 'https://shekhardental.in/team',
   },
 };

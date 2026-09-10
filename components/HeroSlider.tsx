@@ -22,37 +22,37 @@ import { clinicInfo } from '@/data/clinicInfo';
 const HERO_SLIDES = [
   {
     image: '/gallery/clinic_chair1.jpg',
-    badge: 'Premium Dental Facility',
-    title: 'Modern Clinic & Expert Care',
-    sub: 'State-of-the-art ergonomic dental chairs, digital imaging, and fully sterilized operatory — designed for your comfort.',
+    badge: 'Best Dental Clinic in Delhi • Sagarpur East',
+    title: 'Shekhar Dental Clinic & Orthodontic Centre',
+    sub: 'Recognized as the best service giving dental clinic in Delhi. Led by Dr. Prakash Thakur with 15+ years of clinical excellence in painless implants, braces & root canals.',
     cta: 'Book Consultation',
   },
   {
     image: '/gallery/clinic_equipment.jpg',
-    badge: 'Advanced Clinical Technology',
-    title: 'Precision Dental Equipment',
-    sub: 'High-tech rotary instruments, digital X-ray systems, and computerized diagnostics for accurate and gentle treatment.',
+    badge: 'Shekhar Dental and Orthodontic Center',
+    title: 'Best Dental Clinic in Delhi for Complete Care',
+    sub: 'Specialized dental surgeons delivering precision titanium implants, clear aligners, rotary RCTs, and zirconia caps under hospital-grade sterilization.',
     cta: 'Book Free Consultation',
   },
   {
     image: '/gallery/clinic_chair2.jpg',
-    badge: 'Hospital-Grade Sterilization',
-    title: 'Safe, Sterile & Spotless',
-    sub: 'Class B autoclave sterilization, single-use disposables, UV-sterilized operatory — your safety is our priority.',
+    badge: 'Founder & Lead Surgeon • Dr. Prakash Thakur',
+    title: 'Advanced Painless Dental Care in Delhi',
+    sub: 'Modern rotary endodontics and computer-assisted local anesthesia. Experience truly pain-free root canals and smile makeovers with Delhi’s trusted dental team.',
     cta: 'Learn About Our Facility',
   },
   {
     image: '/gallery/clinic_tools.jpg',
-    badge: 'Specialist Dental Tools',
-    title: 'Expert Tools, Gentle Hands',
-    sub: 'Precision-calibrated instruments used by specialist dentists for painless implants, braces, RCTs, and smile makeovers.',
+    badge: 'Free Sunday Consultations • Sagarpur Delhi',
+    title: 'Best Service Giving Clinic with Transparent Care',
+    sub: 'Upfront affordable pricing with zero hidden charges. Free comprehensive dental check-ups every Sunday morning for families across Delhi NCR.',
     cta: 'View All Services',
   },
   {
     image: '/gallery/clinic_interior.jpg',
-    badge: 'Patient-First Comfort',
-    title: 'Your Trusted Smile Partner',
-    sub: 'A calming, clean, and welcoming clinical environment — because great dental care starts with feeling at ease.',
+    badge: 'Shekhar Dental Clinic • Orthodontic & Aligners',
+    title: 'Top Orthodontic Center & Aligners in Delhi',
+    sub: 'Transform crowded, spaced, or misaligned teeth with metal/ceramic braces and invisible clear aligners customized for teen and adult smiles.',
     cta: 'Book an Appointment',
   },
 ];
@@ -124,9 +124,9 @@ export default function HeroSlider() {
           <span className="hero-badge-open">● Open Now</span>
         </div>
 
-        <h2 key={`h2-${active}`} className="hero-headline hero-slide-in" style={{ animationDelay: '0.08s' }}>
+        <h1 key={`h1-${active}`} className="hero-headline hero-slide-in" style={{ animationDelay: '0.08s' }}>
           {slide.title}
-        </h2>
+        </h1>
 
         <p key={`sub-${active}`} className="hero-subtext hero-slide-in" style={{ animationDelay: '0.18s' }}>
           {slide.sub}

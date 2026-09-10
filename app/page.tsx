@@ -11,7 +11,11 @@ import {
   Star,
   Stethoscope,
   HeartHandshake,
-  ArrowRight
+  ArrowRight,
+  MapPin,
+  CheckCircle2,
+  ChevronDown,
+  HelpCircle
 } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
 import { doctorsData } from '@/data/doctors';
@@ -76,13 +80,134 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─────────────────────────────────────────────
+          AUTHORITY OVERVIEW — SEO Pillar Section
+      ───────────────────────────────────────────── */}
+      <section style={{ padding: '4.5rem 0', background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '3rem',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <span className="section-badge" style={{ marginBottom: '0.8rem' }}>
+                About Shekhar Dental Clinic
+              </span>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.7rem)', color: '#1e3c72', lineHeight: 1.2, marginBottom: '1.2rem' }}>
+                Best Dental Clinic in Delhi &amp; Orthodontic Center
+              </h2>
+              <p style={{ color: '#475569', fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '1.2rem' }}>
+                Welcome to <strong>SHEKHAR DENTAL AND ORTHODONTIC CENTRE</strong> (Shekhar Dental Clinic), widely celebrated across Delhi NCR as the <strong>best service giving dental clinic in Delhi</strong>. Founded and personally supervised by <strong>Dr. Prakash Thakur (BDS, MIDA)</strong>, our multi-specialty dental practice brings over 15 years of surgical excellence, compassionate care, and transparent pricing to Sagarpur East and West Delhi.
+              </p>
+              <p style={{ color: '#475569', fontSize: '1.02rem', lineHeight: '1.8', marginBottom: '1.8rem' }}>
+                Whether you require permanent titanium <strong>dental implants</strong>, gentle <strong>rotary root canal treatment (RCT)</strong>, aesthetic <strong>ceramic braces or clear aligners</strong>, or cosmetic smile designing with metal-free zirconia caps, our clinic delivers hospital-grade sterilization and pain-free clinical precision.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+                {[
+                  '15+ Years Clinical Dental Experience',
+                  'Best Service Giving Practice in Delhi',
+                  'Free Sunday Consultations by Prior Slot',
+                  'Rotary Painless Root Canal Protocols',
+                  '100% Metal-Free Zirconia Crowns',
+                  'Strict Class B Autoclave Sterilization',
+                ].map((highlight, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <CheckCircle2 size={18} color="#10b981" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.92rem', color: '#1e293b', fontWeight: 600 }}>{highlight}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Link href="/about" className="btn btn-primary" style={{ padding: '0.85rem 1.8rem' }}>
+                  <span>About Dr. Prakash Thakur &amp; Clinic</span>
+                  <ArrowRight size={16} />
+                </Link>
+                <Link href="/services" className="btn btn-outline" style={{ padding: '0.85rem 1.8rem' }}>
+                  <span>Explore Treatments &amp; Pricing</span>
+                </Link>
+              </div>
+            </div>
+
+            <div
+              style={{
+                background: 'linear-gradient(135deg, #1e3c72 0%, #2563eb 100%)',
+                borderRadius: '24px',
+                padding: '2.5rem',
+                color: '#ffffff',
+                boxShadow: '0 20px 40px rgba(30, 60, 114, 0.25)',
+              }}
+            >
+              <div style={{ fontSize: '0.88rem', color: '#93c5fd', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Quick Clinic Summary
+              </div>
+              <h3 style={{ fontSize: '1.8rem', color: '#ffffff', marginBottom: '1.2rem' }}>
+                Shekhar Dental &amp; Orthodontic Center
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.92)' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <MapPin size={20} color="#67e8f9" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <strong style={{ color: '#ffffff', display: 'block' }}>Clinic Location:</strong>
+                    <span>1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar, Sant Mohalla, Sagarpur East, Delhi 110046</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <Stethoscope size={20} color="#67e8f9" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <strong style={{ color: '#ffffff', display: 'block' }}>Lead Dental Surgeon:</strong>
+                    <span>Dr. Prakash Thakur (BDS, MIDA) • 15+ Yrs Exp</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <Clock size={20} color="#67e8f9" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <strong style={{ color: '#ffffff', display: 'block' }}>Clinic Hours:</strong>
+                    <span>Mon–Sat: 10 AM–12 PM &amp; 6 PM–10 PM • Sunday: Free Checkup</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <Phone size={20} color="#67e8f9" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div>
+                    <strong style={{ color: '#ffffff', display: 'block' }}>Direct Helpline:</strong>
+                    <a href={`tel:${clinicInfo.phoneNumbers[0].clean}`} style={{ color: '#ffffff', textDecoration: 'underline' }}>
+                      {clinicInfo.phoneNumbers[0].label}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)', textAlign: 'center' }}>
+                <Link
+                  href="/appointment"
+                  className="btn btn-white"
+                  style={{ width: '100%', justifyContent: 'center', padding: '0.9rem 1.5rem', fontSize: '1.02rem' }}
+                >
+                  <Calendar size={18} color="#1e3c72" />
+                  <span>Book Free Consultation / Check-up</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Features */}
-      <section style={{ padding: '5rem 0', background: '#ffffff' }}>
+      <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
         <div className="container">
           <div className="section-header">
-            <span className="section-badge">Why Choose Us</span>
-            <h2>Excellence in Modern Dentistry</h2>
-            <p>We combine compassionate clinical expertise, sterile protocols, and patient-first technology to deliver memorable smile makeovers.</p>
+            <span className="section-badge">Why Choose Shekhar Dental</span>
+            <h2>Best Dental Clinic in Delhi — Compassionate &amp; Painless Care</h2>
+            <p>SHEKHAR DENTAL AND ORTHODONTIC CENTRE is recognized as the best service giving dental clinic in Delhi. We combine compassionate clinical expertise, sterile protocols, and patient-first technology to deliver memorable smile makeovers.</p>
           </div>
 
           <div
@@ -296,6 +421,178 @@ export default function HomePage() {
 
       {/* Instagram Reels Video Carousel */}
       <InstagramReelsSection />
+
+      {/* ─────────────────────────────────────────────
+          LOCATIONS SERVED — High-Value Local Catchment
+      ───────────────────────────────────────────── */}
+      <section style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-badge">Locations We Serve</span>
+            <h2>Top Dental Clinic Serving Delhi NCR</h2>
+            <p>Conveniently situated on Kailashpuri Road, Sagarpur East, Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) serves patients across West and South-West Delhi.</p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {[
+              {
+                area: 'Sagarpur & Sagarpur East',
+                distance: 'Immediate Location',
+                desc: '1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar. Comprehensive dental care, rotary RCTs, and free Sunday check-ups at your doorstep.',
+              },
+              {
+                area: 'Janakpuri',
+                distance: '8–10 mins drive',
+                desc: 'Preferred destination for Janakpuri residents seeking specialist orthodontic braces, clear aligners, and dental implant surgeries.',
+              },
+              {
+                area: 'Uttam Nagar & Dabri',
+                distance: '8–12 mins drive',
+                desc: 'Fast commute via Palam Road for root canal therapy, zirconia crowns, composite fillings, and painless wisdom tooth removal.',
+              },
+              {
+                area: 'Dwarka Sub-City',
+                distance: '15 mins drive',
+                desc: 'Trusted dental implant and smile makeover center for Dwarka families looking for hospital-grade hygiene at transparent fees.',
+              },
+              {
+                area: 'Palam & Delhi Cantt',
+                distance: '10–12 mins drive',
+                desc: 'Quick access for emergency toothache treatment, oral cancer screening, and geriatric complete dentures.',
+              },
+              {
+                area: 'Mayapuri & Tilak Nagar',
+                distance: '15 mins drive',
+                desc: 'Direct connectivity for advanced laser teeth whitening, night guards for teeth grinding, and aesthetic smile rehabilitation.',
+              },
+            ].map((loc, i) => (
+              <div
+                key={i}
+                className="hover-lift-sm"
+                style={{
+                  background: '#ffffff',
+                  padding: '1.8rem 1.6rem',
+                  borderRadius: '16px',
+                  border: '1px solid #e2e8f0',
+                  boxShadow: 'var(--shadow-sm)',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <MapPin size={20} color="#2563eb" />
+                    <h3 style={{ fontSize: '1.18rem', color: '#1e293b', margin: 0 }}>{loc.area}</h3>
+                  </div>
+                  <span style={{ fontSize: '0.78rem', background: '#eff6ff', color: '#2563eb', padding: '3px 8px', borderRadius: '12px', fontWeight: 600 }}>
+                    {loc.distance}
+                  </span>
+                </div>
+                <p style={{ color: '#64748b', fontSize: '0.92rem', lineHeight: '1.6', margin: 0 }}>{loc.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────
+          ON-PAGE SEO FAQS — Accordion for Rich Snippets
+      ───────────────────────────────────────────── */}
+      <section style={{ padding: '5.5rem 0', background: '#ffffff' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <div className="section-header">
+            <span className="section-badge">Common Questions</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about Shekhar Dental Clinic, treatments, doctor credentials, and Sunday free consultations.</p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {[
+              {
+                q: 'Why is Shekhar Dental Clinic considered the best dental clinic in Delhi?',
+                a: 'Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East is recognized as the best clinic in Delhi due to 15+ years of surgical expertise under Dr. Prakash Thakur, hospital-grade Class B autoclave sterilization, painless rotary root canals, transparent upfront pricing, and free consultations every Sunday morning.',
+              },
+              {
+                q: 'What makes Shekhar Dental and Orthodontic Center the best service giving clinic in Delhi?',
+                a: 'Our patient-first approach, computer-assisted painless local anesthesia, gentle rotary endodontics, high-quality biocompatible dental implants, and dedicated post-operative follow-up have earned us the reputation as the best service giving dental clinic in Delhi.',
+              },
+              {
+                q: 'Who is Doctor Prakash Thakur (Dr. Prakash Thakur)?',
+                a: 'Dr. Prakash Thakur (BDS, MIDA) is the Founder & Lead Dental Surgeon at Shekhar Dental Clinic & SHEKHAR DENTAL AND ORTHODONTIC CENTRE. With 15+ years of clinical practice, he specializes in dental implants, oral rehabilitation, and gentle dental surgery in Sagarpur, New Delhi.',
+              },
+              {
+                q: 'Where is Shekhar Dental Clinic located and how can I reach it?',
+                a: 'The clinic is located at 1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar, Sant Mohalla, Sagarpur East, New Delhi, Delhi 110046. It is easily reachable from Janakpuri (10 min), Uttam Nagar (8 min), Dwarka (15 min), and Palam (12 min). Contact 098702 94558 for directions.',
+              },
+              {
+                q: 'What treatments are offered at Shekhar Dental Clinic & what are the charges?',
+                a: 'We provide Dental Implants (₹25,000), Braces & Clear Aligners (₹30,000), Painless Root Canal/RCT (₹2,500), Zirconia Metal-Free Crowns (₹5,000), Laser Teeth Whitening (₹8,000), Ultrasonic Scaling (₹1,000), Wisdom Tooth Surgery (₹5,000), and Removable Dentures (₹15,000).',
+              },
+              {
+                q: 'Are dental treatments painless at Shekhar Dental Clinic?',
+                a: 'Yes. All dental procedures conducted by Dr. Prakash Thakur and our specialist team utilize modern localized computer-assisted anesthesia and gentle rotary instruments for a virtually pain-free experience.',
+              },
+              {
+                q: 'Is there a free dental consultation available on Sundays?',
+                a: 'Yes! Shekhar Dental Clinic offers free comprehensive dental check-ups and specialist consultations every Sunday between 10:00 AM and 1:00 PM. Prior appointment is recommended — call 098702 94558 to reserve your slot.',
+              },
+              {
+                q: 'Does Shekhar Dental provide same-day emergency dental relief?',
+                a: 'Yes. We prioritize acute dental emergencies including severe toothache, broken crowns, dental abscess, and oral trauma with extended clinic hours until 10:00 PM. Call our emergency helpline at 098702 94558 immediately.',
+              },
+            ].map((faq, idx) => (
+              <details
+                key={idx}
+                style={{
+                  background: '#f8fafc',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '16px',
+                  padding: '1.2rem 1.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <summary
+                  style={{
+                    fontSize: '1.08rem',
+                    fontWeight: 700,
+                    color: '#1e3c72',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    outline: 'none',
+                    listStyle: 'none',
+                  }}
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <HelpCircle size={18} color="#2563eb" style={{ flexShrink: 0 }} />
+                    {faq.q}
+                  </span>
+                  <ChevronDown size={18} color="#64748b" style={{ flexShrink: 0 }} />
+                </summary>
+                <p
+                  style={{
+                    color: '#475569',
+                    fontSize: '0.98rem',
+                    lineHeight: '1.7',
+                    marginTop: '0.85rem',
+                    paddingTop: '0.85rem',
+                    borderTop: '1px solid #e2e8f0',
+                    marginBottom: 0,
+                    cursor: 'text',
+                  }}
+                >
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Emergency Callout Banner */}
       <section style={{ padding: '4rem 0', background: 'linear-gradient(135deg, #ef4444 0%, #ee5a24 100%)', color: '#ffffff' }}>

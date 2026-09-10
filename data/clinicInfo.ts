@@ -5,15 +5,23 @@ export const clinicInfo = {
   founder: "Dr. Prakash Thakur",
   leadDoctor: "Dr. Prakash Thakur",
   alternateNames: [
-    "SHEKHAR DENTAL AND ORTHODONTIC CENTRE",
-    "SHEKHAR DENTAL AND ORTHODONTIC CENTER",
-    "Shekhar Dental & Orthodontic Center",
     "Shekhar Dental Clinic",
+    "SHEKHAR DENTAL AND ORTHODONTIC CENTRE",
+    "Shekhar Dental and Orthodontic Center",
+    "Shekhar Dental & Orthodontic Center",
+    "Shekhar Dental Clinic Delhi",
+    "Shekhar Dental Clinic Sagarpur",
+    "Shekhar Dental Clinic West Delhi",
+    "Best Dental Clinic in Delhi",
+    "Best Service Giving Dental Clinic in Delhi",
     "Dr. Prakash Thakur Dental Clinic",
     "Doctor Prakash Thakur Clinic",
+    "Dr. Shekhar Dental Clinic",
     "shekhar dental and orthodentic center",
     "shekhar dental and orthodentic centre"
   ],
+  slogan: "Best Service Giving Dental Clinic in Delhi & Sagarpur",
+  award: "Ranked Top Dental & Orthodontic Clinic in Delhi",
   phoneNumbers: [
     { label: "+91 98702 94558", value: "+919870294558", clean: "919870294558" },
     { label: "+91 96672 66301", value: "+919667266301", clean: "919667266301" }
