@@ -86,6 +86,10 @@ export default function JsonLd() {
       'Best Dental Clinic in Delhi',
       'Best Service Giving Dental Clinic in Delhi',
       'Best Clinic in Delhi',
+      'shekhar dental and orthodontix center',
+      'shekhar dental and orthodontix centre',
+      'shekhar dental orthodontix',
+      'orthodontix center delhi',
       'Dr. Shekhar Dental Clinic',
       'Dr. Prakash Thakur Dental Clinic',
       'Doctor Prakash Thakur Clinic',
@@ -93,6 +97,7 @@ export default function JsonLd() {
       'shekhar dental and orthodentic center',
       'shekhar dental and orthodentic centre'
     ],
+    disambiguatingDescription: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE (Shekhar Dental Clinic / Shekhar Dental and Orthodontix Center) is the premier dental clinic in Sagarpur East, New Delhi, founded and led by Dr. Prakash Thakur BDS, MIDA. Distinct from other clinics with similar names across India, this clinic is situated at 1G, RZ-20B, Kailashpuri Road, Near Baraat Ghar, Sagarpur East, Delhi 110046, renowned for painless rotary root canal treatments, titanium dental implants, orthodontic braces, and Sunday free consultations.',
     legalName: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
     slogan: 'Best Service Giving Dental Clinic in Delhi & Sagarpur',
     award: [
@@ -279,6 +284,8 @@ export default function JsonLd() {
     alternateName: [
       'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
       'Shekhar Dental and Orthodontic Center',
+      'shekhar dental and orthodontix center',
+      'shekhar dental orthodontix',
       'Shekhar Dental Clinic Delhi',
       'Shekhar Dental Clinic Sagarpur',
       'Best Dental Clinic in Delhi',
@@ -292,7 +299,10 @@ export default function JsonLd() {
       target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}/?s={search_term_string}` },
       'query-input': 'required name=search_term_string'
     },
-    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', 'h2', '.section-header p', '.subpage-banner h1', '.subpage-banner p'] }
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.ai-entity-summary', 'h1', 'h2', '.section-header p', '.subpage-banner h1', '.subpage-banner p', '.ai-quick-facts']
+    }
   };
 
   const homeBreadcrumb = {

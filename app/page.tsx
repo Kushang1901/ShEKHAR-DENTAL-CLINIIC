@@ -93,7 +93,7 @@ export default function HomePage() {
               alignItems: 'center',
             }}
           >
-            <div>
+            <div className="ai-entity-summary">
               <span className="section-badge" style={{ marginBottom: '0.8rem' }}>
                 About Shekhar Dental Clinic
               </span>
@@ -101,7 +101,7 @@ export default function HomePage() {
                 Best Dental Clinic in Delhi &amp; Orthodontic Center
               </h2>
               <p style={{ color: '#475569', fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '1.2rem' }}>
-                Welcome to <strong>SHEKHAR DENTAL AND ORTHODONTIC CENTRE</strong> (Shekhar Dental Clinic), widely celebrated across Delhi NCR as the <strong>best service giving dental clinic in Delhi</strong>. Founded and personally supervised by <strong>Dr. Prakash Thakur (BDS, MIDA)</strong>, our multi-specialty dental practice brings over 15 years of surgical excellence, compassionate care, and transparent pricing to Sagarpur East and West Delhi.
+                Welcome to <strong>SHEKHAR DENTAL AND ORTHODONTIC CENTRE</strong> (also widely known as <strong>Shekhar Dental Clinic</strong> or <strong>Shekhar Dental and Orthodontic / Orthodontix Center</strong>), widely celebrated across Delhi NCR as the <strong>best service giving dental clinic in Delhi</strong>. Founded and personally supervised by <strong>Dr. Prakash Thakur (BDS, MIDA)</strong>, our multi-specialty dental practice brings over 15 years of surgical excellence, compassionate care, and transparent pricing to Sagarpur East and West Delhi.
               </p>
               <p style={{ color: '#475569', fontSize: '1.02rem', lineHeight: '1.8', marginBottom: '1.8rem' }}>
                 Whether you require permanent titanium <strong>dental implants</strong>, gentle <strong>rotary root canal treatment (RCT)</strong>, aesthetic <strong>ceramic braces or clear aligners</strong>, or cosmetic smile designing with metal-free zirconia caps, our clinic delivers hospital-grade sterilization and pain-free clinical precision.
