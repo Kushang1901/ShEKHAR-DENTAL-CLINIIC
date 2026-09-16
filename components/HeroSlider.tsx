@@ -5,51 +5,50 @@ import Link from 'next/link';
 import {
   Calendar,
   Phone,
-  Award,
-  ShieldCheck,
-  Clock,
-  Sparkles,
-  Users,
-  Star,
-  Stethoscope,
   MapPin,
   ChevronLeft,
   ChevronRight,
-  HeartHandshake
+  Users,
+  Award,
+  Star,
+  ShieldCheck,
+  Stethoscope,
+  Clock,
+  HeartHandshake,
 } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
 
 const HERO_SLIDES = [
   {
-    image: '/gallery/clinic_chair1.jpg',
+    image: 'https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=2000',
     badge: 'Best Dental Clinic in Delhi • Sagarpur East',
     title: 'Shekhar Dental Clinic & Orthodontic Centre',
     sub: 'Recognized as the best service giving dental clinic in Delhi. Led by Dr. Prakash Thakur with 15+ years of clinical excellence in painless implants, braces & root canals.',
     cta: 'Book Consultation',
   },
   {
-    image: '/gallery/clinic_equipment.jpg',
+    image: 'https://images.pexels.com/photos/305565/pexels-photo-305565.jpeg?auto=compress&cs=tinysrgb&w=2000',
     badge: 'Shekhar Dental and Orthodontic Center',
     title: 'Best Dental Clinic in Delhi for Complete Care',
     sub: 'Specialized dental surgeons delivering precision titanium implants, clear aligners, rotary RCTs, and zirconia caps under hospital-grade sterilization.',
     cta: 'Book Free Consultation',
   },
   {
-    image: '/gallery/clinic_chair2.jpg',
+    image: 'https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?auto=format&fit=crop&w=2000&q=80',
     badge: 'Founder & Lead Surgeon • Dr. Prakash Thakur',
     title: 'Advanced Painless Dental Care in Delhi',
     sub: 'Modern rotary endodontics and computer-assisted local anesthesia. Experience truly pain-free root canals and smile makeovers with Delhi’s trusted dental team.',
     cta: 'Learn About Our Facility',
   },
   {
-    image: '/gallery/clinic_tools.jpg',
+    image: 'https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=2000',
     badge: 'Free Sunday Consultations • Sagarpur Delhi',
     title: 'Best Service Giving Clinic with Transparent Care',
     sub: 'Upfront affordable pricing with zero hidden charges. Free comprehensive dental check-ups every Sunday morning for families across Delhi NCR.',
     cta: 'View All Services',
   },
   {
-    image: '/gallery/clinic_interior.jpg',
+    image: 'https://images.unsplash.com/photo-1643660527064-8d43259f014a?auto=format&fit=crop&w=2000&q=80',
     badge: 'Shekhar Dental Clinic • Orthodontic & Aligners',
     title: 'Top Orthodontic Center & Aligners in Delhi',
     sub: 'Transform crowded, spaced, or misaligned teeth with metal/ceramic braces and invisible clear aligners customized for teen and adult smiles.',
@@ -57,7 +56,7 @@ const HERO_SLIDES = [
   },
 ];
 
-const SLIDE_DURATION = 5000;
+const SLIDE_DURATION = 3300;
 
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
@@ -73,7 +72,7 @@ export default function HeroSlider() {
       setTimeout(() => {
         setPrev(null);
         setAnimating(false);
-      }, 900);
+      }, 650);
     },
     [active, animating]
   );
@@ -93,19 +92,30 @@ export default function HeroSlider() {
 
   return (
     <section className="hero-root">
-      {/* ── Background slides ── */}
+      {/* ── Background slides with slow smooth zoom ── */}
       <div className="hero-slides-track" aria-hidden>
-        {HERO_SLIDES.map((s, i) => (
-          <div
-            key={i}
-            className={[
-              'hero-slide-bg',
-              i === active ? 'slide-active' : '',
-              i === prev ? 'slide-leaving' : '',
-            ].join(' ')}
-            style={{ backgroundImage: `url(${s.image})` }}
-          />
-        ))}
+        {HERO_SLIDES.map((s, i) => {
+          const isActive = i === active;
+          const isLeaving = i === prev;
+          return (
+            <div
+              key={i}
+              className={[
+                'hero-slide-bg',
+                isActive ? 'slide-active' : '',
+                isLeaving ? 'slide-leaving' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              <div
+                key={isActive ? `act-${active}` : `idle-${i}`}
+                className="hero-slide-img"
+                style={{ backgroundImage: `url(${s.image})` }}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* ── Dark overlay ── */}
@@ -151,26 +161,6 @@ export default function HeroSlider() {
       <button className="hero-arrow hero-arrow-right" onClick={next} aria-label="Next slide">
         <ChevronRight size={26} />
       </button>
-
-      {/* ── Floating stat bar ── */}
-      <div className="hero-stats-bar">
-        {[
-          { value: '5,000+', label: 'Happy Patients', icon: <Users size={20} color="#2563eb" /> },
-          { value: '10+', label: 'Years of Care', icon: <Award size={20} color="#7c3aed" /> },
-          { value: '4.9 ★', label: 'Google Rating', icon: <Star size={20} color="#f59e0b" fill="#f59e0b" /> },
-          { value: '99%', label: 'Success Rate', icon: <ShieldCheck size={20} color="#10b981" /> },
-          { value: '12+', label: 'Dental Services', icon: <Stethoscope size={20} color="#ec4899" /> },
-        ].map((s, i) => (
-          <div key={i} className="hero-stat-card">
-            <div className="hero-stat-icon">{s.icon}</div>
-            <div className="hero-stat-value">{s.value}</div>
-            <div className="hero-stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Invisible stat icons used only in server-rendered hero for CLS stability */}
-      <span style={{ display: 'none' }}><Clock size={1} /><HeartHandshake size={1} /></span>
     </section>
   );
 }
