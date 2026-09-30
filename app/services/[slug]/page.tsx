@@ -15,8 +15,9 @@ import {
   ArrowLeft,
   Stethoscope
 } from 'lucide-react';
-import { servicesData, DentalService } from '@/data/services';
+import { servicesData, DentalService, getServiceSlug, findServiceBySlug } from '@/data/services';
 import { clinicInfo } from '@/data/clinicInfo';
+import { generateBreadcrumbSchema, generateServiceProcedureSchema } from '@/lib/seo';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -24,13 +25,13 @@ interface Props {
 
 export async function generateStaticParams() {
   return servicesData.map((service) => ({
-    slug: service.id,
+    slug: getServiceSlug(service),
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.id === slug);
+  const service = findServiceBySlug(slug);
 
   if (!service) {
     return {
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const serviceSlug = getServiceSlug(service);
   const title = `${service.name} in Delhi | Shekhar Dental Clinic & Orthodontic Center`;
   const description = `${service.name} at Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, Delhi. Led by Dr. Prakash Thakur. Transparent cost: ${service.price}. Best service giving dental clinic in Delhi. Call 098702 94558.`;
 
@@ -60,12 +62,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       'doctor prakash thakur',
     ],
     alternates: {
-      canonical: `/services/${service.id}`,
+      canonical: `/services/${serviceSlug}`,
     },
     openGraph: {
       title: `${service.name} | Shekhar Dental Clinic & Orthodontic Center Delhi`,
       description,
-      url: `https://shekhardental.in/services/${service.id}`,
+      url: `https://shekhardental.in/services/${serviceSlug}`,
       images: [
         {
           url: service.image || '/background.png',
@@ -86,52 +88,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.id === slug);
+  const service = findServiceBySlug(slug);
 
   if (!service) {
     notFound();
   }
 
-  const baseUrl = 'https://shekhardental.in';
+  const serviceSlug = getServiceSlug(service);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' },
+    { name: service.name, url: `/services/${serviceSlug}` },
+  ]);
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${baseUrl}/services` },
-      { '@type': 'ListItem', position: 3, name: service.name, item: `${baseUrl}/services/${service.id}` },
-    ],
-  };
-
-  const procedureSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalProcedure',
-    name: service.name,
-    description: service.fullDescription,
-    procedureType: 'NoninvasiveProcedure',
-    offers: {
-      '@type': 'Offer',
-      price: service.price.replace(/[^0-9]/g, '') || '1000',
-      priceCurrency: 'INR',
-      availability: 'https://schema.org/InStock',
-      url: `${baseUrl}/services/${service.id}`,
-    },
-    provider: {
-      '@type': 'Dentist',
-      name: 'Shekhar Dental Clinic',
-      alternateName: 'SHEKHAR DENTAL AND ORTHODONTIC CENTRE',
-      telephone: '+919870294558',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: `${clinicInfo.address.line1}, ${clinicInfo.address.line2}`,
-        addressLocality: 'Sagarpur East, New Delhi',
-        addressRegion: 'Delhi',
-        postalCode: '110046',
-        addressCountry: 'IN',
-      },
-    },
-  };
+  const procedureSchema = generateServiceProcedureSchema(service);
 
   return (
     <>
@@ -143,6 +113,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(procedureSchema) }}
       />
+
 
       {/* Subpage Banner */}
       <section className="subpage-banner">

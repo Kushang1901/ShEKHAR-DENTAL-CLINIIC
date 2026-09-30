@@ -1,6 +1,6 @@
 import React from 'react';
 import { clinicInfo } from '@/data/clinicInfo';
-import { servicesData } from '@/data/services';
+import { servicesData, getServiceSlug } from '@/data/services';
 import { doctorsData } from '@/data/doctors';
 
 export default function JsonLd() {
@@ -147,10 +147,19 @@ export default function JsonLd() {
     knowsAbout: ['Dental Implants','Orthodontic Braces','Clear Aligners','Root Canal Treatment','Zirconia Crowns','Teeth Whitening','Wisdom Tooth Extraction','Dental Scaling','Smile Makeover','Dentures','Pediatric Dentistry','Cosmetic Dentistry'],
     availableService: servicesData.map((s) => ({
       '@type': 'MedicalProcedure',
+      '@id': `${baseUrl}/services/${getServiceSlug(s)}#procedure`,
       name: s.name,
+      url: `${baseUrl}/services/${getServiceSlug(s)}`,
       description: s.fullDescription || s.shortDescription,
       procedureType: 'NoninvasiveProcedure',
-      offers: { '@type': 'Offer', price: s.price.replace(/[^0-9]/g, '') || '1000', priceCurrency: 'INR', availability: 'https://schema.org/InStock', validFrom: '2024-01-01' }
+      offers: {
+        '@type': 'Offer',
+        price: s.price.replace(/[^0-9]/g, '') || '1000',
+        priceCurrency: 'INR',
+        availability: 'https://schema.org/InStock',
+        url: `${baseUrl}/services/${getServiceSlug(s)}`,
+        validFrom: '2024-01-01',
+      },
     })),
     founder: {
       '@type': 'Person',

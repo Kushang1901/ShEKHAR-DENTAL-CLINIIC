@@ -1,3 +1,5 @@
+import { normalizeSlug } from '@/lib/seo/slug';
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -10,6 +12,8 @@ export interface BlogPost {
   };
   date: string;
   publishedTime: string;
+  /** Optional last updated timestamp for SEO fresh crawl signaling. */
+  updatedTime?: string;
   readTime: string;
   category: string;
   image: string;
@@ -20,6 +24,35 @@ export interface BlogPost {
     text: string;
     points?: string[];
   }[];
+  /** Customizable sitemap priority (0.0 to 1.0). Defaults to 0.85. */
+  priority?: number;
+  /** Customizable sitemap change frequency. Defaults to 'monthly'. */
+  changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  /** Set true to exclude this blog post from the sitemap. */
+  excludeFromSitemap?: boolean;
+}
+
+/**
+ * Returns the sanitized slug for a blog post.
+ */
+export function getBlogSlug(post: BlogPost): string {
+  return normalizeSlug(post.slug);
+}
+
+/**
+ * Resolves the full canonical URL for a blog post.
+ */
+export function getBlogUrl(post: BlogPost, baseUrl = 'https://shekhardental.in'): string {
+  return `${baseUrl}/blog/${getBlogSlug(post)}`;
+}
+
+/**
+ * Finds a blog post by its slug.
+ */
+export function findBlogBySlug(slug: string): BlogPost | undefined {
+  if (!slug) return undefined;
+  const clean = normalizeSlug(slug);
+  return blogsData.find((b) => getBlogSlug(b) === clean);
 }
 
 export const blogsData: BlogPost[] = [

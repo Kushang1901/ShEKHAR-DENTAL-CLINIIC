@@ -1,5 +1,9 @@
+import { normalizeSlug } from '@/lib/seo/slug';
+
 export interface DentalService {
   id: string;
+  /** Customizable SEO slug. If omitted, falls back to `id`. */
+  slug?: string;
   name: string;
   price: string;
   shortDescription: string;
@@ -7,6 +11,38 @@ export interface DentalService {
   image: string;
   features: string[];
   popular?: boolean;
+  /** Customizable sitemap priority (0.0 to 1.0). If omitted, derived from popularity (popular: 0.90, standard: 0.85). */
+  priority?: number;
+  /** Customizable sitemap change frequency. Defaults to 'monthly'. */
+  changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  /** Customizable last modified date or ISO string. */
+  lastModified?: string | Date;
+  /** Set true to exclude this service from the sitemap. */
+  excludeFromSitemap?: boolean;
+}
+
+/**
+ * Returns the effective customizable slug for a service.
+ * Respects `service.slug` if specified, otherwise safely falls back to `service.id`.
+ */
+export function getServiceSlug(service: DentalService): string {
+  return normalizeSlug(service.slug || service.id);
+}
+
+/**
+ * Resolves the full canonical URL for a service.
+ */
+export function getServiceUrl(service: DentalService, baseUrl = 'https://shekhardental.in'): string {
+  return `${baseUrl}/services/${getServiceSlug(service)}`;
+}
+
+/**
+ * Finds a service matching either its customized `slug` or fallback `id`.
+ */
+export function findServiceBySlug(slug: string): DentalService | undefined {
+  if (!slug) return undefined;
+  const clean = normalizeSlug(slug);
+  return servicesData.find((s) => getServiceSlug(s) === clean || s.id === clean);
 }
 
 export const servicesData: DentalService[] = [

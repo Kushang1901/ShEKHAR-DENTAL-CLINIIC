@@ -16,8 +16,9 @@ import {
   ArrowLeft,
   Share2
 } from 'lucide-react';
-import { blogsData, BlogPost } from '@/data/blogs';
+import { blogsData, BlogPost, getBlogSlug, findBlogBySlug } from '@/data/blogs';
 import { clinicInfo } from '@/data/clinicInfo';
+import { generateBreadcrumbSchema, generateBlogPostSchema } from '@/lib/seo';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,13 +26,13 @@ interface Props {
 
 export async function generateStaticParams() {
   return blogsData.map((post) => ({
-    slug: post.slug,
+    slug: getBlogSlug(post),
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogsData.find((p) => p.slug === slug);
+  const post = findBlogBySlug(slug);
 
   if (!post) {
     return {
@@ -85,51 +86,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = blogsData.find((p) => p.slug === slug);
+  const post = findBlogBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const baseUrl = 'https://shekhardental.in';
-  const relatedPosts = blogsData.filter((p) => p.slug !== slug).slice(0, 3);
+  const postSlug = getBlogSlug(post);
+  const relatedPosts = blogsData.filter((p) => getBlogSlug(p) !== postSlug).slice(0, 3);
 
-  const blogPostingSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    url: `${baseUrl}/blog/${post.slug}`,
-    datePublished: post.publishedTime,
-    dateModified: post.publishedTime,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/blog/${post.slug}`,
-    },
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      jobTitle: post.author.role,
-      url: `${baseUrl}/team`,
-    },
-    publisher: {
-      '@type': 'Dentist',
-      name: 'Shekhar Dental Clinic',
-      url: baseUrl,
-      logo: `${baseUrl}/logo.png`,
-    },
-    image: `${baseUrl}${post.image}`,
-  };
+  const blogPostingSchema = generateBlogPostSchema(post);
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-      { '@type': 'ListItem', position: 2, name: 'Dental Blog', item: `${baseUrl}/blog` },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` },
-    ],
-  };
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Dental Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${postSlug}` },
+  ]);
 
   return (
     <>

@@ -10,7 +10,7 @@ import {
   Sparkles,
   ShieldAlert
 } from 'lucide-react';
-import { servicesData } from '@/data/services';
+import { servicesData, getServiceSlug } from '@/data/services';
 import { clinicInfo } from '@/data/clinicInfo';
 
 export const metadata: Metadata = {
@@ -345,7 +345,7 @@ export default function ServicesPage() {
                   <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{ marginBottom: '1rem' }}>
                       <h3 style={{ fontSize: '1.45rem', color: '#1e3c72', marginBottom: '0.5rem' }}>
-                        <Link href={`/services/${service.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        <Link href={`/services/${getServiceSlug(service)}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                           {service.name}
                         </Link>
                       </h3>
@@ -371,7 +371,7 @@ export default function ServicesPage() {
 
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: '0.8rem', marginTop: 'auto', flexWrap: 'wrap' }}>
-                      <Link href={`/services/${service.id}`} className="btn btn-outline" style={{ flex: '1 1 120px', padding: '0.8rem 0.8rem', fontSize: '0.92rem', justifyContent: 'center' }}>
+                      <Link href={`/services/${getServiceSlug(service)}`} className="btn btn-outline" style={{ flex: '1 1 120px', padding: '0.8rem 0.8rem', fontSize: '0.92rem', justifyContent: 'center' }}>
                         <span>Learn More</span>
                       </Link>
                       <Link href="/appointment" className="btn btn-primary" style={{ flex: '1 1 120px', padding: '0.8rem 0.8rem', fontSize: '0.92rem', justifyContent: 'center' }}>
