@@ -42,6 +42,22 @@ interface ReelItem {
 
 const REELS_DATA: ReelItem[] = [
   {
+    id: 'DeOnoSps51p',
+    title: 'Full Mouth Restoration & Zirconia Makeover',
+    category: 'Full Mouth Restoration',
+    thumbnail: '/services/zirconia cap.png',
+    url: 'https://www.instagram.com/reel/DeOnoSps51p/',
+    likes: '1.4k',
+  },
+  {
+    id: 'DeXBbg1JP_G',
+    title: 'Custom Dentures & Patient Care',
+    category: 'Dentures',
+    thumbnail: '/services/removable_dentures.png',
+    url: 'https://www.instagram.com/reel/DeXBbg1JP_G/',
+    likes: '1.2k',
+  },
+  {
     id: 'DcI_Kv7soOP',
     title: 'Cosmetic Smile Makeover & Restorations',
     category: 'Cosmetic Dentistry',

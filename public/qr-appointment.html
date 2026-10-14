@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shekhar Dental Clinic - Appointment QR Code</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .qr-card {
+      background: #ffffff;
+      padding: 36px 32px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      max-width: 440px;
+      width: 100%;
+    }
+    .logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+    .clinic-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e3c72;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .clinic-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .msg-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    .qr-link {
+      display: inline-block;
+      cursor: pointer;
+      line-height: 0;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      background: #ffffff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .qr-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.15);
+    }
+    .qr-link img {
+      width: 280px;
+      height: 280px;
+      display: block;
+    }
+    .url-link {
+      margin-top: 18px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .url-link:hover {
+      text-decoration: underline;
+    }
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn {
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1e293b;
+    }
+    .btn:hover {
+      background: #f8fafc;
+    }
+    .btn-primary {
+      background: #1e3c72;
+      color: #ffffff;
+      border-color: #1e3c72;
+    }
+    .btn-primary:hover {
+      background: #162c54;
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .qr-card {
+        box-shadow: none;
+        border: none;
+        max-width: 100%;
+      }
+      .actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="qr-card">
+    <img src="./logo.png" alt="Shekhar Dental Logo" class="logo" />
+    <h1 class="clinic-title">SHEKHAR DENTAL CLINIC</h1>
+    <p class="clinic-sub">Dental &amp; Orthodontic Centre</p>
+    <p class="msg-title">Scan to book your appointment</p>
+
+    <a href="https://shekhardental.in/appointment" target="_blank" rel="noopener noreferrer" class="qr-link" title="Click to open appointment page">
+      <img src="./appointment-qr-code-only.png" alt="Scan to book appointment" />
+    </a>
+
+    <div>
+      <a href="https://shekhardental.in/appointment" target="_blank" rel="noopener noreferrer" class="url-link">
+        shekhardental.in/appointment
+      </a>
+    </div>
+
+    <div class="actions">
+      <a href="./shekhar-dental-appointment-qr.png" download="shekhar-dental-appointment-qr.png" class="btn btn-primary">Download High-Res PNG</a>
+      <button type="button" onclick="window.print()" class="btn">Print QR</button>
+    </div>
+  </div>
+
+</body>
+</html>
