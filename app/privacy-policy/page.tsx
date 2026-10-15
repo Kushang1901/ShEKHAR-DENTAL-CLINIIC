@@ -1,12 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, ChevronRight, Lock, Eye, FileText, CheckCircle2, Mail, Phone, MapPin } from 'lucide-react';
+import { ShieldCheck, ChevronRight, Lock, Eye, FileText, CheckCircle2, Mail, Phone, MapPin, Cookie, Megaphone } from 'lucide-react';
 import { clinicInfo } from '@/data/clinicInfo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Shekhar Dental & Orthodontic Center',
-  description: 'Learn how Shekhar Dental Clinic protects your personal data, medical records, and healthcare confidentiality.',
+  description: 'Learn how Shekhar Dental Clinic protects your personal data, medical records, healthcare confidentiality, cookie usage, and advertising disclosures. Patient data rights under Indian IT Act.',
   alternates: {
     canonical: '/privacy-policy',
   },
@@ -165,6 +165,63 @@ export default function PrivacyPolicyPage() {
                   <span><strong>Email:</strong> {clinicInfo.email}</span>
                 </div>
               </div>
+            </div>
+
+            <div>
+              <h2 style={{ fontSize: '1.5rem', color: '#1e3c72', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Cookie size={20} color="#2c5aa0" />
+                6. Cookies and Website Analytics
+              </h2>
+              <p style={{ marginBottom: '0.8rem' }}>
+                Our website (<strong>shekhardental.in</strong>) uses cookies — small text files stored on your device — to improve user experience, remember preferences, and measure website traffic. We use the following types of cookies:
+              </p>
+              <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                <li><strong>Essential Cookies:</strong> Required for the website to function correctly, including appointment booking sessions and security tokens. These cannot be disabled.</li>
+                <li><strong>Analytics Cookies (Google Analytics):</strong> We use Google Analytics to collect anonymized, aggregated data on pages visited, session duration, device type, and geographic region. This data does not personally identify you and is used solely to improve website content and usability.</li>
+                <li><strong>Advertising Cookies (Google AdSense):</strong> Our website participates in the Google AdSense advertising programme. Google uses cookies to serve ads based on your prior visits to our website and other sites. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>Google Ad Settings</a> or <a href="http://www.aboutads.info/" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>aboutads.info</a>.</li>
+                <li><strong>Preference Cookies:</strong> Store language preferences, form-fill data, and last-visited pages for a smoother repeat experience.</li>
+              </ul>
+              <p style={{ marginTop: '0.8rem' }}>
+                You can control or disable cookies through your browser settings. For more information about how Google uses data when you visit our website, see{' '}
+                <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>Google&apos;s Partner Policy</a>.
+              </p>
+            </div>
+
+            <div>
+              <h2 style={{ fontSize: '1.5rem', color: '#1e3c72', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Megaphone size={20} color="#2c5aa0" />
+                7. Advertising Disclosure
+              </h2>
+              <p style={{ marginBottom: '0.8rem' }}>
+                <strong>shekhardental.in</strong> may display third-party advertisements through the <strong>Google AdSense</strong> programme operated by Google LLC. Please note:
+              </p>
+              <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                <li>Advertisements are served by Google and its advertising partners using cookies and web beacons.</li>
+                <li>Google may use DoubleClick DART cookies to serve ads based on your visit to this site and other sites.</li>
+                <li>We do not have editorial control over specific advertisements served on our website. Ad content is the sole responsibility of the respective advertisers.</li>
+                <li>The presence of an advertisement does not constitute an endorsement by Shekhar Dental Clinic of the advertised product or service.</li>
+                <li>All dental and medical content on this website is clinically authored and editorially independent of any advertising relationships.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 style={{ fontSize: '1.5rem', color: '#1e3c72', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <FileText size={20} color="#2c5aa0" />
+                8. Medical Content Disclaimer
+              </h2>
+              <p>
+                All health and dental information published on shekhardental.in — including blog articles, service descriptions, and FAQ content — is written for general patient education and informational purposes only. It does not constitute professional medical or dental advice, diagnosis, or treatment. Always seek the guidance of a qualified dental professional for any questions regarding your personal dental health condition. Never disregard professional advice or delay seeking it because of something you read on this website.
+              </p>
+            </div>
+
+            <div>
+              <h2 style={{ fontSize: '1.5rem', color: '#1e3c72', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Lock size={20} color="#2c5aa0" />
+                9. Compliance with Indian Information Technology Act
+              </h2>
+              <p>
+                This Privacy Policy is compliant with the <strong>Information Technology Act, 2000</strong> and the <strong>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</strong> as applicable to healthcare providers and websites collecting personal data in India. By using this website, you consent to the collection, storage, and use of your information as described in this policy.
+              </p>
             </div>
 
           </div>

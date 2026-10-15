@@ -5,16 +5,16 @@ import { notFound } from 'next/navigation';
 import {
   Calendar,
   Clock,
-  User,
   ArrowRight,
   ChevronRight,
   CheckCircle2,
   Phone,
-  MessageCircle,
   Stethoscope,
   Sparkles,
   ArrowLeft,
-  Share2
+  ExternalLink,
+  AlertCircle,
+  BookOpen
 } from 'lucide-react';
 import { blogsData, BlogPost, getBlogSlug, findBlogBySlug } from '@/data/blogs';
 import { clinicInfo } from '@/data/clinicInfo';
@@ -199,6 +199,26 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Main Content Body */}
       <section style={{ padding: '4.5rem 0', background: '#f8fafc' }}>
         <div className="container" style={{ maxWidth: '860px' }}>
+          {/* Medical Disclaimer Banner */}
+          <div
+            style={{
+              background: '#fffbeb',
+              border: '1px solid #fcd34d',
+              borderLeft: '4px solid #f59e0b',
+              borderRadius: '12px',
+              padding: '1rem 1.4rem',
+              marginBottom: '2rem',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '12px',
+            }}
+          >
+            <AlertCircle size={20} color="#d97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <p style={{ margin: 0, fontSize: '0.88rem', color: '#78350f', lineHeight: '1.6' }}>
+              <strong>Medical Disclaimer:</strong> This article is written for informational and patient-education purposes only and does not constitute professional medical or dental advice, diagnosis, or treatment. Always consult a qualified dental professional for personalized clinical guidance. Results may vary per individual.
+            </p>
+          </div>
+
           {/* Featured Image */}
           <div
             style={{
@@ -302,6 +322,47 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </article>
 
+          {/* Clinical References */}
+          {post.references && post.references.length > 0 && (
+            <div
+              style={{
+                background: '#f0f9ff',
+                border: '1px solid #bae6fd',
+                borderRadius: '16px',
+                padding: '1.8rem 2rem',
+                marginBottom: '2.5rem',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
+                <BookOpen size={20} color="#0284c7" />
+                <h3 style={{ margin: 0, fontSize: '1.05rem', color: '#0c4a6e', fontWeight: 700 }}>
+                  Clinical References & Further Reading
+                </h3>
+              </div>
+              <ol style={{ margin: 0, paddingLeft: '1.4rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {post.references.map((ref, i) => (
+                  <li key={i} style={{ fontSize: '0.88rem', color: '#334155', lineHeight: '1.6' }}>
+                    <a
+                      href={ref.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: '#0284c7',
+                        textDecoration: 'underline',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                      }}
+                    >
+                      {ref.label}
+                      <ExternalLink size={13} />
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
           {/* Author Bio Card */}
           <div
             style={{
@@ -311,7 +372,7 @@ export default async function BlogPostPage({ params }: Props) {
               border: '1px solid #e2e8f0',
               boxShadow: 'var(--shadow-md)',
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               gap: '2rem',
               flexWrap: 'wrap',
               marginBottom: '3.5rem',
@@ -342,9 +403,20 @@ export default async function BlogPostPage({ params }: Props) {
               <p style={{ margin: '0 0 10px 0', color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>
                 {post.author.role}
               </p>
-              <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                Dr. Prakash Thakur is the Founder and Lead Dental Surgeon at SHEKHAR DENTAL AND ORTHODONTIC CENTRE in Sagarpur East, Delhi. With 15+ years of surgical experience in implants, rotary root canals, and cosmetic smile designing, he is recognized for compassionate, painless patient care.
+              <p style={{ margin: '0 0 10px 0', color: '#475569', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                Dr. Prakash Thakur is the Founder and Lead Dental Surgeon at <strong>SHEKHAR DENTAL AND ORTHODONTIC CENTRE</strong> in Sagarpur East, New Delhi. Holding a Bachelor of Dental Surgery (BDS) and a Member of the Indian Dental Association (MIDA), he is registered with the Delhi State Dental Council (DCI Reg. No. 2009-14382). With over 15 years of post-qualification surgical experience specializing in implantology, rotary endodontics, and orthodontic smile designing, Dr. Thakur is recognized across West Delhi for his compassionate, evidence-based, and virtually painless patient care philosophy.
               </p>
+              <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: '#dbeafe', color: '#1e40af', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600 }}>
+                  ✓ BDS Qualified
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: '#d1fae5', color: '#065f46', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600 }}>
+                  ✓ DCI Registered
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: '#fef3c7', color: '#92400e', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600 }}>
+                  ✓ 15+ Years Experience
+                </span>
+              </div>
             </div>
           </div>
 
