@@ -17,7 +17,7 @@ import {
   FileCheck2,
   Stethoscope
 } from 'lucide-react';
-import { certificatesData, CertificateItem } from '@/data/certificates';
+import { certificatesData, CertificateItem, certificateCategories } from '@/data/certificates';
 
 interface CertificatesShowcaseProps {
   title?: string;
@@ -33,29 +33,34 @@ export default function CertificatesShowcase({
   limit,
 }: CertificatesShowcaseProps) {
   const [activeCert, setActiveCert] = useState<CertificateItem | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const displayCerts = limit ? certificatesData.slice(0, limit) : certificatesData;
+  const allCerts = limit ? certificatesData.slice(0, limit) : certificatesData;
 
-  const currentIndex = activeCert ? displayCerts.findIndex(c => c.id === activeCert.id) : -1;
+  const filteredCerts = selectedCategory === "all" 
+    ? allCerts 
+    : allCerts.filter(c => c.category === selectedCategory);
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setActiveCert(displayCerts[currentIndex - 1]);
+  const currentModalIndex = activeCert ? allCerts.findIndex(c => c.id === activeCert.id) : -1;
+
+  const handleModalPrev = () => {
+    if (currentModalIndex > 0) {
+      setActiveCert(allCerts[currentModalIndex - 1]);
     } else {
-      setActiveCert(displayCerts[displayCerts.length - 1]);
+      setActiveCert(allCerts[allCerts.length - 1]);
     }
   };
 
-  const handleNext = () => {
-    if (currentIndex < displayCerts.length - 1) {
-      setActiveCert(displayCerts[currentIndex + 1]);
+  const handleModalNext = () => {
+    if (currentModalIndex < allCerts.length - 1) {
+      setActiveCert(allCerts[currentModalIndex + 1]);
     } else {
-      setActiveCert(displayCerts[0]);
+      setActiveCert(allCerts[0]);
     }
   };
 
@@ -63,8 +68,8 @@ export default function CertificatesShowcase({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!activeCert) return;
       if (e.key === 'Escape') setActiveCert(null);
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') handleModalPrev();
+      if (e.key === 'ArrowRight') handleModalNext();
     };
 
     if (activeCert) {
@@ -78,37 +83,116 @@ export default function CertificatesShowcase({
       document.body.style.overflow = 'auto';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeCert, currentIndex, displayCerts]);
+  }, [activeCert, currentModalIndex, allCerts]);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'council':
-        return <ShieldCheck size={18} className="text-blue-600" />;
+        return <ShieldCheck size={16} className="text-blue-600" />;
       case 'implants':
-        return <Stethoscope size={18} className="text-cyan-600" />;
+        return <Stethoscope size={16} className="text-cyan-600" />;
       case 'orthodontics':
-        return <Sparkles size={18} className="text-amber-500" />;
+        return <Sparkles size={16} className="text-amber-500" />;
       case 'community':
-        return <HeartHandshake size={18} className="text-emerald-600" />;
+        return <HeartHandshake size={16} className="text-emerald-600" />;
       case 'academic':
-        return <GraduationCap size={18} className="text-indigo-600" />;
+        return <GraduationCap size={16} className="text-indigo-600" />;
       default:
-        return <Award size={18} className="text-blue-600" />;
+        return <Award size={16} className="text-blue-600" />;
     }
   };
 
   return (
     <div style={{ width: '100%' }}>
-      {/* Header */}
-      <div className="section-header" style={{ marginBottom: '3rem' }}>
-        {badge && <span className="section-badge">{badge}</span>}
-        <h2 style={{ fontSize: '2.4rem', color: '#1e3c72', fontWeight: 800 }}>{title}</h2>
+      {/* Section Header */}
+      <div className="section-header" style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
+        {badge && (
+          <span 
+            className="section-badge"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 16px',
+              borderRadius: '30px',
+              background: '#eff6ff',
+              color: '#1e3c72',
+              fontWeight: 700,
+              fontSize: '0.82rem',
+              letterSpacing: '0.5px',
+              textTransform: 'uppercase',
+              marginBottom: '1rem',
+              border: '1px solid #bfdbfe'
+            }}
+          >
+            <ShieldCheck size={15} style={{ color: '#2563eb' }} />
+            {badge}
+          </span>
+        )}
+        <h2 style={{ fontSize: '2.5rem', color: '#1e3c72', fontWeight: 800, marginBottom: '0.75rem' }}>
+          {title}
+        </h2>
         <p style={{ maxWidth: '750px', margin: '0 auto', color: '#64748b', fontSize: '1.05rem', lineHeight: '1.7' }}>
           {subtitle}
         </p>
       </div>
 
-      {/* Certificates Grid */}
+      {/* Category Filter Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.6rem',
+          marginBottom: '2.5rem',
+        }}
+      >
+        {certificateCategories.map((cat) => {
+          const count = cat.id === 'all' 
+            ? allCerts.length 
+            : allCerts.filter(c => c.category === cat.id).length;
+          const isSelected = selectedCategory === cat.id;
+
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '30px',
+                border: isSelected ? '1px solid #1e3c72' : '1px solid #e2e8f0',
+                background: isSelected ? 'linear-gradient(135deg, #1e3c72 0%, #2563eb 100%)' : '#ffffff',
+                color: isSelected ? '#ffffff' : '#475569',
+                fontSize: '0.85rem',
+                fontWeight: isSelected ? 700 : 600,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: isSelected ? '0 4px 14px rgba(30, 60, 114, 0.22)' : '0 2px 6px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span>{cat.label}</span>
+              <span
+                style={{
+                  fontSize: '0.72rem',
+                  padding: '1px 7px',
+                  borderRadius: '12px',
+                  background: isSelected ? 'rgba(255,255,255,0.25)' : '#f1f5f9',
+                  color: isSelected ? '#ffffff' : '#64748b',
+                  fontWeight: 700,
+                }}
+              >
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Certificate Grid */}
       <div
         style={{
           display: 'grid',
@@ -116,7 +200,7 @@ export default function CertificatesShowcase({
           gap: '2rem',
         }}
       >
-        {displayCerts.map((cert) => (
+        {filteredCerts.map((cert) => (
           <div
             key={cert.id}
             onClick={() => setActiveCert(cert)}
@@ -134,37 +218,60 @@ export default function CertificatesShowcase({
               position: 'relative',
             }}
           >
-            {/* Top Ribbon Badge */}
+            {/* Card Header Bar: Category Badge & Issue Year (OUTSIDE the image) */}
             <div
               style={{
-                position: 'absolute',
-                top: '14px',
-                left: '14px',
-                zIndex: 5,
-                background: 'rgba(255, 255, 255, 0.94)',
-                backdropFilter: 'blur(6px)',
-                padding: '5px 12px',
-                borderRadius: '20px',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                color: '#1e3c72',
+                padding: '14px 18px',
+                background: '#f8fafc',
+                borderBottom: '1px solid #e2e8f0',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '5px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                border: '1px solid rgba(226, 232, 240, 0.8)'
+                justifyContent: 'space-between',
+                gap: '10px'
               }}
             >
-              {getCategoryIcon(cert.category)}
-              <span>{cert.badge}</span>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  color: '#1e3c72',
+                  background: '#ffffff',
+                  padding: '4px 10px',
+                  borderRadius: '16px',
+                  border: '1px solid #cbd5e1',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+                }}
+              >
+                {getCategoryIcon(cert.category)}
+                <span>{cert.badge}</span>
+              </div>
+
+              {cert.year && (
+                <span
+                  style={{
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    color: '#64748b',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  <Calendar size={13} />
+                  {cert.year}
+                </span>
+              )}
             </div>
 
-            {/* Certificate Preview Frame */}
+            {/* Certificate Preview Frame (Clean diploma mount with dark contrast backdrop) */}
             <div
               style={{
                 position: 'relative',
-                height: '240px',
-                background: 'linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%)',
+                height: '280px',
+                background: 'linear-gradient(145deg, #1e293b 0%, #0f172a 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -173,16 +280,21 @@ export default function CertificatesShowcase({
                 borderBottom: '1px solid #e2e8f0'
               }}
             >
+              {/* Inner Certificate Card Frame */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
                   height: '100%',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   overflow: 'hidden',
-                  boxShadow: '0 6px 20px rgba(0,0,0,0.12)',
+                  boxShadow: '0 8px 25px rgba(0,0,0,0.5)',
                   border: '3px solid #ffffff',
                   background: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '6px'
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -193,69 +305,54 @@ export default function CertificatesShowcase({
                     width: '100%',
                     height: '100%',
                     objectFit: 'contain',
-                    transition: 'transform 0.5s ease',
+                    transition: 'transform 0.4s ease',
                   }}
                   className="hover-scale"
                 />
               </div>
 
-              {/* Hover overlay hint */}
+              {/* Hover Overlay Hint */}
               <div
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'rgba(30, 60, 114, 0.45)',
-                  backdropFilter: 'blur(2px)',
+                  background: 'rgba(30, 60, 114, 0.55)',
+                  backdropFilter: 'blur(3px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   opacity: 0,
                   transition: 'opacity 0.3s ease',
                   color: '#ffffff',
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
                   gap: '8px'
                 }}
-                className="cert-overlay"
+                className="cert-grid-overlay"
               >
-                <ZoomIn size={22} />
-                <span>Click to View Full Certificate</span>
+                <ZoomIn size={20} />
+                <span>Inspect Official Certificate</span>
               </div>
             </div>
 
             {/* Certificate Info Body */}
             <div style={{ padding: '1.6rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', gap: '8px' }}>
-                <span
-                  style={{
-                    fontSize: '0.78rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    color: '#2563eb',
-                    background: '#eff6ff',
-                    padding: '3px 10px',
-                    borderRadius: '6px',
-                  }}
-                >
-                  {cert.categoryLabel}
-                </span>
-                {cert.year && (
-                  <span
-                    style={{
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
-                      color: '#64748b',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px'
-                    }}
-                  >
-                    <Calendar size={13} />
-                    {cert.year}
-                  </span>
-                )}
-              </div>
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  color: '#2563eb',
+                  background: '#eff6ff',
+                  padding: '3px 9px',
+                  borderRadius: '6px',
+                  alignSelf: 'flex-start',
+                  marginBottom: '8px'
+                }}
+              >
+                {cert.categoryLabel}
+              </span>
 
               <h3 style={{ fontSize: '1.18rem', fontWeight: 700, color: '#1e293b', lineHeight: '1.35', marginBottom: '8px' }}>
                 {cert.shortTitle}
@@ -285,7 +382,7 @@ export default function CertificatesShowcase({
                   type="button"
                   style={{
                     width: '100%',
-                    padding: '0.65rem',
+                    padding: '0.7rem',
                     borderRadius: '10px',
                     background: '#f8fafc',
                     border: '1px solid #cbd5e1',
@@ -309,7 +406,73 @@ export default function CertificatesShowcase({
         ))}
       </div>
 
-      {/* Lightbox Zoom Modal rendered via Portal to ensure 100% viewport centering */}
+      {/* Trust Guarantee Ribbon below grid */}
+      <div
+        style={{
+          marginTop: '3.5rem',
+          padding: '1.4rem 2rem',
+          borderRadius: '16px',
+          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+          border: '1px solid #bfdbfe',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1.2rem'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div
+            style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              background: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(30, 60, 114, 0.12)'
+            }}
+          >
+            <ShieldCheck size={28} style={{ color: '#2563eb' }} />
+          </div>
+          <div>
+            <div style={{ fontSize: '1.02rem', fontWeight: 800, color: '#1e3c72' }}>
+              Statutory Dental Transparency & Patient Verification
+            </div>
+            <div style={{ fontSize: '0.88rem', color: '#475569' }}>
+              All doctor certifications and council registrations are legally compliant and authenticated for clinical patient safety.
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setActiveCert(allCerts[0])}
+          style={{
+            padding: '9px 20px',
+            borderRadius: '10px',
+            background: '#1e3c72',
+            color: '#ffffff',
+            border: 'none',
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: '0 4px 12px rgba(30, 60, 114, 0.2)',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <FileCheck2 size={16} />
+          <span>View All 7 Certificates Full-Screen</span>
+        </button>
+      </div>
+
+      {/* ============================================================== */}
+      {/* LIGHTBOX ZOOM MODAL (PORTAL)                                   */}
+      {/* ============================================================== */}
       {mounted && activeCert && typeof document !== 'undefined' && createPortal(
         <div
           onClick={() => setActiveCert(null)}
@@ -317,7 +480,7 @@ export default function CertificatesShowcase({
             position: 'fixed',
             inset: 0,
             zIndex: 99999,
-            backgroundColor: 'rgba(15, 23, 42, 0.94)',
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
             display: 'flex',
@@ -396,7 +559,7 @@ export default function CertificatesShowcase({
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handlePrev();
+                  handleModalPrev();
                 }}
                 aria-label="Previous certificate"
                 style={{
@@ -433,7 +596,7 @@ export default function CertificatesShowcase({
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleNext();
+                  handleModalNext();
                 }}
                 aria-label="Next certificate"
                 style={{
@@ -593,10 +756,10 @@ export default function CertificatesShowcase({
       )}
 
       <style jsx global>{`
-        .cert-overlay {
+        .cert-grid-overlay {
           opacity: 0;
         }
-        .hover-lift-lg:hover .cert-overlay {
+        .hover-lift-lg:hover .cert-grid-overlay {
           opacity: 1;
         }
         @media (max-width: 860px) {

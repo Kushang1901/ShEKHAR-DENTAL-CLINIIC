@@ -30,7 +30,7 @@ export const certificatesData: CertificateItem[] = [
     categoryLabel: "Council Registration",
     badge: "Official Council License",
     authority: "Delhi Dental Council (Govt. of NCT of Delhi)",
-    image: "/certificates/1.jpeg",
+    image: "/certificates/1.png",
     description: "Official statutory medical registration issued by the Delhi Dental Council, certifying legal authority and professional standing for comprehensive dental practice.",
     highlights: [
       "Authorized State Medical Dental License",
@@ -47,7 +47,7 @@ export const certificatesData: CertificateItem[] = [
     badge: "Advanced Implantology",
     authority: "Adin Dental Implant Systems",
     year: "2016",
-    image: "/certificates/2.jpeg",
+    image: "/certificates/6.png",
     description: "Certification for specialized clinical training and surgical excellence in modern titanium dental implants and prosthetic restorations at the Adin Roadshow Delhi 2016.",
     highlights: [
       "Advanced Surgical Implantology Protocol",
@@ -63,7 +63,7 @@ export const certificatesData: CertificateItem[] = [
     categoryLabel: "Orthodontics & Aligners",
     badge: "Platinum Provider",
     authority: "32 Watts Clear Aligners",
-    image: "/certificates/3.jpeg",
+    image: "/certificates/5.png",
     description: "Honored with the prestigious Platinum Provider status by 32 Watts for excellence in digital smile planning, custom invisible aligners, and patient orthodontic transformations.",
     highlights: [
       "Top-tier Platinum Provider Status",
@@ -80,7 +80,7 @@ export const certificatesData: CertificateItem[] = [
     badge: "Leadership Award",
     authority: "Max Life Insurance Co. Ltd.",
     year: "2016",
-    image: "/certificates/4.jpeg",
+    image: "/certificates/4.png",
     description: "Awarded as a Premium Leader in March 2016 for exceptional professional achievement, reliability, and distinguished healthcare leadership.",
     highlights: [
       "Exemplary Healthcare Leadership Distinction",
@@ -97,7 +97,7 @@ export const certificatesData: CertificateItem[] = [
     badge: "Community Oral Health",
     authority: "Colgate-Palmolive India & IDA",
     year: "2019",
-    image: "/certificates/5.jpeg",
+    image: "/certificates/3.png",
     description: "Certificate of Appreciation for dedicated service conducting Free Dental Health Check-up Programs in May 2019, educating the public on preventive oral hygiene.",
     highlights: [
       "Mass Oral Health Screening & Awareness",
@@ -112,8 +112,9 @@ export const certificatesData: CertificateItem[] = [
     category: "academic",
     categoryLabel: "Academic Qualification",
     badge: "Academic Degree",
-    authority: "Recognized Dental College & University",
-    image: "/certificates/6.jpeg",
+    authority: "Santosh Dental College & Hospital (Santosh University)",
+    year: "2016",
+    image: "/certificates/2.png",
     description: "Comprehensive qualification credentials certifying completion of Bachelor of Dental Surgery (BDS), rigorous multi-department rotatory clinical internship, and exemplary moral conduct.",
     highlights: [
       "Complete BDS Degree & Passing Out Verification",
@@ -128,8 +129,9 @@ export const certificatesData: CertificateItem[] = [
     category: "council",
     categoryLabel: "Statutory Accreditation",
     badge: "Dentist Act 1948",
-    authority: "Delhi Dental Council / Ministry of Health",
-    image: "/certificates/7.jpeg",
+    authority: "Delhi Dental Council (Govt. of NCT of Delhi)",
+    year: "2022",
+    image: "/certificates/7.jpg",
     description: "Formal statutory registration granted under Part A of the Dentist Act 1948 by the Delhi Dental Council, validating full government accreditation.",
     highlights: [
       "Part A Registration under Dentist Act 1948",
