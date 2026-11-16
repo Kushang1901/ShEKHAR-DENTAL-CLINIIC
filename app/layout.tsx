@@ -117,6 +117,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    other: {
+      'msvalidate.01': '8CA0B8636020035C1FAD4EF19EE7540D',
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon.png', type: 'image/png' },
@@ -134,12 +139,36 @@ export const metadata: Metadata = {
     title: 'Shekhar Dental Clinic | SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Best Dental Clinic in Delhi',
     description:
       'Shekhar Dental Clinic (SHEKHAR DENTAL AND ORTHODONTIC CENTRE) in Sagarpur East, Delhi. Best service giving dental clinic in Delhi led by Dr. Prakash Thakur. Dental Implants, Braces, Aligners & Free Sunday Consultations. Call 098702 94558.',
+    emails: ['shekhardentalclinic@gmail.com'],
+    phoneNumbers: ['+919870294558', '+919667266301'],
+    countryName: 'India',
     images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Shekhar Dental Clinic & Shekhar Dental and Orthodontic Centre - Dr. Prakash Thakur',
+        type: 'image/png',
+      },
+      {
+        url: '/About_us_img.png',
+        width: 1200,
+        height: 630,
+        alt: 'Dr. Prakash Thakur & Clinic Team - Shekhar Dental Clinic Delhi',
+        type: 'image/png',
+      },
       {
         url: '/background.png',
         width: 1200,
         height: 630,
-        alt: 'Shekhar Dental Clinic & Shekhar Dental and Orthodontic Centre Operatory - Dr. Prakash Thakur',
+        alt: 'Shekhar Dental Operatory & Advanced Clinic Setup',
+        type: 'image/png',
+      },
+      {
+        url: '/logo.png',
+        width: 614,
+        height: 614,
+        alt: 'Shekhar Dental Clinic Official Brand Logo',
         type: 'image/png',
       },
     ],
@@ -149,14 +178,21 @@ export const metadata: Metadata = {
     title: 'Shekhar Dental Clinic | SHEKHAR DENTAL AND ORTHODONTIC CENTRE | Best Clinic in Delhi',
     description:
       'Shekhar Dental Clinic & Orthodontic Centre in Delhi. Best service giving dental clinic headed by Dr. Prakash Thakur. Painless Implants, Braces, RCT & Free Sunday Checkups.',
-    images: ['/background.png'],
+    images: ['/og-image.png'],
     creator: '@shekhar_dental',
+    site: '@shekhar_dental',
   },
   other: {
+    'msvalidate.01': '8CA0B8636020035C1FAD4EF19EE7540D',
     'geo.region': 'IN-DL',
     'geo.placename': 'New Delhi',
     'geo.position': '28.6033997;77.1033054',
     'ICBM': '28.6033997, 77.1033054',
+    'rating': 'General',
+    'revisit-after': '2 days',
+    'distribution': 'Global',
+    'target': 'all',
+    'audience': 'all',
   },
 };
 
@@ -168,6 +204,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Bing & Microsoft Webmaster Tools verification */}
+        <meta name="msvalidate.01" content="8CA0B8636020035C1FAD4EF19EE7540D" />
+
+        {/* Primary Open Graph Source meta tags */}
+        <meta property="og:image:secure_url" content="https://shekhardental.in/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+
         {/* LCP optimisation — preload first hero slide so browser fetches it immediately */}
         <link
           rel="preload"
