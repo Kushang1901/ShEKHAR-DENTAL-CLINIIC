@@ -20,35 +20,35 @@ import { clinicInfo } from '@/data/clinicInfo';
 
 const HERO_SLIDES = [
   {
-    image: 'https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    image: '/hero/slide-1.webp',
     badge: 'Best Dental Clinic in Delhi • Sagarpur East',
     title: 'Shekhar Dental Clinic & Orthodontic Centre',
     sub: 'Recognized as the best service giving dental clinic in Delhi. Led by Dr. Prakash Thakur with 15+ years of clinical excellence in painless implants, braces & root canals.',
     cta: 'Book Consultation',
   },
   {
-    image: 'https://images.pexels.com/photos/305565/pexels-photo-305565.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    image: '/hero/slide-2.webp',
     badge: 'Shekhar Dental and Orthodontic Center',
     title: 'Best Dental Clinic in Delhi for Complete Care',
     sub: 'Specialized dental surgeons delivering precision titanium implants, clear aligners, rotary RCTs, and zirconia caps under hospital-grade sterilization.',
     cta: 'Book Free Consultation',
   },
   {
-    image: 'https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?auto=format&fit=crop&w=2000&q=80',
+    image: '/hero/slide-3.webp',
     badge: 'Founder & Lead Surgeon • Dr. Prakash Thakur',
     title: 'Advanced Painless Dental Care in Delhi',
     sub: 'Modern rotary endodontics and computer-assisted local anesthesia. Experience truly pain-free root canals and smile makeovers with Delhi’s trusted dental team.',
     cta: 'Learn About Our Facility',
   },
   {
-    image: 'https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    image: '/hero/slide-4.webp',
     badge: 'Free Sunday Consultations • Sagarpur Delhi',
     title: 'Best Service Giving Clinic with Transparent Care',
     sub: 'Upfront affordable pricing with zero hidden charges. Free comprehensive dental check-ups every Sunday morning for families across Delhi NCR.',
     cta: 'View All Services',
   },
   {
-    image: 'https://images.unsplash.com/photo-1643660527064-8d43259f014a?auto=format&fit=crop&w=2000&q=80',
+    image: '/hero/slide-5.webp',
     badge: 'Shekhar Dental Clinic • Orthodontic & Aligners',
     title: 'Top Orthodontic Center & Aligners in Delhi',
     sub: 'Transform crowded, spaced, or misaligned teeth with metal/ceramic braces and invisible clear aligners customized for teen and adult smiles.',
@@ -112,7 +112,20 @@ export default function HeroSlider() {
                 key={isActive ? `act-${active}` : `idle-${i}`}
                 className="hero-slide-img"
                 style={{ backgroundImage: `url(${s.image})` }}
-              />
+              >
+                {/* Eager HTML image so browser preload scanner paints slide 0 at 0ms */}
+                {i === 0 && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={s.image}
+                    alt=""
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
+                    style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', opacity: 0, pointerEvents: 'none' }}
+                  />
+                )}
+              </div>
             </div>
           );
         })}

@@ -149,11 +149,11 @@ export function registerCustomRoute(route: CustomSitemapRoute): void {
  * Deduplicates URLs and orders items by priority in descending order.
  */
 export function generateDynamicSitemap(baseUrl = SITE_BASE_URL): MetadataRoute.Sitemap {
-  // Dynamic baseline dates to prevent stale crawls
+  // Dynamic baseline dates reflecting real-time updates for search engines
   const now = new Date();
-  const defaultServicesDate = new Date('2025-05-15');
-  const defaultCoreDate = new Date('2025-06-01');
-  const defaultLegalDate = new Date('2024-12-01');
+  const defaultServicesDate = now;
+  const defaultCoreDate = now;
+  const defaultLegalDate = now;
 
   // 1. Process Core Static Routes
   const coreEntries: MetadataRoute.Sitemap = corePagesConfig

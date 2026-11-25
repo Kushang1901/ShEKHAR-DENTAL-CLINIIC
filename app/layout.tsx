@@ -217,9 +217,11 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/gallery/implant_procedure.png"
+          href="/hero/slide-1.webp"
+          type="image/webp"
           fetchPriority="high"
         />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         {/* DNS prefetch & preconnect for third-party origins */}
         <link rel="preconnect" href="https://translate.googleapis.com" />
         <link rel="preconnect" href="https://translate.google.com" />
